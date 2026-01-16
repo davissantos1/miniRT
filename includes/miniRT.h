@@ -1,25 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/15 23:54:40 by dasimoes         ###   ########.fr       */
+/*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
+/*   Updated: 2026/01/15 13:19:18 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#ifndef MINIRT_H
+# define MINIRT_H
 
-int	main(int ac, char **av)
-{ 
-	if (ac != 2)
-		return (panic(ERR_ARG_NUM));
-	else
-	{
+// External includes
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <math.h>
+# include <sys/time.h>
+# include <stdlib.h>
 
-	}
-	return (SUCCESS);
-}
-	
+// Local includes
+# include "../libft/libft.h"
+
+// Enums
+typedef enum e_status
+{
+	SUCCESS,
+	ERR_ARG_NUM,
+	ERR_ARG_INVALID,
+	ERR_SYSCALL,
+	COUNT
+}	t_status;
+
+// Macros
+
+// Structs
+
+//Prototypes
+
+#endif

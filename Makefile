@@ -2,11 +2,18 @@
 
 CC= cc
 CFLAGS= -Wall -Wextra -Werror -Wpedantic -Iincludes
-SRC= src/main.c
+LDFLAGS= -lXext -lX11 -lm -lz
+SRC= \
+		src/main.c
+SRC_BONUS= \
+		src/main.c
 OBJ= $(SRC:.c=.o)
+OBJ_BONUS= $(SRC_BONUS:.c=.o)
 NAME= miniRT
 LIBFT_DIR= libft
 LIBFT= $(LIBFT_DIR)/libft.a
+MINILIBX_DIR= minilibx-linux
+MINILIBX= $(MINILIBX_DIR)/libmlx.a
 
 # Makeflags
 MAKEFLAGS += --no-print-directory
@@ -18,6 +25,11 @@ YELLOW := \033[33m
 BLUE := \033[34m
 RESET := \033[0m
 
+# Bonus setting
+ifeq ($(findstring bonus, $MAKECMDGOALS), bonus)
+	SRC = $(SRC_BONUS)
+endif
+
 # Rules
 all: $(NAME)
 
@@ -25,9 +37,13 @@ $(LIBFT):
 	@echo "📚 ${BLUE}Compiling:${RESET} libft"
 	@$(MAKE) -C $(LIBFT_DIR) bonus
 
-$(NAME): $(OBJ) $(LIBFT)
+$(MINILIBX):
+	@echo "📚 ${BLUE}Compiling:${RESET} minilibx"
+	@$(MAKE) -C $(MINILIBX_DIR)
+
+$(NAME): $(OBJ) $(LIBFT) $(MINILIBX)
 	@echo "💻 ${GREEN}Building:${RESET} ${NAME}"
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MINILIBX) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
 	@echo "🛠️  ${BLUE}Compiling:${RESET} $< to $@"
@@ -47,6 +63,8 @@ fclean: clean
 	@echo "💣 ${YELLOW}Cleaning: ${RESET}everything"
 	@rm -rf $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(MAKE) -C $(MINILIBX_DIR) clean
+	@echo "🧹 ${YELLOW}Cleaning: ${RESET}minilibx"
 
 re: fclean all
 

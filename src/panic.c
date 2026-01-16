@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   panic.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/15 23:54:40 by dasimoes         ###   ########.fr       */
+/*   Created: 2026/01/15 13:11:30 by dasimoes          #+#    #+#             */
+/*   Updated: 2026/01/15 23:55:49 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	main(int ac, char **av)
-{ 
-	if (ac != 2)
-		return (panic(ERR_ARG_NUM));
-	else
+void	panic(t_status status)
+{
+	if (status == ERR_ARG_NUM)
 	{
-
+		
 	}
-	return (SUCCESS);
 }
-	
