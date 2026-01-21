@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 08:36:30 by vitosant          #+#    #+#             */
-/*   Updated: 2026/01/19 15:03:36 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/01/20 09:30:23 by user             ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ typedef struct s_vec4
 	double	z;
 	double	w;
 }	t_vec4;
+
+typedef t_vec4	t_color;
+typedef t_vec4	t_point;
 
 //Vec4 basics operations
 t_vec4	vec4_minus(t_vec4 u, t_vec4 v);
