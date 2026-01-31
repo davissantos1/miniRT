@@ -6,12 +6,11 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 17:41:15 by vitosant          #+#    #+#             */
-/*   Updated: 2026/01/26 11:18:42 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/01/29 14:52:29 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mtx4.h"
-
 
 inline int	mtx4_is_diff(t_matrix4 m1, t_matrix4 m2)
 {
@@ -55,7 +54,7 @@ inline t_matrix4	mtx4_identity(void)
 	int			i;
 
 	i = 0;
-	ret = (t_matrix4) {0};
+	ret = (t_matrix4){0};
 	while (i < 4)
 	{
 		ret.mtx[i][i] = 1.0;
@@ -64,7 +63,7 @@ inline t_matrix4	mtx4_identity(void)
 	return (ret);
 }
 
-inline t_matrix4 mtx4_transpos(t_matrix4 m)
+inline t_matrix4	mtx4_transpos(t_matrix4 m)
 {
 	t_matrix4	ret;
 	int			i;
@@ -82,4 +81,17 @@ inline t_matrix4 mtx4_transpos(t_matrix4 m)
 		i++;
 	}
 	return (ret);
+}
+
+inline t_matrix4	mtx4_scale(double t, t_matrix4 m)
+{
+	int	i;
+
+	i = 0;
+	while (i < 16)
+	{
+		m.data[i] *= t;
+		i++;
+	}
+	return (m);
 }
