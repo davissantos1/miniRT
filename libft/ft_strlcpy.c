@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/01/15 13:19:18 by dasimoes         ###   ########.fr       */
+/*   Created: 2025/07/09 14:52:22 by dasimoes          #+#    #+#             */
+/*   Updated: 2025/07/22 21:43:43 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "libft.h"
 
-// External includes
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <math.h>
-# include <sys/time.h>
-# include <stdlib.h>
-
-// Local includes
-# include "../libft/libft.h"
-
-// Enums
-typedef enum e_status
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	SUCCESS,
-	ERR_ARG_NUM,
-	ERR_ARG_INVALID,
-	ERR_SYSCALL,
-	COUNT
-}	t_status;
+	size_t	src_size;
+	size_t	i;
 
-// Macros
-
-// Structs
-
-//Prototypes
-
-#endif
+	src_size = ft_strlen(src);
+	i = 0;
+	if (size > 0)
+	{
+		while (src[i] && (i < size - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (src_size);
+}

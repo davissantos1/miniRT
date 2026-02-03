@@ -3,10 +3,17 @@
 CC= cc
 CFLAGS= -Wall -Wextra -Werror -Wpedantic -Iincludes
 LDFLAGS= -lXext -lX11 -lm -lz
+
 SRC= \
-		src/main.c
+		src/main.c \
+		src/panic.c \
+		src/check.c \
+		src/start.c \
+		src/parse.c 
+
 SRC_BONUS= \
 		src/main.c
+
 OBJ= $(SRC:.c=.o)
 OBJ_BONUS= $(SRC_BONUS:.c=.o)
 NAME= miniRT
@@ -39,9 +46,10 @@ $(LIBFT):
 
 $(MINILIBX):
 	@echo "📚 ${BLUE}Compiling:${RESET} minilibx"
+	@tar -xf ./minilibx-linux.tgz
 	@$(MAKE) -C $(MINILIBX_DIR)
 
-$(NAME): $(OBJ) $(LIBFT) $(MINILIBX)
+$(NAME): $(LIBFT) $(MINILIBX) $(OBJ) 
 	@echo "💻 ${GREEN}Building:${RESET} ${NAME}"
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MINILIBX) $(LDFLAGS) -o $(NAME)
 
@@ -58,13 +66,17 @@ clean:
 	@rm -rf $(OBJ)
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@echo "🧹 ${YELLOW}Cleaning: ${RESET}libft objects"
+	@$(MAKE) -C $(MINILIBX_DIR) clean
+	@echo "🧹 ${YELLOW}Cleaning: ${RESET}minilibx"
 
 fclean: clean
 	@echo "💣 ${YELLOW}Cleaning: ${RESET}everything"
 	@rm -rf $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(MAKE) -C $(MINILIBX_DIR) clean
-	@echo "🧹 ${YELLOW}Cleaning: ${RESET}minilibx"
+
+delete:
+	@rm -rf $(MINILIBX_DIR)
+	@echo "💣  ${RED}Deleting: ${RESET}minilibx folder"
 
 re: fclean all
 
