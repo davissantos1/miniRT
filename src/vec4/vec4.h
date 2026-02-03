@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 08:36:30 by vitosant          #+#    #+#             */
-/*   Updated: 2026/01/20 09:30:23 by user             ###    ########.fr      */
+/*   Updated: 2026/02/03 18:19:30 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ double	vec4_squared_len(t_vec4 v);
 double	vec4_dot(t_vec4 v, t_vec4 u);
 t_vec4	vec4_cross(t_vec4 v, t_vec4 u);
 t_vec4	vec4_unit_vector(t_vec4 v);
+
+t_vec4   vec4_multi_mtx4(t_mtx4 m, t_vec4 vec);
 
 #endif

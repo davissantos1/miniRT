@@ -4,3 +4,4 @@
 *.vscode
 *.ppm
 miniRT
+compile_flags.txt
