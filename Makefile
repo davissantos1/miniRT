@@ -8,8 +8,7 @@ SRC= \
 		src/main.c \
 		src/panic.c \
 		src/check.c \
-		src/start.c \
-		src/parse.c 
+		src/start.c 
 
 SRC_BONUS= \
 		src/main.c

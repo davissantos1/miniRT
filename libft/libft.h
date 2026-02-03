@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:42:33 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/02 21:23:18 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/02 21:49:55 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,8 +206,6 @@ char		*ft_merge(char **mtx)
 			__attribute__((nonnull(1)));
 char		**ft_mtxinsert(char **src, char **insert, int pos)
 			__attribute__((nonnull(1, 2)));
-
-// Part 7 - Minishell Extras
 int			ft_strcmp(const char *s1, const char *s2)
 			__attribute__((nonnull(1, 2)));
 char		*ft_reverse_split(char **tab, char c)
