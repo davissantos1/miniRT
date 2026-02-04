@@ -6,14 +6,14 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 15:20:17 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/03 18:17:48 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/04 11:40:00 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec4.h"
 #include "mtx4.h"
 
-inline t_vec4	vec4_multi_mtx4(t_mtx4 m, t_vec4 vec)
+inline t_vec4	vec4_multi_mtx4(t_matrix4 m, t_vec4 vec)
 {
 	t_vec4	ret;
 
