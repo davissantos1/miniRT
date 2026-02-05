@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/02 21:27:52 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/05 11:17:56 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,29 @@ typedef struct s_scene
 	struct s_alight		*alight;
 	struct s_camera		*camera;
 	struct s_light		*light;
-	t_list				*objects;	
+	t_list				*shape;	
 }	t_scene;
+
+typedef struct	s_alight
+{
+	double		ratio;
+	t_color		color;
+}	t_alight;
+
+typedef struct	s_camera
+{
+	t_point		pos;
+	t_vec4		norm;
+	t_color		color;
+	int			fov;
+}	t_camera;
+
+typedef struct	s_light
+{
+	t_point		pos;
+	double		ratio;
+	t_color		color;
+}	t_light;
 
 typedef struct s_mlx
 {
