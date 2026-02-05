@@ -2,5 +2,7 @@
 *.out
 *.swp
 *.vscode
+*.ppm
 miniRT
 minilibx-linux
+compile_flags.txt
