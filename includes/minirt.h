@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/05 11:17:56 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:32:23 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,6 @@
 // Local includes
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
-
-// Macros
-# define WIDTH 1080
-# define HEIGHT 1080
-
-// Enums
-typedef enum e_status
-{
-	SUCCESS,
-	ERR_ARG_NUM,
-	ERR_ARG_INVALID,
-	ERR_FILE_INVALID,
-	ERR_SYSCALL,
-	COUNT
-}	t_status;
 
 // Structs
 typedef struct s_scene
@@ -94,7 +79,7 @@ typedef struct s_minirt
 t_status	panic(t_status status);
 void		real_panic(t_status status);
 int			check_filename(char *file);
-t_minirt	*minirt_start(char *name);
-t_mlx		*mlx_start(t_gc *gc, char *name);
+t_minirt	*start_minirt(char *name);
+t_mlx		*start_mlx(t_gc *gc, char *name);
 
 #endif

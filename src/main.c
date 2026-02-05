@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/02 21:09:00 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/05 18:56:45 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	main(int ac, char **av)
 			return (panic(ERR_SYSCALL));
 		rt = minirt_start(av[1]);
 		if (!rt)
-			return (panic(ERR_SYSCALL));
-		//minirt_parse(rt, fd);
-		//minirt_run(rt);
+			return (desperation(ERR_SYSCALL));
+		//parse_minirt(rt, fd);
+		//run_minirt(rt);
 		if (close(fd) == -1)
-			return (panic(ERR_SYSCALL));
+			return (desperation(ERR_SYSCALL));
 	}
 	return (SUCCESS);
 }
