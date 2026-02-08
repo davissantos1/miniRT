@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/05 11:17:56 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/08 15:28:56 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 
 // Local includes
 # include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include "mlx.h"
+# include "vec4.h"
 
 // Macros
-# define WIDTH 1080
-# define HEIGHT 1080
+# define WIDTH 1280
+# define HEIGHT 720
 
 // Enums
 typedef enum e_status
@@ -96,5 +97,6 @@ void		real_panic(t_status status);
 int			check_filename(char *file);
 t_minirt	*minirt_start(char *name);
 t_mlx		*mlx_start(t_gc *gc, char *name);
+void		img_pixel_put(t_mlx *mlx, int x, int y, int color);
 
 #endif

@@ -6,24 +6,39 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/05 11:30:51 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/08 16:47:08 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHAPES_H
 # define SHAPES_H
 
+# include "vec4.h"
+# include "ray.h"
+# include "minirt.h"
+
+// enums
 typedef enum e_shape
 {
 	SPHERE,
 	PLANE,
-	CYLINDER
+	CYLINDER,
+	SHAPE_COUNT
 }	t_shape;
 
-struct	s_shape
+//structs
+typedef struct	s_shape
 {
 	t_shape		type;
-};
+}	t_wildcard;
+
+typedef struct	s_hit
+{
+	int				num_roots;
+	double			r1;
+	double			r2;
+	unsigned int	color;
+}	t_hit;
 
 typedef struct	s_sphere
 {
@@ -51,5 +66,11 @@ typedef struct	s_cylinder
 	double		diam;
 	double		height;
 }	t_cylinder;
+
+// functions array
+typedef bool	(*t_get_hit)(t_scene*, void*, t_hit*, t_ray);
+
+// prototypes
+bool	hit_sphere(t_scene *scene, void *me, t_hit *roots, t_ray ray);
 
 #endif
