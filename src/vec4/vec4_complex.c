@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 13:21:19 by vitosant          #+#    #+#             */
-/*   Updated: 2026/01/20 09:23:33 by user             ###    ########.fr      */
+/*   Updated: 2026/02/08 15:00:39 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ inline double	vec4_length(t_vec4 v)
 
 inline double	vec4_squared_len(t_vec4 v)
 {
-	return (v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w);
+	return (v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
 inline double	vec4_dot(t_vec4 v, t_vec4 u)
 {
-	return (v.x * u.x + v.y * u.y + v.z * u.z + v.w * u.w);
+	return (v.x * u.x + v.y * u.y + v.z * u.z);
 }
 
 inline t_vec4	vec4_cross(t_vec4 v, t_vec4 u)
