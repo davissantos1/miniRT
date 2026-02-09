@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/05 18:32:23 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/09 14:33:13 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct	s_camera
 {
 	t_point		pos;
 	t_vec4		norm;
-	t_color		color;
 	int			fov;
 }	t_camera;
 

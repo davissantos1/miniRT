@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:42:33 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/02 21:49:55 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:08:20 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,5 +216,8 @@ char		**ft_mtxdel(char **mtx, char *s)
 			__attribute__((nonnull(1, 2)));
 int			ft_mtxfind(void **mtx, void *ptr)
 			__attribute__((nonnull(1, 2)));
+double		ft_atod(char *s)
+			__attribute__((nonnull(1)));
+int			ft_isspace(char c);
 
 #endif

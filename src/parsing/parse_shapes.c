@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 10:45:34 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/05 17:12:04 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:53:00 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,76 @@
 
 void	parse_plane(t_minirt *rt, char **entity)
 {
+	t_plane		*pl;
+	char		**p;
+	char		**n;
+	char		**c;
 
+	p = ft_split(entity[1], ',');
+	n = ft_split(entity[2], ',');
+	c = ft_split(entity[3], ',');
+	if (!check_plane(p, n, c))
+		desperation(rt, ERR_FILE_INVALID);
+	pl = gc_malloc(sizeof(t_plane), rt->gc, GC_DEFAULT);
+	if (!pl)
+		desperation(rt, ERR_FILE_INVALID);
+	pl-type = PLANE;
+	pl->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 0);
+	pl->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
+	pl->color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
+	add_object(rt, pl);
+	free(p);
+	free(n);
+	free(c);
 }
 
 void	parse_sphere(t_minirt *rt, char **entity)
 {
+	t_sphere	*sp;
+	char		**p;
+	char		**c;
 
+	p = ft_split(entity[1], ',');
+	c = ft_split(entity[3], ',');
+	if (!check_sphere(p, entity[2], c))
+		desperation(rt, ERR_FILE_INVALID);
+	sp = gc_malloc(sizeof(t_sphere), rt->gc, GC_DEFAULT);
+	if (!pl)
+		desperation(rt, ERR_FILE_INVALID);
+	sp->type = SPHERE;
+	sp->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 0);
+	sp->color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
+	sp->diam = ft_atod(entity[2]);
+	add_object(rt, sp);
+	free(p);
+	free(c);
 }
 
 void	parse_cylinder(t_minirt *rt, char **entity)
 {
+	t_plane		*cy;
+	char		**p;
+	char		**n;
+	char		**c;
 
+	p = ft_split(entity[1], ',');
+	n = ft_split(entity[2], ',');
+	c = ft_split(entity[5], ',');
+	if (!check_cylinder(p, n, c))
+		desperation(rt, ERR_FILE_INVALID);
+	if (!check_positive(entity[3]) || !check_positive(entity[4]))
+		desperation(rt, ERR_FILE_INVALID);
+	cy = gc_malloc(sizeof(t_cylinder), rt->gc, GC_DEFAULT);
+	if (!cy)
+		desperation(rt, ERR_FILE_INVALID);
+	cy-type = CYLINDER;
+	cy->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 0);
+	cy->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
+	cy->color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
+	cy->diam = ft_atod(entity[3]);
+	cy->height = ft_atod(entity[4]);
+	add_object(rt, cy);
+	free(p);
+	free(n);
+	free(c);
 }
