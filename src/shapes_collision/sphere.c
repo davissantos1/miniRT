@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/08 19:21:21 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/09 13:41:52 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,9 @@ bool	hit_sphere(t_scene *scene, void *me, t_hit *hits, t_ray ray)
 	a = vec4_squared_len(ray.dir);
 	h = vec4_dot(ray.dir, vec4_minus(obj->pos, ray.origin));
 	c = vec4_squared_len(vec4_minus(obj->pos, ray.origin)) - obj->diam * obj->diam / 4.0;
-	delt = h*h - a*c;
+	delt = h * h - a * c;
 	if (delt < 0)
 		return (false);
-	if (delt < 1e-7)
-		hits->num_roots = 1;
-	else
-	{
-		hits->r2 = h - sqrt(delt) / a;
-		hits->num_roots = 2;
-	}
-	hits->r1 = h + sqrt(delt) / a;
-	hits->color = ((int)obj->color.x << 16 | (int)obj->color.y << 8 | (int)obj->color.z);
+	set_roots(obj, (h - sqrt(delt)) / a, (h + sqrt(delt)) / a, hits);
 	return (true);
 }
