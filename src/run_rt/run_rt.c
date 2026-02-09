@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/08 17:28:57 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/08 19:27:25 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "ray.h"
 #include "shapes.h"
 #include "vec4.h"
-#include <stdio.h>
 
 static void	paint_pixel(t_minirt *ctx, t_vec4 delt_u, t_vec4 delt_v, t_vec4 ul);
 static unsigned int	ray_color(t_scene *scene, t_list *lst, t_ray ray);
@@ -93,6 +92,8 @@ static unsigned int	ray_color(t_scene *scene, t_list *lst, t_ray ray)
 	return (0xc9d2ff);
 }
 
+//Para compilar o teste
+//cc -g -O3 -march=native -ffast-math -I./includes -I./minilibx-linux src/matrix/*.c src/run_rt/*.c src/utils/*.c src/vec4/*.c src/shapes_collision/sphere.c -lm -L./libft -lft -L./minilibx-linux -lmlx_Linux -lmlx -lXext -lX11 -lm -lz
 int	main(void)
 {
 	t_minirt	ctx;
@@ -106,9 +107,13 @@ int	main(void)
 	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1);
 	sphere->diam = 1.0;
 	sphere->color = vec4_init(255, 0, 84, 0);
-	sphere->color = vec4_unit_vector(sphere->color);
-	sphere->pos = vec4_init(0,0, -1, 1);
-	ctx.scene->shape = ft_lstnew(sphere);
+	sphere->pos = vec4_init(0,0, -5, 1);
+	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
+	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1);
+	sphere->diam = 1.0;
+	sphere->color = vec4_init(255, 0, 255, 0);
+	sphere->pos = vec4_init(2, 0, -5, 1);
+	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
 	run_rt(&ctx);
 	mlx_loop(ctx.mlx->init);
 	gc_free_all(ctx.gc);

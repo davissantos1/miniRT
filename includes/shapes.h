@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/08 16:47:08 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/08 20:37:28 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ typedef bool	(*t_get_hit)(t_scene*, void*, t_hit*, t_ray);
 
 // prototypes
 bool	hit_sphere(t_scene *scene, void *me, t_hit *roots, t_ray ray);
+bool	hit_cylinder(t_scene *scene, void *me, t_hit *hits, t_ray ray);
 
 #endif
