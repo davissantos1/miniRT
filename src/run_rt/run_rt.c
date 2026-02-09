@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/08 19:27:25 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/09 14:10:24 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ inline static t_shape	get_type(t_wildcard *me)
 static void	fill_functions(t_get_hit *functions)
 {
 	functions[SPHERE] = hit_sphere;
+	functions[CYLINDER] = hit_cylinder;
 }
 
 static unsigned int	ray_color(t_scene *scene, t_list *lst, t_ray ray)
@@ -83,21 +84,23 @@ static unsigned int	ray_color(t_scene *scene, t_list *lst, t_ray ray)
 	hits.num_roots = 0;
 	if (!functions[SPHERE])
 		fill_functions(functions);
-	while (lst && !hits.num_roots)
+	while (lst)
 	{
-		if (functions[get_type(lst->content)](scene, lst->content, &hits, ray))
-			return (hits.color);
+		functions[get_type(lst->content)](scene, lst->content, &hits, ray);
 		lst = lst->next;
 	}
+	if (hits.num_roots)
+		return (hits.color);
 	return (0xc9d2ff);
 }
 
 //Para compilar o teste
-//cc -g -O3 -march=native -ffast-math -I./includes -I./minilibx-linux src/matrix/*.c src/run_rt/*.c src/utils/*.c src/vec4/*.c src/shapes_collision/sphere.c -lm -L./libft -lft -L./minilibx-linux -lmlx_Linux -lmlx -lXext -lX11 -lm -lz
+//cc -g -O3 -march=native -ffast-math -I./includes -I./minilibx-linux src/matrix/*.c src/run_rt/*.c src/utils/*.c src/vec4/*.c src/shapes_collision/*.c -lm -L./libft -lft -L./minilibx-linux -lmlx_Linux -lmlx -lXext -lX11 -lm -lz
 int	main(void)
 {
 	t_minirt	ctx;
 	t_sphere	*sphere;
+	t_cylinder	*cylinder;
 
 	ctx.gc = gc_init();
 	ctx.mlx = mlx_start(ctx.gc, "TESTE");
@@ -105,15 +108,25 @@ int	main(void)
 	ctx.scene->camera = gc_calloc(sizeof(t_camera), ctx.gc, GC_CUSTOM1);
 	ctx.scene->camera->pos = vec4_init(0, 0, 0, 1);
 	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1);
-	sphere->diam = 1.0;
-	sphere->color = vec4_init(255, 0, 84, 0);
-	sphere->pos = vec4_init(0,0, -5, 1);
+	sphere->type = SPHERE;
+	sphere->diam = 0.1;
+	sphere->color = vec4_init(255, 0, 0, 0);
+	sphere->pos = vec4_init(0,0, -1, 1);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
 	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1);
-	sphere->diam = 1.0;
+	sphere->type = SPHERE;
+	sphere->diam = 0.5;
 	sphere->color = vec4_init(255, 0, 255, 0);
-	sphere->pos = vec4_init(2, 0, -5, 1);
+	sphere->pos = vec4_init(0, 0, -2, 1);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
+	cylinder = gc_calloc(sizeof(t_cylinder), ctx.gc, GC_CUSTOM1);
+	cylinder->diam = 0.1;
+	cylinder->type = CYLINDER;
+	cylinder->height = 1;
+	cylinder->pos = vec4_init(0, 0.3, -1.5, 1);
+	cylinder->norm = vec4_unit_vector(vec4_minus(ctx.scene->camera->pos, cylinder->pos));
+	cylinder->color = vec4_init(0, 0, 255, 0);
+	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cylinder));
 	run_rt(&ctx);
 	mlx_loop(ctx.mlx->init);
 	gc_free_all(ctx.gc);
