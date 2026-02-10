@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/09 10:36:41 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/10 09:24:06 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef enum e_shape
 	SPHERE,
 	PLANE,
 	CYLINDER,
+	CIRCLE,
 	SHAPE_COUNT
 }	t_shape;
 
@@ -67,6 +68,16 @@ typedef struct	s_cylinder
 	double		height;
 }	t_cylinder;
 
+
+typedef struct	s_circle
+{
+	t_shape		type;
+	t_point		pos;
+	t_vec4		norm;
+	t_color		color;
+	double		diam;
+}	t_circle;
+
 typedef struct	s_quadratic
 {
 	double	a;
@@ -80,6 +91,7 @@ typedef bool	(*t_get_hit)(t_scene*, void*, t_hit*, t_ray);
 // prototypes
 bool	hit_sphere(t_scene *scene, void *me, t_hit *roots, t_ray ray);
 bool	hit_cylinder(t_scene *scene, void *me, t_hit *hits, t_ray ray);
+bool	hit_circle(t_scene *scene, void *me, t_hit *hit, t_ray ray);
 
 void	set_roots(void *obj, double r1, double r2, t_hit *hits);
 

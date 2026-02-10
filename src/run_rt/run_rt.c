@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/09 14:10:24 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/10 11:01:06 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static void	fill_functions(t_get_hit *functions)
 {
 	functions[SPHERE] = hit_sphere;
 	functions[CYLINDER] = hit_cylinder;
+	functions[CIRCLE] = hit_circle;
 }
 
 static unsigned int	ray_color(t_scene *scene, t_list *lst, t_ray ray)
@@ -101,6 +102,7 @@ int	main(void)
 	t_minirt	ctx;
 	t_sphere	*sphere;
 	t_cylinder	*cylinder;
+	t_circle	*circle;
 
 	ctx.gc = gc_init();
 	ctx.mlx = mlx_start(ctx.gc, "TESTE");
@@ -122,11 +124,18 @@ int	main(void)
 	cylinder = gc_calloc(sizeof(t_cylinder), ctx.gc, GC_CUSTOM1);
 	cylinder->diam = 0.1;
 	cylinder->type = CYLINDER;
-	cylinder->height = 1;
-	cylinder->pos = vec4_init(0, 0.3, -1.5, 1);
-	cylinder->norm = vec4_unit_vector(vec4_minus(ctx.scene->camera->pos, cylinder->pos));
+	cylinder->height = 1.5;
+	cylinder->pos = vec4_init(0, 0, -1.5, 1);
+	cylinder->norm = vec4_unit_vector(vec4_init(1, 1, 0, 0));
 	cylinder->color = vec4_init(0, 0, 255, 0);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cylinder));
+	circle = gc_calloc(sizeof(t_circle), ctx.gc, GC_CUSTOM1);
+	circle->diam = 1;
+	circle->type = CIRCLE;
+	circle->pos = vec4_init(0, 0, -3, 1);
+	circle->color = vec4_init(0, 255, 120, 0);
+	circle->norm = vec4_unit_vector(vec4_minus(ctx.scene->camera->pos, cylinder->pos));
+	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(circle));
 	run_rt(&ctx);
 	mlx_loop(ctx.mlx->init);
 	gc_free_all(ctx.gc);
