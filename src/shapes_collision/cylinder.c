@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 19:44:44 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/09 16:11:55 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/10 10:30:44 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,29 @@
 
 static bool	infinity_cy(t_cylinder *obj, t_vec4 oc, t_ray ray, t_hit *tmp_hit);
 static bool	check_height(t_cylinder *obj, t_hit *tmp, t_hit *hit, t_ray ray);
+static bool	put_cap(t_scene *scene,t_cylinder *obj, t_ray ray, t_hit *hits);
 
 bool	hit_cylinder(t_scene *scene, void *me, t_hit *hits, t_ray ray)
 {
 	t_cylinder	*obj;
 	t_hit		tmp_hit;
-	t_hit		hit_cap;
 	t_vec4		oc;
+	bool		hit_any;
 
 	obj = me;
+	hit_any = false;
 	oc = vec4_minus(obj->pos, ray.origin);
-	if (!infinity_cy(obj, oc, ray, &tmp_hit))
-		return (false);
-	if (!check_height(obj, &tmp_hit, hits, ray))
-		return (false);
-	set_roots(obj, tmp_hit.r1, tmp_hit.r2, hits);
-	return (true);
+	if (infinity_cy(obj, oc, ray, &tmp_hit))
+	{
+		if (check_height(obj, &tmp_hit, hits, ray))
+		{
+			set_roots(obj, tmp_hit.r1, tmp_hit.r2, hits);
+			hit_any = true;
+		}
+	}
+	if (put_cap(scene, obj, ray, hits))
+		hit_any = true;
+	return (hit_any);
 }
 
 static bool	infinity_cy(t_cylinder *obj, t_vec4 oc, t_ray ray, t_hit *tmp_hit)
@@ -86,23 +93,25 @@ static bool	check_height(t_cylinder *obj, t_hit *tmp, t_hit *hit, t_ray ray)
 	tmp->num_roots = 0;
 	return (false);
 }
-/*
-static bool	chack_cap(t_cylinder *obj, t_ray ray, t_hit *tmp_hit)
-{
-	int		i;
-	double	denom;
-	double	half_h;
 
-	i = 0;
-	denom = vec4_dot(obj->norm, ray.dir);
-	if (fabs(denom) <= 1e-7)
-		return (false);
+static bool	put_cap(t_scene *scene,t_cylinder *obj, t_ray ray, t_hit *hits)
+{
+	t_circle	cap;
+	bool		hit_cap;
+	double		half_h;
+
+	hit_cap = false;
+	cap.type = CIRCLE;
+	cap.color = obj->color;
+	cap.norm = obj->norm;
+	cap.diam = obj->diam;
 	half_h = obj->height / 2;
-	while (i < 2)
-	{
-		i++;
-		if (i == 2)
-			half_h = -half_h;
-	}
+	cap.pos = vec4_plus(obj->pos, vec4_scale(half_h, cap.norm));
+	if(hit_circle(scene, &cap, hits, ray))
+		hit_cap = true;
+	cap.pos = vec4_plus(obj->pos, vec4_scale(-half_h, cap.norm));
+	if (hit_circle(scene, &cap, hits, ray))
+		hit_cap = true;
+	return (hit_cap);
 }
-*/
+
