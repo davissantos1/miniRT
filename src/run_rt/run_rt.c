@@ -57,6 +57,7 @@ static void	paint_pixel(t_minirt *ctx, t_vec4 delt_u, t_vec4 delt_v, t_vec4 ul)
 			pixel_center = vec4_plus(pixel00, vec4_scale(x, delt_u));
 			pixel_center = vec4_plus(pixel_center, vec4_scale(y, delt_v));
 			ray.dir = vec4_minus(pixel_center, ctx->scene->camera->pos);
+			ray.dir.w = 0;
 			img_pixel_put(ctx->mlx, x, y, ray_color(ctx->scene, ctx->scene->shape, ray));
 			x++;
 		}
@@ -91,7 +92,7 @@ static unsigned int	ray_color(t_scene *scene, t_list *lst, t_ray ray)
 		lst = lst->next;
 	}
 	if (hits.num_roots)
-		return (hits.color);
+		return (phong(hits, scene));
 	return (0xc9d2ff);
 }
 
@@ -109,17 +110,30 @@ int	main(void)
 	ctx.scene = gc_calloc(sizeof(t_scene), ctx.gc, GC_CUSTOM1);
 	ctx.scene->camera = gc_calloc(sizeof(t_camera), ctx.gc, GC_CUSTOM1);
 	ctx.scene->camera->pos = vec4_init(0, 0, 0, 1);
+	ctx.scene->light = gc_calloc(sizeof(t_light), ctx.gc, GC_CUSTOM1);
+	ctx.scene->light->color = vec4_init(1, 1, 1, 0);
+	ctx.scene->light->pos = vec4_init(0, 1, 0, 1);
+	ctx.scene->light->ratio = 1;
+	ctx.scene->alight = gc_calloc(sizeof(t_alight), ctx.gc, GC_CUSTOM1);
+	ctx.scene->alight->ratio = 1;
+	ctx.scene->alight->color = vec4_init(1, 1, 1, 0);
 	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1);
 	sphere->type = SPHERE;
-	sphere->diam = 0.1;
-	sphere->color = vec4_init(255, 0, 0, 0);
-	sphere->pos = vec4_init(0,0, -1, 1);
+	sphere->diam = 1;
+	sphere->pos = vec4_init(0, 0, -1, 1);
+	sphere->material.ambi_reflec = vec4_init(0.3, 0, 0, 0);
+	sphere->material.diff_reflec = vec4_init(1, 0, 0, 0);
+	sphere->material.spec_reflec = vec4_init(0.5, 0.5, 0.5, 0);
+	sphere->material.shininess = 20;
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
+	/*
 	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1);
 	sphere->type = SPHERE;
 	sphere->diam = 0.5;
-	sphere->color = vec4_init(255, 0, 255, 0);
+	sphere->material.diff_reflec = vec4_init(1, 0, 1, 0);
 	sphere->pos = vec4_init(0, 0, -2, 1);
+	sphere->material.shininess = 80;
+	sphere->material.spec_reflec = vec4_init(1, 1, 1, 0);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
 	cylinder = gc_calloc(sizeof(t_cylinder), ctx.gc, GC_CUSTOM1);
 	cylinder->diam = 0.1;
@@ -127,15 +141,20 @@ int	main(void)
 	cylinder->height = 1.5;
 	cylinder->pos = vec4_init(0, 0, -1.5, 1);
 	cylinder->norm = vec4_unit_vector(vec4_init(1, 1, 0, 0));
-	cylinder->color = vec4_init(0, 0, 255, 0);
+	cylinder->material.diff_reflec = vec4_init(0, 0, 1, 0);
+	cylinder->material.shininess = 80;
+	cylinder->material.spec_reflec = vec4_init(1, 1, 1, 0);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cylinder));
 	circle = gc_calloc(sizeof(t_circle), ctx.gc, GC_CUSTOM1);
 	circle->diam = 1;
 	circle->type = CIRCLE;
 	circle->pos = vec4_init(0, 0, -3, 1);
-	circle->color = vec4_init(0, 255, 120, 0);
+	circle->material.shininess = 80;
+	circle->material.diff_reflec = vec4_init(0, 1, 0.45, 0);
+	circle->material.spec_reflec = vec4_init(1, 1, 1, 0);
 	circle->norm = vec4_unit_vector(vec4_minus(ctx.scene->camera->pos, cylinder->pos));
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(circle));
+	*/
 	run_rt(&ctx);
 	mlx_loop(ctx.mlx->init);
 	gc_free_all(ctx.gc);

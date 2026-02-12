@@ -27,5 +27,6 @@ inline t_point	ray_pos(t_ray ray, double t)
 	t_point	pos;
 
 	pos = vec4_plus(ray.origin, vec4_scale(t, ray.dir));
+	pos.w = 1;
 	return (pos);
 }
