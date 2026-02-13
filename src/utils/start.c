@@ -6,13 +6,13 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 16:25:06 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/02 21:25:23 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:17:18 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_minirt	*minirt_start(char *name)
+t_minirt	*start_minirt(char *name)
 {
 	t_minirt	*rt;
 	t_gc		*garbage;
@@ -23,21 +23,22 @@ t_minirt	*minirt_start(char *name)
 		real_panic(ERR_SYSCALL);
 	rt = gc_malloc(sizeof(t_minirt), garbage, GC_DEFAULT);
 	if (!rt)
-		real_panic(ERR_SYSCALL);
+		desperation(garbage, ERR_SYSCALL);
 	rt->name = name;
 	rt->gc = garbage;
-	rt->mlx = mlx_start(rt->gc, name);
+	rt->mlx = start_mlx(rt->gc, name);
 	if (!rt->mlx)
-		real_panic(ERR_SYSCALL);
-	rt->scene = gc_malloc(sizeof(t_scene), garbage, GC_DEFAULT);
+		desperation(garbage, ERR_SYSCALL);
+	rt->scene = gc_calloc(sizeof(t_scene), garbage, GC_DEFAULT);
 	if (!rt->scene)
-		real_panic(ERR_SYSCALL);
+		desperation(garbage, ERR_SYSCALL);
 	return (rt);
 }
 
-t_mlx	*mlx_start(t_gc *gc, char *name)
+t_mlx	*start_mlx(t_gc *gc, char *name)
 {
-	t_mlx	*mlx;
+	const t_settings	*set;
+	t_mlx				*mlx;
 
 	mlx = gc_malloc(sizeof(t_mlx), gc, GC_DEFAULT);
 	if (!mlx)
@@ -45,10 +46,11 @@ t_mlx	*mlx_start(t_gc *gc, char *name)
 	mlx->init = mlx_init();
 	if (!mlx->init)
 		return (NULL);
-	mlx->win = mlx_new_window(mlx->init, WIDTH, HEIGHT, name);
+	set = get_settings();
+	mlx->win = mlx_new_window(mlx->init, set->width, set->height, name);
 	if (!mlx->win)
 		return (NULL);
-	mlx->img = mlx_new_image(mlx->init, WIDTH, HEIGHT);
+	mlx->img = mlx_new_image(mlx->init, set->width, set->height);
 	if (!mlx->img)
 		return (NULL);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line, &mlx->end);

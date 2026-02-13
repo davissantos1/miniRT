@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/10 09:24:06 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/13 16:03:48 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct	s_plane
 	t_point		pos;
 	t_vec4		norm;
 	t_color		color;
-	double		diam;
 }	t_plane;
 
 typedef struct	s_cylinder
