@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:11:30 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/05 18:10:54 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:08:33 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_status	panic(t_status status)
 {
-	char	*msg;
+	const char	*msg;
 
 	if (status == SUCCESS)
 		return (SUCCESS);
@@ -37,8 +37,8 @@ void	real_panic(t_status status)
 	exit(status);
 }
 
-void	desperation(t_minirt *rt, t_status status)
+void	desperation(t_gc *gc, t_status status)
 {
-	gc_free_all(rt->gc);
+	gc_free_all(gc);
 	real_panic(status);
 }

@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_indexof.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 14:37:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/11 22:04:34 by dasimoes         ###   ########.fr       */
+/*   Created: 2026/02/13 13:39:15 by dasimoes          #+#    #+#             */
+/*   Updated: 2026/02/13 15:12:08 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putstr_fd(const char *s, int fd)
+int	ft_indexof(const char *s, int c)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
-		write(fd, &s[i], 1);
+		if (s[i] == c)
+			return (i);
 		i++;
 	}
+	return (-1);
 }

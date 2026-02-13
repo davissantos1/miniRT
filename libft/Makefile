@@ -78,6 +78,8 @@ EXTRA_SRCS = \
 		ft_reverse_split.c \
 		ft_atod.c \
 		ft_isspace.c \
+		get_next_line.c \
+		ft_indexof.c \
 		ft_break.c
 
 EXTRA_OBJS = $(EXTRA_SRCS:.c=.o)

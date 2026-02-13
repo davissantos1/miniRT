@@ -6,11 +6,11 @@
 /*   By: dasimoes <dasimoes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 22:04:41 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/09 13:49:18 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:02:14 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static char	*ft_extract_line(char *buffer)
 {

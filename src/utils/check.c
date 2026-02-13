@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:06:47 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/09 19:52:29 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:31:52 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	check_if_double(char *str)
 	int	i;
 	int	p;
 
+	p = 0;
 	i = 0;
 	len = ft_strlen(str);
 	if (str[0] == '.' || str[len -1] == '.')

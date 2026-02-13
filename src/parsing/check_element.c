@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/09 16:05:26 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/11 22:01:29 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_camera(char **pos, char **norm, char *fov)
 {
 	if (!check_pos(pos))
 		return (0);
-	if (!check_norm(pos))
+	if (!check_norm(norm))
 		return (0);
 	if (!check_fov(fov))
 		return (0);

@@ -6,12 +6,14 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:53 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/05 18:08:18 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/11 21:57:55 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
+
+# include "structs.h"
 
 typedef enum e_status
 {

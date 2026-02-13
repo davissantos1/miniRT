@@ -6,12 +6,14 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/09 19:38:53 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/11 17:56:54 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHAPES_H
 # define SHAPES_H
+
+#include "vec4.h"
 
 typedef enum e_shape
 {

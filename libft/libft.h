@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:42:33 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/09 19:08:20 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:15:35 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 
 // External includes
 # include <stdlib.h>
+# include <unistd.h>
 
 // Macros
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 # define LONG_MAX 9223372036854775807
 # define LONG_MIN -9223372036854775808
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 // Enums
 typedef enum e_gc_tag
@@ -66,8 +71,7 @@ int			ft_isdigit(int c);
 int			ft_isalnum(int c);
 int			ft_isascii(int c);
 int			ft_isprint(int c);
-size_t		ft_strlen(const char *s)
-			__attribute__((nonnull));
+size_t		ft_strlen(const char *s);
 void		*ft_memset(void *s, int c, size_t n)
 			__attribute__((nonnull(1)));
 void		ft_bzero(void *s, size_t n)
@@ -77,7 +81,7 @@ void		*ft_memcpy(void *dest, const void *src, size_t n)
 void		*ft_memmove(void *dest, const void *src, size_t n)
 			__attribute__((nonnull(1, 2)));
 size_t		ft_strlcpy(char *dst, const char *src, size_t size)
-			__attribute__((nonnull(1, 2)));
+			__attribute__((nonnull(1)));
 size_t		ft_strlcat(char *dst, const char *src, size_t size)
 			__attribute__((nonnull(1, 2)));
 int			ft_toupper(int c);
@@ -115,7 +119,7 @@ char		*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 void		ft_striteri(char *s, void (*f)(unsigned int, char*))
 			__attribute__((nonnull(1, 2)));
 void		ft_putchar_fd(char c, int fd);
-void		ft_putstr_fd(char *s, int fd)
+void		ft_putstr_fd(const char *s, int fd)
 			__attribute__((nonnull(1)));
 void		ft_putendl_fd(char *s, int fd)
 			__attribute__((nonnull(1)));
@@ -218,6 +222,8 @@ int			ft_mtxfind(void **mtx, void *ptr)
 			__attribute__((nonnull(1, 2)));
 double		ft_atod(char *s)
 			__attribute__((nonnull(1)));
+int			ft_indexof(const char *s, int c);
 int			ft_isspace(char c);
+char		*get_next_line(int fd);
 
 #endif

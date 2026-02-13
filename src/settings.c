@@ -6,13 +6,13 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:27 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/05 18:05:50 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:44:21 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "settings.h"
+#include "minirt.h"
 
-static t_settings	g_settings = {
+static const t_settings	g_settings = {
 	.width = 1920,
 	.height = 1080,
 	.aspect_ratio = 1920 / 1080,
@@ -22,7 +22,7 @@ static t_settings	g_settings = {
 	.num_threads = 8
 };
 
-static t_map_shape	g_shapes[] = {
+static const t_map_shape	g_shapes[] = {
 {"A", &parse_alight},
 {"C", &parse_camera},
 {"L", &parse_light},
@@ -32,12 +32,12 @@ static t_map_shape	g_shapes[] = {
 {NULL, NULL}
 };
 
-static char	g_msgs[] = {
+static const char	*g_msgs[] = {
 	[SUCCESS] = "Success",
-	[ERR_ARG_NUM] = "only one map supported, type in ./miniRT <.rt file>",
+	[ERR_ARG_NUM] = "wrong argument number, type in ./miniRT <.rt file>",
 	[ERR_FILE_INVALID] = "format issue found in .rt file, try again!",
 	[ERR_ARG_INVALID] = "invalid file! input a valid .rt file path",
-}
+};
 
 const t_settings	*get_settings(void)
 {
@@ -46,7 +46,7 @@ const t_settings	*get_settings(void)
 
 const t_map_shape	*get_shapes(void)
 {
-	return (&g_shapes);
+	return (g_shapes);
 }
 
 const char	*get_error_msg(t_status status)
