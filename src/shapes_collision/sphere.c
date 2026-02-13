@@ -51,12 +51,21 @@ void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
 	if (hits->num_roots && formula.r1 > hits->r1)
 		return ;
 	hits->num_roots = 1;
-	hits->r1 = formula.r1;
-	hits->r2 = formula.r2;
+	if (formula.r1 < formula.r2)
+	{
+		hits->r1 = formula.r1;
+		hits->r2 = formula.r2;
+	}
+	else
+	{
+		hits->r1 = formula.r2;
+		hits->r2 = formula.r1;
+	}
 	hits->num_roots += fabs(formula.r2 - formula.r1) > 1e-7;
 	point = ray_pos(ray, formula.r1);
 	hits->hit_point = point;
 	norm = vec4_minus(point, obj->pos);
+	//norm.z = -norm.z;
 	hits->norm = vec4_unit_vector(norm);
 	hits->material = obj->material;
 	hits->me = obj;

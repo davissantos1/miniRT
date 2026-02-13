@@ -44,12 +44,12 @@ static inline bool	intersection(t_circle *obj, double t, t_hit *hits, t_ray ray)
 	p = ray_pos(ray, t);
 	v = vec4_minus(p, obj->pos);
 	distance = vec4_squared_len(v);
-	if (distance > obj->diam * obj->diam / 4 || t > hits->r1)
+	if (distance > obj->diam * obj->diam / 4 || (t > hits->r1 && hits->num_roots))
 		return (false);
 	hits->r1 = t;
 	hits->num_roots = 1;
 	hits->material = obj->material;
 	hits->norm = obj->norm;
-	hits->hit_point = ray_pos(ray, t);
+	hits->hit_point = p;
 	return (true);
 }

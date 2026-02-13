@@ -53,8 +53,9 @@ typedef struct s_scene
 
 typedef struct	s_alight
 {
-	double		ratio;
-	t_color		color;
+	double			ratio;
+	t_color			color;
+
 }	t_alight;
 
 typedef struct	s_camera
@@ -67,9 +68,10 @@ typedef struct	s_camera
 
 typedef struct	s_light
 {
-	t_point		pos;
-	double		ratio;
-	t_color		color;
+	t_point			pos;
+	double			ratio;
+	t_color			color;
+	struct s_light	*next;
 }	t_light;
 
 typedef struct s_mlx

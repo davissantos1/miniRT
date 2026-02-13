@@ -70,7 +70,6 @@ typedef struct	s_plane
 	t_vec4		norm;
 	t_color		color;
 	t_material	material;
-	double		diam;
 }	t_plane;
 
 typedef struct	s_cylinder
@@ -110,6 +109,7 @@ typedef bool	(*t_get_hit)(t_scene*, void*, t_hit*, t_ray);
 bool	hit_sphere(t_scene *scene, void *me, t_hit *hits, t_ray ray);
 bool	hit_cylinder(t_scene *scene, void *me, t_hit *hits, t_ray ray);
 bool	hit_circle(t_scene *scene, void *me, t_hit *hits, t_ray ray);
+bool	hit_plane(t_scene *scene, void *me, t_hit *hits, t_ray ray);
 
 void	set_roots(void *obj, double r1, double r2, t_hit *hits);
 
