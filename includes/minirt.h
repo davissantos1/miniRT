@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/08 15:28:56 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/14 12:37:51 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct	s_camera
 {
 	t_point		pos;
 	t_vec4		norm;
-	t_color		color;
 	int			fov;
 }	t_camera;
 
@@ -93,6 +92,15 @@ typedef struct s_minirt
 	t_scene	*scene;
 }	t_minirt;
 
+typedef struct	s_ndc
+{
+	t_vec4	u;
+	t_vec4	v;
+	t_vec4	w;
+	double	ratio;
+	double	scale;
+}	t_ndc;
+
 //Prototypes
 t_status	panic(t_status status);
 void		real_panic(t_status status);
@@ -100,5 +108,5 @@ int			check_filename(char *file);
 t_minirt	*minirt_start(char *name);
 t_mlx		*mlx_start(t_gc *gc, char *name);
 void		img_pixel_put(t_mlx *mlx, int x, int y, int color);
-
+t_vec4		get_ray_dir(t_ndc ndc, int x, int y);
 #endif

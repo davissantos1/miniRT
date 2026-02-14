@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/10 11:01:06 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/14 12:40:14 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,50 +15,42 @@
 #include "ray.h"
 #include "shapes.h"
 #include "vec4.h"
+#include <math.h>
 
-static void	paint_pixel(t_minirt *ctx, t_vec4 delt_u, t_vec4 delt_v, t_vec4 ul);
-static unsigned int	ray_color(t_scene *scene, t_list *lst, t_ray ray);
+#define PI 3.14159265359
+
+static void	paint_pixel(t_minirt *ctx, t_ndc ndc);
+static unsigned int	ray_color(t_scene *scene, t_ray ray);
 
 void	run_rt(t_minirt	*ctx)
 {
-	t_vec4	viewport_v;
-	t_vec4	viewport_u;
-	t_vec4	upper_left;
-	t_vec4	delta_u;
-	t_vec4	delta_v;
+	t_camera	*cam;
+	t_ndc		ndc;
 
-	viewport_u = vec4_init(2 * (double) WIDTH / HEIGHT, 0, 0, 0);
-	viewport_v = vec4_init(0, -2.0, 0, 0);
-	upper_left = vec4_scale(0.5, vec4_plus(viewport_u, viewport_v));
-	upper_left = vec4_scale(-1, vec4_plus(upper_left, vec4_init(0, 0, 1, 0)));
-	delta_u = vec4_scale(1.0 / WIDTH, viewport_u);
-	delta_v = vec4_scale(1.0 / HEIGHT, viewport_v);
-	paint_pixel(ctx, delta_u, delta_v, upper_left);
+	cam = ctx->scene->camera;
+	ndc.ratio = (double)WIDTH / (double)HEIGHT;
+	ndc.scale = tanh(cam->fov * 0.5 * (PI / 180.0));
+	ndc.w = vec4_scale(-1, cam->norm);
+	ndc.u = vec4_unit_vector(vec4_cross(vec4_init(0, 1, 0, 0), ndc.w));
+	ndc.v = vec4_unit_vector(vec4_cross(ndc.w, ndc.u));
+	paint_pixel(ctx, ndc);
 }
 
-static void	paint_pixel(t_minirt *ctx, t_vec4 delt_u, t_vec4 delt_v, t_vec4 ul)
+static void	paint_pixel(t_minirt *ctx, t_ndc ndc)
 {
-	t_ray			ray;
-	t_vec4			pixel00;
-	t_vec4			pixel_center;
-	int				y;
-	int				x;
+	int		x;
+	int		y;
+	t_ray	ray;
 
 	y = 0;
-	pixel00 = vec4_scale(0.5, vec4_plus(delt_u, delt_v));
-	pixel00 = vec4_plus(pixel00, ul);
 	ray.origin = ctx->scene->camera->pos;
-	ray.dir = pixel00;
 	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
 		{
-			pixel_center = vec4_plus(pixel00, vec4_scale(x, delt_u));
-			pixel_center = vec4_plus(pixel_center, vec4_scale(y, delt_v));
-			ray.dir = vec4_minus(pixel_center, ctx->scene->camera->pos);
-			ray.dir.w = 0;
-			img_pixel_put(ctx->mlx, x, y, ray_color(ctx->scene, ctx->scene->shape, ray));
+			ray.dir = get_ray_dir(ndc, x, y);
+			img_pixel_put(ctx->mlx, x, y, ray_color(ctx->scene, ray));
 			x++;
 		}
 		y++;
@@ -79,12 +71,14 @@ static void	fill_functions(t_get_hit *functions)
 	functions[PLANE] = hit_plane;
 }
 
-static unsigned int	ray_color(t_scene *scene, t_list *lst, t_ray ray)
+static unsigned int	ray_color(t_scene *scene, t_ray ray)
 {
 	static t_get_hit	functions[SHAPE_COUNT];
 	t_hit				hits;
+	t_list				*lst;
 
 	hits.num_roots = 0;
+	lst = scene->shape;
 	if (!functions[SPHERE])
 		fill_functions(functions);
 	while (lst)
@@ -96,7 +90,7 @@ static unsigned int	ray_color(t_scene *scene, t_list *lst, t_ray ray)
 		return (phong(hits, scene));
 	return (0xc9d2ff);
 }
-
+/*
 //Para compilar o teste
 //cc -g -O3 -march=native -ffast-math -I./includes -I./minilibx-linux src/matrix/*.c src/run_rt/*.c src/utils/*.c src/vec4/*.c src/shapes_collision/*.c -lm -L./libft -lft -L./minilibx-linux -lmlx_Linux -lmlx -lXext -lX11 -lm -lz
 int	main(void)
@@ -111,7 +105,9 @@ int	main(void)
 	ctx.mlx = mlx_start(ctx.gc, "TESTE");
 	ctx.scene = gc_calloc(sizeof(t_scene), ctx.gc, GC_CUSTOM1);
 	ctx.scene->camera = gc_calloc(sizeof(t_camera), ctx.gc, GC_CUSTOM1);
-	ctx.scene->camera->pos = vec4_init(0, 0, 0, 1);
+	ctx.scene->camera->pos = vec4_init(0, 0, -1, 1);
+	ctx.scene->camera->fov = 90;
+	ctx.scene->camera->norm = vec4_init(0, 0, -1, 0);
 	ctx.scene->light = gc_calloc(sizeof(t_light), ctx.gc, GC_CUSTOM1);
 	ctx.scene->light->color = vec4_init(1, 1, 1, 0);
 	ctx.scene->light->pos = vec4_init(0, 0, 0, 1);
@@ -126,7 +122,7 @@ int	main(void)
 	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1);
 	sphere->type = SPHERE;
 	sphere->diam = 1;
-	sphere->pos = vec4_init(1, 1, 1, 1);
+	sphere->pos = vec4_init(1, 0, -2, 1);
 	sphere->material.ambi_reflec = vec4_init(0.3, 0, 0, 0);
 	sphere->material.diff_reflec = vec4_init(1, 0, 0, 0);
 	sphere->material.spec_reflec = vec4_init(1, 1, 1, 0);
@@ -179,3 +175,4 @@ int	main(void)
 	free(ctx.mlx->init);
 	return (0);
 }
+*/
