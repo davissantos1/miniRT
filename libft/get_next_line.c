@@ -6,11 +6,11 @@
 /*   By: dasimoes <dasimoes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 22:04:41 by dasimoes          #+#    #+#             */
-/*   Updated: 2025/07/24 23:41:46 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/13 15:02:14 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static char	*ft_extract_line(char *buffer)
 {
@@ -102,7 +102,7 @@ char	*get_next_line(int fd)
 	bytes = 1;
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (ft_free(left));
 	if (left)
 	{
 		line = ft_strdup(left);

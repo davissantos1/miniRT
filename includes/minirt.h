@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/14 12:37:51 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/14 12:47:39 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,89 +24,30 @@
 
 // Local includes
 # include "../libft/libft.h"
-# include "mlx.h"
+# include "../minilibx-linux/mlx.h"
+# include "settings.h"
+# include "structs.h"
+# include "parsing.h"
+# include "entities.h"
+# include "shapes.h"
 # include "vec4.h"
 
-// Macros
-# define WIDTH 1280
-# define HEIGHT 720
+void		img_pixel_put(t_mlx *mlx, int x, int y, int color);
+t_vec4		get_ray_dir(t_ndc ndc, int x, int y);
 
-// Enums
-typedef enum e_status
-{
-	SUCCESS,
-	ERR_ARG_NUM,
-	ERR_ARG_INVALID,
-	ERR_FILE_INVALID,
-	ERR_SYSCALL,
-	COUNT
-}	t_status;
-
-// Structs
-typedef struct s_scene
-{
-	struct s_alight		*alight;
-	struct s_camera		*camera;
-	struct s_light		*light;
-	t_list				*shape;	
-}	t_scene;
-
-typedef struct	s_alight
-{
-	double			ratio;
-	t_color			color;
-
-}	t_alight;
-
-typedef struct	s_camera
-{
-	t_point		pos;
-	t_vec4		norm;
-	int			fov;
-}	t_camera;
-
-typedef struct	s_light
-{
-	t_point			pos;
-	double			ratio;
-	t_color			color;
-	struct s_light	*next;
-}	t_light;
-
-typedef struct s_mlx
-{
-	void		*init;
-	void		*win;
-	void		*img;
-	char		*addr;
-	int			bpp;
-	int			line;
-	int			end;
-}	t_mlx;
-
-typedef struct s_minirt
-{
-	char	*name;
-	t_gc	*gc;
-	t_mlx	*mlx;
-	t_scene	*scene;
-}	t_minirt;
-
-typedef struct	s_ndc
-{
-	t_vec4	u;
-	t_vec4	v;
-	t_vec4	w;
-	double	ratio;
-	double	scale;
-}	t_ndc;
-
-//Prototypes
+//Signatures
 t_status	panic(t_status status);
 void		real_panic(t_status status);
 int			check_filename(char *file);
-t_minirt	*minirt_start(char *name);
-t_mlx		*mlx_start(t_gc *gc, char *name);
-void		img_pixel_put(t_mlx *mlx, int x, int y, int color);
-t_vec4		get_ray_dir(t_ndc ndc, int x, int y);
+t_minirt	*start_minirt(char *name);
+t_mlx		*start_mlx(t_gc *gc, char *name);
+void		desperation(t_gc *gc, t_status status);
+
+int			check_if_double(char *str);
+int			check_number_3mtx(char **num);
+int			check_empty(char *line);
+int			check_positive(char *num);
+
+void		add_object(t_minirt *rt, void *obj);
+
 #endif

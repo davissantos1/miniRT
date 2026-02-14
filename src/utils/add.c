@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 14:37:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/11 22:04:34 by dasimoes         ###   ########.fr       */
+/*   Created: 2026/02/09 19:59:13 by dasimoes          #+#    #+#             */
+/*   Updated: 2026/02/11 22:05:27 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "minirt.h"
 
-void	ft_putstr_fd(const char *s, int fd)
+void	add_object(t_minirt *rt, void *obj)
 {
-	size_t	i;
+	t_list	*new;
 
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+	new = ft_lstnew(obj);
+	ft_lstadd_front(&(rt->scene->shape), new);
 }

@@ -6,9 +6,24 @@ LDFLAGS= -lXext -lX11 -lm -lz
 
 SRC= \
 		src/main.c \
-		src/panic.c \
-		src/check.c \
-		src/start.c 
+		src/settings.c \
+		src/parsing/parse.c \
+		src/parsing/parse_shapes.c \
+		src/parsing/check_element.c \
+		src/parsing/check_part.c \
+		src/parsing/check_shapes.c \
+		src/vec4/vec4_basics.c \
+		src/vec4/vec4_complex.c \
+		src/vec4/vec4_init.c \
+		src/vec4/vec4_multi_mtx4.c \
+		src/matrix/mtx4_basic.c \
+		src/matrix/mtx4_det.c \
+		src/matrix/mtx4_inverse.c \
+		src/matrix/mtx4_utils.c \
+		src/utils/panic.c \
+		src/utils/check.c \
+		src/utils/add.c \
+		src/utils/start.c 
 
 SRC_BONUS= \
 		src/main.c

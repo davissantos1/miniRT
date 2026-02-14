@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/07 21:05:24 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/13 16:03:55 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,16 @@ int	main(int ac, char **av)
 		return (panic(ERR_ARG_NUM));
 	else
 	{
-		if (check_filename(av[1]))
+		if (!check_filename(av[1]))
 			return (panic(ERR_ARG_INVALID));
 		fd = open(av[1], O_RDONLY);
 		if (fd < 0)
 			return (panic(ERR_SYSCALL));
-		rt = minirt_start(av[1]);
-		if (!rt)
-			return (panic(ERR_SYSCALL));
-		//minirt_parse(rt, fd);
-		//minirt_run(rt);
+		rt = start_minirt(av[1]);
+		parse_minirt(rt, fd);
+		//run_minirt(rt);
 		if (close(fd) == -1)
-			return (panic(ERR_SYSCALL));
+			desperation(rt->gc, ERR_SYSCALL);
 	}
 	return (SUCCESS);
 }

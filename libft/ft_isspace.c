@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 14:37:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/11 22:04:34 by dasimoes         ###   ########.fr       */
+/*   Created: 2026/02/09 19:05:35 by dasimoes          #+#    #+#             */
+/*   Updated: 2026/02/09 19:07:46 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putstr_fd(const char *s, int fd)
+int	ft_isspace(char c)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
+	if ((c >= 9 && c <= 13) || c == ' ')
+		return (1);
+	return (0);
+} 

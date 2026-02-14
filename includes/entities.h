@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 14:37:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/11 22:04:34 by dasimoes         ###   ########.fr       */
+/*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
+/*   Updated: 2026/02/11 17:57:22 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef ENTITIES_H
+# define ENTITIES_H
 
-void	ft_putstr_fd(const char *s, int fd)
+# include "vec4.h"
+
+typedef struct	s_alight
 {
-	size_t	i;
+	double		ratio;
+	t_color		color;
+}	t_alight;
 
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
+typedef struct	s_camera
+{
+	t_point		pos;
+	t_vec4		norm;
+	int			fov;
+}	t_camera;
+
+typedef struct	s_light
+{
+	t_point		pos;
+	double		ratio;
+	t_color		color;
+}	t_light;
+
+#endif
