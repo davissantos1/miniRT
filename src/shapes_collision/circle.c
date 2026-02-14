@@ -17,7 +17,7 @@
 
 static bool	intersection(t_circle *obj, double t, t_hit *hits, t_ray ray);
 
-bool	hit_circle(t_scene *scene, void *me, t_hit *hits, t_ray ray)
+bool	hit_circle(void *me, t_hit *hits, t_ray ray)
 {
 	t_circle	*obj;
 	double		denom;

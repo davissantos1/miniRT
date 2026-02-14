@@ -15,7 +15,7 @@
 #include "vec4.h"
 #include <stdbool.h>
 
-bool	hit_plane(t_scene *scene, void *me, t_hit *hits, t_ray ray)
+bool	hit_plane(void *me, t_hit *hits, t_ray ray)
 {
 	t_plane	*obj;
 	t_vec4	p0_minus_origin;

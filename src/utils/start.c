@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 16:25:06 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/11 22:17:18 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/14 12:57:21 by vitor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_minirt	*start_minirt(char *name)
 	garbage = gc_init();
 	if (!garbage)
 		real_panic(ERR_SYSCALL);
-	rt = gc_malloc(sizeof(t_minirt), garbage, GC_DEFAULT);
+	rt = gc_calloc(sizeof(t_minirt), garbage, GC_DEFAULT);
 	if (!rt)
 		desperation(garbage, ERR_SYSCALL);
 	rt->name = name;
@@ -37,7 +37,6 @@ t_minirt	*start_minirt(char *name)
 
 t_mlx	*start_mlx(t_gc *gc, char *name)
 {
-	const t_settings	*set;
 	t_mlx				*mlx;
 
 	mlx = gc_malloc(sizeof(t_mlx), gc, GC_DEFAULT);
@@ -46,11 +45,10 @@ t_mlx	*start_mlx(t_gc *gc, char *name)
 	mlx->init = mlx_init();
 	if (!mlx->init)
 		return (NULL);
-	set = get_settings();
-	mlx->win = mlx_new_window(mlx->init, set->width, set->height, name);
+	mlx->win = mlx_new_window(mlx->init, WIDTH, HEIGHT, name);
 	if (!mlx->win)
 		return (NULL);
-	mlx->img = mlx_new_image(mlx->init, set->width, set->height);
+	mlx->img = mlx_new_image(mlx->init, WIDTH, HEIGHT);
 	if (!mlx->img)
 		return (NULL);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line, &mlx->end);

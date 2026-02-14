@@ -1,7 +1,7 @@
 # Variables
 
 CC= cc
-CFLAGS= -Wall -Wextra -Werror -Wpedantic -Iincludes
+CFLAGS= -Wall -Wextra -Werror -Wpedantic -I./includes -O3 -march=native -ffast-math
 LDFLAGS= -lXext -lX11 -lm -lz
 
 SRC= \
@@ -20,13 +20,22 @@ SRC= \
 		src/matrix/mtx4_det.c \
 		src/matrix/mtx4_inverse.c \
 		src/matrix/mtx4_utils.c \
+		src/shapes_collision/plane.c \
+		src/shapes_collision/cylinder.c \
+		src/shapes_collision/sphere.c \
+		src/shapes_collision/circle.c \
+		src/ray/ray.c \
+		src/run_rt/get_ray_dir.c \
+		src/run_rt/run_rt.c \
+		src/phong/phong.c \
+		src/utils/img_pixel_put.c \
 		src/utils/panic.c \
 		src/utils/check.c \
 		src/utils/add.c \
-		src/utils/start.c 
+		src/utils/start.c
 
 SRC_BONUS= \
-		src/main.c
+			src/main.c
 
 OBJ= $(SRC:.c=.o)
 OBJ_BONUS= $(SRC_BONUS:.c=.o)
@@ -35,6 +44,7 @@ LIBFT_DIR= libft
 LIBFT= $(LIBFT_DIR)/libft.a
 MINILIBX_DIR= minilibx-linux
 MINILIBX= $(MINILIBX_DIR)/libmlx.a
+
 
 # Makeflags
 MAKEFLAGS += --no-print-directory

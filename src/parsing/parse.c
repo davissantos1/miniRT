@@ -94,7 +94,7 @@ void	parse_camera(t_minirt *rt, char **entity)
 	if (!cam)
 		desperation(rt->gc, ERR_FILE_INVALID);
 	cam->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
-	cam->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 1);
+	cam->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
 	cam->fov = ft_atoi(entity[3]);
 	rt->scene->camera = cam;
 	free(p);
@@ -120,6 +120,7 @@ void	parse_light(t_minirt *rt, char **entity)
 	lig->color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
 	lig->color = vec4_scale(1/255, lig->color);
 	lig->ratio = ft_atod(entity[2]);
+	lig->next = rt->scene->light;
 	rt->scene->light = lig;
 	free(c);
 	free(p);

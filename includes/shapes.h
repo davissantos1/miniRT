@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/14 12:44:15 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/14 13:23:08 by vitor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_material
 {
 	t_vec4	ambi_reflec;
 	t_vec4	spec_reflec;
-	t_vec4	diff_reflec;
+	t_vec4	color;
 	double	shininess;
 }	t_material;
 
@@ -58,7 +58,6 @@ typedef struct	s_sphere
 {
 	t_shape		type;
 	t_point		pos;
-	t_color		color;
 	t_material	material;
 	double		diam;
 }	t_sphere;
@@ -68,7 +67,6 @@ typedef struct	s_plane
 	t_shape		type;
 	t_point		pos;
 	t_vec4		norm;
-	t_color		color;
 	t_material	material;
 }	t_plane;
 
@@ -88,7 +86,6 @@ typedef struct	s_circle
 	t_shape		type;
 	t_point		pos;
 	t_vec4		norm;
-	t_color		color;
 	t_material	material;
 	double		diam;
 }	t_circle;
@@ -103,13 +100,13 @@ typedef struct	s_quadratic
 }	t_formula;
 
 // functions array
-typedef bool	(*t_get_hit)(t_scene*, void*, t_hit*, t_ray);
+typedef bool	(*t_get_hit)(void*, t_hit*, t_ray);
 
 // prototypes
-bool	hit_sphere(t_scene *scene, void *me, t_hit *hits, t_ray ray);
-bool	hit_cylinder(t_scene *scene, void *me, t_hit *hits, t_ray ray);
-bool	hit_circle(t_scene *scene, void *me, t_hit *hits, t_ray ray);
-bool	hit_plane(t_scene *scene, void *me, t_hit *hits, t_ray ray);
+bool	hit_sphere(void *me, t_hit *hits, t_ray ray);
+bool	hit_cylinder(void *me, t_hit *hits, t_ray ray);
+bool	hit_circle(void *me, t_hit *hits, t_ray ray);
+bool	hit_plane(void *me, t_hit *hits, t_ray ray);
 
 void	set_roots(void *obj, double r1, double r2, t_hit *hits);
 

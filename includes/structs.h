@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 17:52:38 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/13 13:50:14 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/14 12:46:56 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCTS_H
 
 # include "../libft/libft.h"
+# include "vec4.h"
 
 typedef struct s_scene
 {
@@ -41,5 +42,14 @@ typedef struct s_minirt
 	t_mlx	*mlx;
 	t_scene	*scene;
 }	t_minirt;
+
+typedef struct	s_ndc
+{
+	t_vec4	u;
+	t_vec4	v;
+	t_vec4	w;
+	double	ratio;
+	double	scale;
+}	t_ndc;
 
 #endif

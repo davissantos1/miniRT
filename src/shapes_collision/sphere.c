@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/14 08:03:59 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/09 13:41:52 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static inline
 void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray);
 
-bool	hit_sphere(t_scene *scene, void *me, t_hit *hits, t_ray ray)
+bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
 {
 	t_sphere	*obj;
 	t_vec4		oc;

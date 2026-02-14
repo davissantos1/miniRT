@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:53 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/11 21:57:55 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/14 12:56:18 by vitor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define SETTINGS_H
 
 # include "structs.h"
+
+# define WIDTH 1280
+# define HEIGHT 720
 
 typedef enum e_status
 {
@@ -27,8 +30,6 @@ typedef enum e_status
 
 typedef struct s_settings
 {
-	int		width;
-	int		height;
 	double	aspect_ratio;
 	int		max_bounces;
 	int		samples_per_pixel;

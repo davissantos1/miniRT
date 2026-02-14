@@ -22,7 +22,7 @@ static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
 	if (angle <= 1e-7)
 		return ((t_color){0});
 	light_color = vec4_scale(light->ratio, light->color);
-	ret = vec4_times(light_color, hits.material.diff_reflec);
+	ret = vec4_times(light_color, hits.material.color);
 	return (vec4_scale(angle, ret));
 }
 
@@ -73,17 +73,9 @@ unsigned int	phong(t_hit hits, t_scene *scene)
 	return ((int)color.x << 16 | (int)color.y << 8 | (int)color.z);
 }
 
-// 	t_vec4 n = hits.norm;
-
-// // Mapeia de [-1, 1] para [0, 1] para virar cor RGB
-// 	double r = (n.x + 1) * 0.5;
-// 	double g = (n.y + 1) * 0.5;
-// 	double b = (n.z + 1) * 0.5;
-// 	n.x = r * 255;
-// 	n.y = g * 255;
-// 	n.z = b * 255;
-// 	color.x = fmin(1.0, color.x);
-// 	color.y = fmin(1.0, color.y);
-// 	color.z = fmin(1.0, color.z);
-// 	color = vec4_scale(255, color);
-// 	print_vec("normal", n);
+	// t_vec4 n = hits.norm;
+	// (void) scene;
+	// // Mapeia de [-1, 1] para [0, 1] para virar cor RGB
+	// color.x = (n.x + 1) * 0.5;
+	// color.y = (n.y + 1) * 0.5;
+	// color.z = (n.z + 1) * 0.5;

@@ -15,10 +15,7 @@
 
 inline double	vec4_length(t_vec4 v)
 {
-	double	len;
-
-	len = sqrt(vec4_squared_len(v));
-	return (len);
+	return (sqrt(vec4_squared_len(v)));
 }
 
 inline double	vec4_squared_len(t_vec4 v)

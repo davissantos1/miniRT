@@ -37,7 +37,7 @@ static bool	infinity_cy(t_cylinder *obj, t_vec4 oc, t_ray ray, t_formula *form)
 	return (true);
 }
 
-static bool	check_height(t_cylinder *obj, t_formula *fm, t_hit *hit, t_ray ray)
+static bool	check_height(t_cylinder *obj, t_formula *fm, t_ray ray)
 {
 	t_point	p;
 	t_vec4	p_to_pos;
@@ -56,7 +56,7 @@ static bool	check_height(t_cylinder *obj, t_formula *fm, t_hit *hit, t_ray ray)
 	return (fabs(proje) <= half_h);
 }
 
-static bool	put_cap(t_scene *scene,t_cylinder *obj, t_ray ray, t_hit *hits)
+static bool	put_cap(t_cylinder *obj, t_ray ray, t_hit *hits)
 {
 	t_circle	cap;
 	bool		hit_cap;
@@ -69,10 +69,10 @@ static bool	put_cap(t_scene *scene,t_cylinder *obj, t_ray ray, t_hit *hits)
 	cap.diam = obj->diam;
 	half_h = obj->height / 2;
 	cap.pos = vec4_plus(obj->pos, vec4_scale(half_h, cap.norm));
-	hit_cap = hit_circle(scene, &cap, hits, ray);
+	hit_cap = hit_circle(&cap, hits, ray);
 	cap.norm = vec4_scale(-1, cap.norm);
 	cap.pos = vec4_plus(obj->pos, vec4_scale(half_h, cap.norm));
-	if (hit_circle(scene, &cap, hits, ray))
+	if (hit_circle(&cap, hits, ray))
 		hit_cap = true;
 	return (hit_cap);
 }
@@ -84,7 +84,6 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 	double	m;
 	t_point p_on_axis;
 	t_point	point;
-	t_vec4	norm;
 
 	if (hits->num_roots && form.r1 > hits->r1)
 		return ;
@@ -102,7 +101,7 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 	hits->material = obj->material;
 }
 
-bool	hit_cylinder(t_scene *scene, void *me, t_hit *hits, t_ray ray)
+bool	hit_cylinder(void *me, t_hit *hits, t_ray ray)
 {
 	t_cylinder	*obj;
 	t_formula	form;
@@ -114,13 +113,13 @@ bool	hit_cylinder(t_scene *scene, void *me, t_hit *hits, t_ray ray)
 	oc = vec4_minus(obj->pos, ray.origin);
 	if (infinity_cy(obj, oc, ray, &form))
 	{
-		if (check_height(obj, &form, hits, ray))
+		if (check_height(obj, &form, ray))
 		{
 			fill_hits(obj, hits, form, ray);
 			hit_any = true;
 		}
 	}
-	if (put_cap(scene, obj, ray, hits))
+	if (put_cap(obj, ray, hits))
 		hit_any = true;
 	return (hit_any);
 }

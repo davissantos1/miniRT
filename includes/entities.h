@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entities.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/11 17:57:22 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/14 13:24:25 by vitor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ typedef struct	s_camera
 
 typedef struct	s_light
 {
-	t_point		pos;
-	double		ratio;
-	t_color		color;
+	t_point			pos;
+	t_color			color;
+	struct	s_light	*next;
+	double			ratio;
 }	t_light;
 
 #endif

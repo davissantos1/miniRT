@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:27 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/13 14:44:21 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/14 12:56:40 by vitor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 static const t_settings	g_settings = {
-	.width = 1920,
-	.height = 1080,
 	.aspect_ratio = 1920 / 1080,
 	.max_bounces = 5,
 	.samples_per_pixel = 1,
