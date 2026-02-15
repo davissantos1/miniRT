@@ -6,11 +6,10 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 19:44:44 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/10 10:30:44 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/15 14:21:26 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include <math.h>
 #include <stdbool.h>
 #include "ray.h"
@@ -82,7 +81,6 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 {
 	t_vec4	hip;
 	double	m;
-	t_point p_on_axis;
 	t_point	point;
 
 	if (hits->num_roots && form.r1 > hits->r1)
@@ -95,8 +93,7 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 	hits->hit_point = point;
 	hip = vec4_minus(point, obj->pos);
 	m = vec4_dot(hip, obj->norm);
-	p_on_axis = vec4_minus(obj->pos, vec4_scale(m, obj->norm));
-	hits->norm = vec4_minus(point, p_on_axis);
+	hits->norm = vec4_minus(hip, vec4_scale(m, obj->norm));
 	hits->norm = vec4_unit_vector(hits->norm);
 	hits->material = obj->material;
 }

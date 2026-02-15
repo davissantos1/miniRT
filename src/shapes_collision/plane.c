@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 10:12:56 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/13 10:12:58 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/15 12:33:16 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ bool	hit_plane(void *me, t_hit *hits, t_ray ray)
 	if (dot_rd_n > 0)
 		hits->norm = vec4_scale(-1, obj->norm);
 	hits->hit_point = ray_pos(ray, t);
+	hits->me = me;
 	return (true);
 }

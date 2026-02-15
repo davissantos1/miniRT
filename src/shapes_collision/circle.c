@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 08:52:46 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/10 09:22:53 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/15 12:33:45 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ static inline bool	intersection(t_circle *obj, double t, t_hit *hits, t_ray ray)
 	hits->material = obj->material;
 	hits->norm = obj->norm;
 	hits->hit_point = p;
+	hits->me = obj;
 	return (true);
 }

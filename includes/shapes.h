@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/14 13:23:08 by vitor            ###   ########.fr       */
+/*   Updated: 2026/02/15 12:53:14 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,14 @@ typedef struct	s_quadratic
 typedef bool	(*t_get_hit)(void*, t_hit*, t_ray);
 
 // prototypes
+t_hit	ray_collision(t_scene *scene, t_ray ray);
 bool	hit_sphere(void *me, t_hit *hits, t_ray ray);
 bool	hit_cylinder(void *me, t_hit *hits, t_ray ray);
 bool	hit_circle(void *me, t_hit *hits, t_ray ray);
 bool	hit_plane(void *me, t_hit *hits, t_ray ray);
 
-void	set_roots(void *obj, double r1, double r2, t_hit *hits);
-
 unsigned int	phong(t_hit hits, t_scene *scene);
+bool			shadows(t_scene *scene,
+						t_light *light, t_hit hit, t_vec4 light_dir);
 
 #endif

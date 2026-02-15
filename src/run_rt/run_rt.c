@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/14 13:29:10 by vitor            ###   ########.fr       */
+/*   Updated: 2026/02/15 10:55:36 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 static void	paint_pixel(t_minirt *ctx, t_ndc ndc);
 static unsigned int	ray_color(t_scene *scene, t_ray ray);
+
 void    run_rt(t_minirt *ctx)
 {
     t_camera    *cam;
@@ -57,36 +58,15 @@ static void	paint_pixel(t_minirt *ctx, t_ndc ndc)
 	mlx_put_image_to_window(ctx->mlx->init, ctx->mlx->win, ctx->mlx->img, 0, 0);
 }
 
-inline static t_shape	get_type(t_wildcard *me)
-{
-	return (me->type);
-}
-
-static void	fill_functions(t_get_hit *functions)
-{
-	functions[SPHERE] = hit_sphere;
-	functions[CYLINDER] = hit_cylinder;
-	functions[CIRCLE] = hit_circle;
-	functions[PLANE] = hit_plane;
-}
-
 static unsigned int	ray_color(t_scene *scene, t_ray ray)
 {
-	static t_get_hit	functions[SHAPE_COUNT];
 	t_hit				hits;
-	t_list				*lst;
 
-	hits.num_roots = 0;
-	lst = scene->shape;
-	if (!functions[SPHERE])
-		fill_functions(functions);
-	while (lst)
-	{
-		functions[get_type(lst->content)](lst->content, &hits, ray);
-		lst = lst->next;
-	}
-	if (hits.num_roots)
-		return (phong(hits, scene));
-	return (0xc9d2ff);
+	hits = ray_collision(scene, ray);
+	if (!hits.num_roots)
+		return (0xc9d2ff);
+	hits.cam_dir = vec4_minus(scene->camera->pos, hits.hit_point);
+	hits.cam_dir = vec4_unit_vector(hits.cam_dir);
+	return (phong(hits, scene));
 }
 

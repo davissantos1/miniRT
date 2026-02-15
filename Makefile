@@ -24,10 +24,12 @@ SRC= \
 		src/shapes_collision/cylinder.c \
 		src/shapes_collision/sphere.c \
 		src/shapes_collision/circle.c \
+		src/shapes_collision/ray_collision.c \
 		src/ray/ray.c \
 		src/run_rt/get_ray_dir.c \
 		src/run_rt/run_rt.c \
 		src/phong/phong.c \
+		src/phong/shadows.c \
 		src/utils/img_pixel_put.c \
 		src/utils/panic.c \
 		src/utils/check.c \

@@ -6,11 +6,12 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:49:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/12 15:49:27 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/15 14:23:48 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shapes.h"
+#include "vec4.h"
 
 static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
 {
@@ -53,8 +54,6 @@ unsigned int	phong(t_hit hits, t_scene *scene)
 	t_vec4	light_dir;
 
 	light = scene->light;
-	hits.cam_dir = vec4_minus(scene->camera->pos, hits.hit_point);
-	hits.cam_dir = vec4_unit_vector(hits.cam_dir);
 	ambi_color = vec4_scale(scene->alight->ratio, scene->alight->color);
 	ambi_color = vec4_times(ambi_color, hits.material.ambi_reflec);
 	color = ambi_color;
@@ -62,10 +61,19 @@ unsigned int	phong(t_hit hits, t_scene *scene)
 	{
 		light_dir = vec4_minus(light->pos, hits.hit_point);
 		light_dir = vec4_unit_vector(light_dir);
-		color = vec4_plus(color, diffusion(hits, light, light_dir));
-		color = vec4_plus(color, specular(hits, light, light_dir));
+		if (!shadows(scene, light, hits, light_dir))
+		{
+			color = vec4_plus(color, diffusion(hits, light, light_dir));
+			color = vec4_plus(color, specular(hits, light, light_dir));
+		}
 		light = light->next;
 	}
+	//debug color pae pra ver se as normais estão certas
+	 /* t_vec4 n = hits.norm; */
+	 /* (void) scene; */
+	 /* color.x = (n.x + 1) * 0.5; */
+	 /* color.y = (n.y + 1) * 0.5; */
+	 /* color.z = (n.z + 1) * 0.5; */
 	color.x = fmin(1.0, color.x);
 	color.y = fmin(1.0, color.y);
 	color.z = fmin(1.0, color.z);
