@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 19:44:44 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 14:21:26 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/15 15:15:08 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 	hip = vec4_minus(point, obj->pos);
 	m = vec4_dot(hip, obj->norm);
 	hits->norm = vec4_minus(hip, vec4_scale(m, obj->norm));
-	hits->norm = vec4_unit_vector(hits->norm);
+	hits->norm = vec4_scale(2 / obj->diam, hits->norm);
 	hits->material = obj->material;
 }
 

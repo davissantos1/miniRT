@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 12:34:15 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/15 15:14:07 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
 	point = ray_pos(ray, formula.r1);
 	hits->hit_point = point;
 	norm = vec4_minus(point, obj->pos);
-	hits->norm = vec4_unit_vector(norm);
+	hits->norm = vec4_scale(2 / obj->diam, norm);
 	hits->material = obj->material;
 	hits->me = obj;
 }
