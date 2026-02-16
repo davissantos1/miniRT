@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 15:14:07 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/16 18:19:17 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
 	if (delt < 1e-7)
 		return (false);
 	delt = sqrt(delt);
-	formula.r1 = formula.h - delt / formula.a;
-	formula.r2 = formula.h + delt / formula.a;
+	formula.r1 = (formula.h - delt) / formula.a;
+	formula.r2 = (formula.h + delt) / formula.a;
+	if (formula.r1 < 1e-7 && formula.r2 < 1e-7)
+		return (false);
 	fill_hits(obj, hits, formula, ray);
 	return (true);
 }
@@ -48,6 +50,8 @@ void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
 	t_point	point;
 	t_vec4	norm;
 
+	if (formula.r1 < 1e-7)
+		formula.r1 = formula.r2;
 	if (hits->num_roots && formula.r1 > hits->r1)
 		return ;
 	hits->num_roots = 1;
