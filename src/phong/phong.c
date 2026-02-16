@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:49:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 14:23:48 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/16 18:37:36 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,13 @@ unsigned int	phong(t_hit hits, t_scene *scene)
 		}
 		light = light->next;
 	}
-	if (vec4_squared_len(hits.material.kr) > 1e-7)
-		color = vec4_plus(color, reflections(scene, hits, 0));
+	color = vec4_plus(color, reflections(scene, hits, 0));
 	//debug color pae pra ver se as normais estão certas
-	 /* t_vec4 n = hits.norm; */
-	 /* (void) scene; */
-	 /* color.x = (n.x + 1) * 0.5; */
-	 /* color.y = (n.y + 1) * 0.5; */
-	 /* color.z = (n.z + 1) * 0.5; */
+	  /* t_vec4 n = hits.norm;  */
+	  /* (void) scene;  */
+	  /* color.x = (n.x + 1) * 0.5;  */
+	  /* color.y = (n.y + 1) * 0.5;  */
+	  /* color.z = (n.z + 1) * 0.5;  */
 	color.x = fmin(1.0, color.x);
 	color.y = fmin(1.0, color.y);
 	color.z = fmin(1.0, color.z);
