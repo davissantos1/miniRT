@@ -42,7 +42,7 @@ static inline t_vec4	specular(t_hit hits, t_light *light, t_vec4 light_dir)
 	if (dot_ref < 0 || shinin < 0)
 		return ((t_color){0});
 	shinin = pow(shinin, hits.material.shininess);
-	color_shine = vec4_scale(shinin, hits.material.spec_reflec);
+	color_shine = vec4_scale(shinin, hits.material.ks);
 	return (vec4_times(color_shine, intensity));
 }
 
@@ -55,7 +55,7 @@ unsigned int	phong(t_hit hits, t_scene *scene)
 
 	light = scene->light;
 	ambi_color = vec4_scale(scene->alight->ratio, scene->alight->color);
-	ambi_color = vec4_times(ambi_color, hits.material.ambi_reflec);
+	ambi_color = vec4_times(ambi_color, hits.material.ka);
 	color = ambi_color;
 	while (light)
 	{
@@ -68,6 +68,8 @@ unsigned int	phong(t_hit hits, t_scene *scene)
 		}
 		light = light->next;
 	}
+	if (vec4_squared_len(hits.material.kr) > 1e-7)
+		color = vec4_plus(color, reflections(scene, hits, 0));
 	//debug color pae pra ver se as normais estão certas
 	 /* t_vec4 n = hits.norm; */
 	 /* (void) scene; */

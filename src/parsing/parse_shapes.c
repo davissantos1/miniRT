@@ -32,8 +32,8 @@ void	parse_plane(t_minirt *rt, char **entity)
 	pl->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
 	pl->material.color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
 	pl->material.color = vec4_scale(1 / 255, pl->material.color);
-	pl->material.spec_reflec = vec4_init(0.9, 0.9, 0.9, 0);
-	pl->material.ambi_reflec = vec4_scale(1.0 / 3.0, pl->material.color);
+	pl->material.ks = vec4_init(0.9, 0.9, 0.9, 0);
+	pl->material.ka = vec4_scale(1.0 / 3.0, pl->material.color);
 	pl->material.shininess = 32.0;
 	add_object(rt, pl);
 	free(p);
@@ -58,8 +58,8 @@ void	parse_sphere(t_minirt *rt, char **entity)
 	sp->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 0);
 	sp->material.color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
 	sp->material.color = vec4_scale(1 / 255, sp->material.color);
-	sp->material.spec_reflec = vec4_init(0.9, 0.9, 0.9, 0);
-	sp->material.ambi_reflec = vec4_scale(1.0 / 3.0, sp->material.color);
+	sp->material.ks = vec4_init(0.9, 0.9, 0.9, 0);
+	sp->material.ka = vec4_scale(1.0 / 3.0, sp->material.color);
 	sp->diam = ft_atod(entity[2]);
 	sp->material.shininess = 32.0;
 	add_object(rt, sp);
@@ -89,8 +89,8 @@ void	parse_cylinder(t_minirt *rt, char **entity)
 	cy->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
 	cy->material.color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
 	cy->material.color = vec4_scale(1 / 255, cy->material.color);
-	cy->material.spec_reflec = vec4_init(0.9, 0.9, 0.9, 0);
-	cy->material.ambi_reflec = vec4_scale(1.0 / 3.0, cy->material.color);
+	cy->material.ks = vec4_init(0.9, 0.9, 0.9, 0);
+	cy->material.ka = vec4_scale(1.0 / 3.0, cy->material.color);
 	cy->diam = ft_atod(entity[3]);
 	cy->height = ft_atod(entity[4]);
 	add_object(rt, cy);

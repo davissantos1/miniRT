@@ -31,8 +31,9 @@ typedef enum e_shape
 
 typedef struct	s_material
 {
-	t_vec4	ambi_reflec;
-	t_vec4	spec_reflec;
+	t_vec4	ka;
+	t_vec4	ks;
+	t_vec4	kr;
 	t_vec4	color;
 	double	shininess;
 }	t_material;
@@ -51,6 +52,7 @@ typedef struct	s_hit
 	t_vec4		norm;
 	t_vec4		cam_dir;
 	t_point		hit_point;
+	t_vec4		ray_dir;
 	t_material	material;
 }	t_hit;
 
@@ -112,5 +114,7 @@ bool	hit_plane(void *me, t_hit *hits, t_ray ray);
 unsigned int	phong(t_hit hits, t_scene *scene);
 bool			shadows(t_scene *scene,
 						t_light *light, t_hit hit, t_vec4 light_dir);
+t_color			reflections(t_scene *scene, t_hit hits, int depth);
+t_vec4			reflec_dir(t_vec4 norm, t_vec4 dir);
 
 #endif

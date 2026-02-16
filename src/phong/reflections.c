@@ -1,0 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reflections.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/15 16:45:56 by vitosant          #+#    #+#             */
+/*   Updated: 2026/02/15 21:38:52 by vitosant         ###    ########.fr      */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ray.h"
+#include "shapes.h"
+#include "structs.h"
+#include "vec4.h"
+#include <stdio.h>
+
+t_color	reflections(t_scene *scene, t_hit hits, int depth)
+{
+	t_hit	collision;
+	t_ray	reflected;
+
+	if (depth >= 2)
+		return ((t_color){0});
+	reflected.dir = reflec_dir(hits.norm, hits.ray_dir);
+	//printf("reflected %.2lf original %.2lf \n", vec4_dot(reflected.dir, hits.norm), vec4_dot(hits.norm, hits.ray_dir));
+	reflected.origin = vec4_plus(vec4_scale(1e-7, hits.norm), hits.hit_point);
+	collision = ray_collision(scene, reflected);
+	return (vec4_times(hits.material.kr, vec4_plus(hits.material.kr, reflections(scene, collision, depth + 1))));
+}

@@ -40,6 +40,7 @@ t_hit	ray_collision(t_scene *scene, t_ray ray)
 		functions[get_type(lst->content)](lst->content, &hits, ray);
 		lst = lst->next;
 	}
+	hits.ray_dir = ray.dir;
 	return (hits);
 }
 

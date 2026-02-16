@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/15 14:25:52 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/15 21:24:42 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ t_minirt meu_teste(void)
 	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1);
 	sphere->type = SPHERE;
 	sphere->diam = 1;
-	sphere->pos = vec4_init(1, 0, -1.5, 1);
-	sphere->material.ambi_reflec = vec4_init(0.3, 0, 0, 0);
+	sphere->pos = vec4_init(0, 0, -1.5, 1);
+	sphere->material.ka = vec4_init(0.3, 0, 0, 0);
 	sphere->material.color = vec4_init(1, 0, 0, 0);
-	sphere->material.spec_reflec = vec4_init(1, 1, 1, 0);
+	sphere->material.ks = vec4_init(1, 1, 1, 0);
 	sphere->material.shininess = 32;
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
 	plane = gc_calloc(sizeof(t_plane), ctx.gc, GC_CUSTOM1);
@@ -91,8 +91,9 @@ t_minirt meu_teste(void)
 	plane->norm = vec4_init(0, 1, 0, 0);
 	plane->material.color = vec4_init(0.5, 0, 0.5, 0);
 	plane->material.shininess = 42;
-	plane->material.spec_reflec = vec4_init(1, 1, 1, 0);
-	plane->material.ambi_reflec = vec4_init(0.5, 0, 0.5, 0);
+	plane->material.ks = vec4_init(1, 1, 1, 0);
+	plane->material.ka = vec4_init(0.4, 0, 0.4, 0);
+	plane->material.kr = vec4_init(0.9, 0.9, 0.9, 0);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(plane));
 	/* sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1); */
 	/* sphere->type = SPHERE; */
@@ -100,19 +101,19 @@ t_minirt meu_teste(void)
 	/* sphere->pos = vec4_init(0, 0, -2, 1); */
 	/* sphere->material.shininess = 42; */
 	/* sphere->material.color = vec4_init(1, 0, 1, 0); */
-	/* sphere->material.spec_reflec = vec4_init(1, 1, 1, 0); */
-	/* sphere->material.ambi_reflec = vec4_init(0.3, 0, 0.3, 0); */
+	/* sphere->material.ks = vec4_init(1, 1, 1, 0); */
+	/* sphere->material.ka = vec4_init(0.3, 0, 0.3, 0); */
 	/* ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere)); */
 	cylinder = gc_calloc(sizeof(t_cylinder), ctx.gc, GC_CUSTOM1);
 	cylinder->diam = 0.1;
 	cylinder->type = CYLINDER;
 	cylinder->height = 1.5;
-	cylinder->pos = vec4_init(0, 0, -1.5, 1);
-	cylinder->norm = vec4_unit_vector(vec4_init(1, 1, 0, 0));
+	cylinder->pos = vec4_init(1, 0, -1.5, 1);
+	cylinder->norm = vec4_unit_vector(vec4_init(1, -1, 0, 0));
 	cylinder->material.color = vec4_init(0, 0, 1, 0);
 	cylinder->material.shininess = 42;
-	cylinder->material.spec_reflec = vec4_init(1, 1, 1, 0);
-	cylinder->material.ambi_reflec = vec4_init(0, 0, 0.3, 0);
+	cylinder->material.ks = vec4_init(1, 1, 1, 0);
+	cylinder->material.ka = vec4_init(0, 0, 0.3, 0);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cylinder));
 	/* circle = gc_calloc(sizeof(t_circle), ctx.gc, GC_CUSTOM1); */
 	/* circle->diam = 1; */
@@ -120,8 +121,8 @@ t_minirt meu_teste(void)
 	/* circle->pos = vec4_init(0, 0, -3, 1); */
 	/* circle->material.shininess = 80; */
 	/* circle->material.color = vec4_init(0, 1, 0.45, 0); */
-	/* circle->material.spec_reflec = vec4_init(1, 1, 1, 0); */
-	/* circle->material.ambi_reflec = vec4_init(0, 0.3, 0.15, 0); */
+	/* circle->material.ks = vec4_init(1, 1, 1, 0); */
+	/* circle->material.ka = vec4_init(0, 0.3, 0.15, 0); */
 	/* circle->norm = vec4_unit_vector(vec4_minus(ctx.scene->camera->pos, circle->pos)); */
 	/* ft_lstadd_back(&ctx.scene->shape, ft_lstnew(circle)); */
 	return (ctx);

@@ -30,6 +30,8 @@ SRC= \
 		src/run_rt/run_rt.c \
 		src/phong/phong.c \
 		src/phong/shadows.c \
+		src/phong/utils.c \
+		src/phong/reflections.c \
 		src/utils/img_pixel_put.c \
 		src/utils/panic.c \
 		src/utils/check.c \
