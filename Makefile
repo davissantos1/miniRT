@@ -31,6 +31,8 @@ SRC= \
 		src/phong/phong.c \
 		src/phong/shadows.c \
 		src/phong/utils.c \
+		src/phong/diffusion.c \
+		src/phong/specular.c \
 		src/phong/reflections.c \
 		src/utils/img_pixel_put.c \
 		src/utils/panic.c \
