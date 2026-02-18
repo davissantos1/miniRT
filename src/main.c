@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/17 11:06:07 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/16 18:41:23 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_minirt meu_teste(void)
 	ctx.scene->camera->norm = vec4_init(0, 0, -1, 0);
 	ctx.scene->light = gc_calloc(sizeof(t_light), ctx.gc, GC_CUSTOM1);
 	ctx.scene->light->color = vec4_init(1, 1, 1, 0);
-	ctx.scene->light->pos = vec4_init(0, 1, -2, 1);
+	ctx.scene->light->pos = vec4_init(0, 1, -1, 1);
 	ctx.scene->light->ratio = 1;
 	/* ctx.scene->light->next= gc_calloc(sizeof(t_light), ctx.gc, GC_CUSTOM1); */
 	/* ctx.scene->light->next->color = vec4_init(1, 1, 1, 0); */
@@ -96,17 +96,6 @@ t_minirt meu_teste(void)
 	plane->material.ka = vec4_init(0.4, 0, 0.4, 0);
 	plane->material.kr = vec4_init(0.9, 0.9, 0.9, 0);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(plane));
-	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
-	/* plane = gc_calloc(sizeof(t_plane), ctx.gc, GC_CUSTOM1); */
-	/* plane->type = PLANE; */
-	/* plane->pos = vec4_init(0, 0, -3, 1); */
-	/* plane->norm = vec4_init(0, 0, 1, 0); */
-	/* plane->material.color = vec4_init(0.5, 0, 0.5, 0); */
-	/* plane->material.shininess = 42; */
-	/* plane->material.ks = vec4_init(1, 1, 1, 0); */
-	/* plane->material.ka = vec4_init(0.4, 0, 0.4, 0); */
-	/* plane->material.kr = vec4_init(0.9, 0.9, 0.9, 0); */
-	/* ft_lstadd_back(&ctx.scene->shape, ft_lstnew(plane)); */
 	/* sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1); */
 	/* sphere->type = SPHERE; */
 	/* sphere->diam = 0.5; */

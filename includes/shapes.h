@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/17 09:41:41 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/15 12:53:14 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,6 @@ bool	hit_circle(void *me, t_hit *hits, t_ray ray);
 bool	hit_plane(void *me, t_hit *hits, t_ray ray);
 
 unsigned int	phong(t_hit hits, t_scene *scene);
-t_vec4			specular(t_hit hits, t_light *light, t_vec4 light_dir);
-t_vec4			diffusion(t_hit hits, t_light *light, t_vec4 light_dir);
-
 bool			shadows(t_scene *scene,
 						t_light *light, t_hit hit, t_vec4 light_dir);
 t_color			reflections(t_scene *scene, t_hit hits, int depth);
