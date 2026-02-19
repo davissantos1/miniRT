@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/16 18:19:17 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/18 21:45:35 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,14 @@ bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
 
 	obj = me;
 	oc = vec4_minus(obj->pos, ray.origin);
-	formula.a = vec4_squared_len(ray.dir);
 	formula.h = vec4_dot(ray.dir, oc);
 	formula.c = vec4_squared_len(oc) - obj->diam * obj->diam / 4.0;
-	delt = formula.h * formula.h - formula.a * formula.c;
+	delt = formula.h * formula.h - formula.c;
 	if (delt < 1e-7)
 		return (false);
 	delt = sqrt(delt);
-	formula.r1 = (formula.h - delt) / formula.a;
-	formula.r2 = (formula.h + delt) / formula.a;
+	formula.r1 = (formula.h - delt);
+	formula.r2 = (formula.h + delt);
 	if (formula.r1 < 1e-7 && formula.r2 < 1e-7)
 		return (false);
 	fill_hits(obj, hits, formula, ray);
