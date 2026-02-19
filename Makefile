@@ -84,7 +84,7 @@ $(NAME): $(LIBFT) $(MINILIBX) $(OBJ)
 	@echo "🛠️  ${BLUE}Compiling:${RESET} $< to $@"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-debug: CFLAGS += -g -o0
+debug: CFLAGS += -g
 debug: re
 	@echo "⚠️  ${RED}Compilation mode:${RESET} debug"
 
