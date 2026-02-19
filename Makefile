@@ -30,11 +30,11 @@ SRC= \
 		src/run_rt/run_rt.c \
 		src/phong/phong.c \
 		src/phong/shadows.c \
-		src/utils/img_pixel_put.c \
 		src/utils/panic.c \
+		src/utils/img_pixel_put.c \
 		src/utils/check.c \
 		src/utils/add.c \
-		src/utils/start.c
+		src/utils/start.c 
 
 SRC_BONUS= \
 			src/main.c

@@ -6,16 +6,18 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/15 12:53:14 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/18 20:28:48 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHAPES_H
 # define SHAPES_H
 
+# include <math.h>
 # include "vec4.h"
 # include "ray.h"
-# include "minirt.h"
+# include "structs.h"
+# include "entities.h"
 
 // enums
 typedef enum e_shape

@@ -6,14 +6,11 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 08:52:46 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 12:33:45 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/18 19:32:26 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
-#include "shapes.h"
-#include "vec4.h"
-#include <stdbool.h>
+#include "minirt.h"
 
 static bool	intersection(t_circle *obj, double t, t_hit *hits, t_ray ray);
 

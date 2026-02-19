@@ -6,18 +6,20 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:27 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/14 12:56:40 by vitor            ###   ########.fr       */
+/*   Updated: 2026/02/18 19:25:40 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 static const t_settings	g_settings = {
-	.aspect_ratio = 1920 / 1080,
-	.max_bounces = 5,
-	.samples_per_pixel = 1,
-	.epsilon = 1e-4,
-	.num_threads = 8
+	.width =  WIDTH,
+	.height = HEIGHT,
+	.aspect_ratio = WIDTH / HEIGHT,
+	.max_bounces = MAX_BOUNCES,
+	.samples_per_pixel = SAMPLES,
+	.epsilon = EPSILON,
+	.num_threads = THREADS
 };
 
 static const t_map_shape	g_shapes[] = {

@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:44:14 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/09 16:04:09 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/18 16:04:59 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,18 @@ int	check_pos(char **pos)
 
 int	check_norm(char **norm)
 {
-	double	x;
-	double	y;
-	double	z;
+	t_vec4	test;
+	double	len;
 
-	if (!check_number_3mtx(norm))
+	test = vec4_init(ft_atod(norm[0]), ft_atod(norm[1]), ft_atod(norm[2]), 0);
+	len = vec4_length(test);
+	if (!check_number_3mtx(norm) || len > 1.0f)
 		return (0);
-	x = ft_atod(norm[0]);	
-	y = ft_atod(norm[1]);	
-	z = ft_atod(norm[2]);	
-	if (x < -1.0f || x > 1.0f)
+	if (test.x < -1.0f || test.x > 1.0f)
 		return (0);
-	if (y < -1.0f || y > 1.0f)
+	if (test.y < -1.0f || test.y > 1.0f)
 		return (0);
-	if (z < -1.0f || z > 1.0f)
+	if (test.z < -1.0f || test.z > 1.0f)
 		return (0);
 	return (1);
 }

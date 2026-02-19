@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:31:39 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/13 15:26:02 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/18 16:30:34 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	parse_alight(t_minirt *rt, char **entity)
 		desperation(rt->gc, ERR_FILE_INVALID);
 	amb->ratio = ft_atod(entity[1]);
 	amb->color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
-	amb->color = vec4_scale(1/255, amb->color);
+	amb->color = vec4_scale((double)1/255, amb->color);
 	rt->scene->alight = amb;
 	free(c);
 }
@@ -118,7 +118,7 @@ void	parse_light(t_minirt *rt, char **entity)
 		desperation(rt->gc, ERR_FILE_INVALID);
 	lig->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
 	lig->color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
-	lig->color = vec4_scale(1/255, lig->color);
+	lig->color = vec4_scale((double)1/255, lig->color);
 	lig->ratio = ft_atod(entity[2]);
 	lig->next = rt->scene->light;
 	rt->scene->light = lig;

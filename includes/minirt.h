@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/14 12:48:03 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/18 22:09:48 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <errno.h>
 # include <math.h>
 # include <sys/time.h>
@@ -31,6 +32,7 @@
 # include "entities.h"
 # include "shapes.h"
 # include "vec4.h"
+# include "ray.h"
 
 //Signatures
 t_status	panic(t_status status);
@@ -48,5 +50,7 @@ int			check_positive(char *num);
 void		add_object(t_minirt *rt, void *obj);
 void		img_pixel_put(t_mlx *mlx, int x, int y, int color);
 void		run_rt(t_minirt	*ctx);
+
+void		set_roots(void *me, double r1, double r2, t_hit *hits);
 
 #endif

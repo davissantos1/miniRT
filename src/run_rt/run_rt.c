@@ -6,17 +6,15 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 10:55:36 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/18 19:24:51 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx-linux/mlx.h"
+#include "minirt.h"
 #include "ray.h"
 #include "shapes.h"
 #include "vec4.h"
 #include <math.h>
-
-#define PI 3.14159265359
 
 static void	paint_pixel(t_minirt *ctx, t_ndc ndc);
 static unsigned int	ray_color(t_scene *scene, t_ray ray);
@@ -69,4 +67,3 @@ static unsigned int	ray_color(t_scene *scene, t_ray ray)
 	hits.cam_dir = vec4_unit_vector(hits.cam_dir);
 	return (phong(hits, scene));
 }
-

@@ -6,16 +6,11 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 15:14:07 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/18 19:35:41 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "shapes.h"
-#include "ray.h"
-#include "vec4.h"
-#include <math.h>
-#include <stdbool.h>
 
 static inline
 void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray);
