@@ -8,6 +8,7 @@ SRC= \
 		src/main.c \
 		src/settings.c \
 		src/parsing/parse.c \
+		src/hooks/hooks.c \
 		src/parsing/parse_shapes.c \
 		src/parsing/check_element.c \
 		src/parsing/check_part.c \

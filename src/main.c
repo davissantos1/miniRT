@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/18 19:19:12 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/19 13:32:56 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 		parse_minirt(rt, fd);
 		run_rt(rt);
 		if (close(fd) == -1)
-			desperation(rt->gc, ERR_SYSCALL);
+			desperation(rt, ERR_SYSCALL);
 	}
 	return (SUCCESS);
 }

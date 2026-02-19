@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/18 22:09:48 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/19 14:09:26 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		real_panic(t_status status);
 int			check_filename(char *file);
 t_minirt	*start_minirt(char *name);
 t_mlx		*start_mlx(t_gc *gc, char *name);
-void		desperation(t_gc *gc, t_status status);
+void		desperation(t_minirt *rt, t_status status);
 
 int			check_if_double(char *str);
 int			check_number_3mtx(char **num);
@@ -52,5 +52,8 @@ void		img_pixel_put(t_mlx *mlx, int x, int y, int color);
 void		run_rt(t_minirt	*ctx);
 
 void		set_roots(void *me, double r1, double r2, t_hit *hits);
+
+int			hook_keys(int keycode, t_minirt *rt);
+int			close_cross(t_minirt *rt);
 
 #endif
