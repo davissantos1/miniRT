@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:53 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/18 19:38:51 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/19 08:39:46 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "structs.h"
 
-# define WIDTH 1080
-# define HEIGHT 1080
+# define WIDTH 1228
+# define HEIGHT 720
 # define MAX_BOUNCES 5
 # define SAMPLES 1
 # define EPSILON 1e-4

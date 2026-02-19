@@ -25,6 +25,7 @@ SRC= \
 		src/shapes_collision/sphere.c \
 		src/shapes_collision/circle.c \
 		src/shapes_collision/ray_collision.c \
+		src/run_rt/fxaa.c \
 		src/ray/ray.c \
 		src/run_rt/get_ray_dir.c \
 		src/run_rt/run_rt.c \
