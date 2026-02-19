@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:49:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/16 18:37:36 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/18 21:58:19 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static inline t_vec4	specular(t_hit hits, t_light *light, t_vec4 light_dir)
 	return (vec4_times(color_shine, intensity));
 }
 
-unsigned int	phong(t_hit hits, t_scene *scene)
+t_color	phong(t_hit hits, t_scene *scene, int depth)
 {
 	t_light	*light;
 	t_color	color;
@@ -68,23 +68,16 @@ unsigned int	phong(t_hit hits, t_scene *scene)
 		}
 		light = light->next;
 	}
-	color = vec4_plus(color, reflections(scene, hits, 0));
+	color = vec4_plus(color, reflections(scene, hits, depth));
+	color.x = fmin(1.0, color.x);
+	color.y = fmin(1.0, color.y);
+	color.z = fmin(1.0, color.z);
+	return (color);
+}
+
 	//debug color pae pra ver se as normais estão certas
 	  /* t_vec4 n = hits.norm;  */
 	  /* (void) scene;  */
 	  /* color.x = (n.x + 1) * 0.5;  */
 	  /* color.y = (n.y + 1) * 0.5;  */
 	  /* color.z = (n.z + 1) * 0.5;  */
-	color.x = fmin(1.0, color.x);
-	color.y = fmin(1.0, color.y);
-	color.z = fmin(1.0, color.z);
-	color = vec4_scale(255, color);
-	return ((int)color.x << 16 | (int)color.y << 8 | (int)color.z);
-}
-
-	// t_vec4 n = hits.norm;
-	// (void) scene;
-	// // Mapeia de [-1, 1] para [0, 1] para virar cor RGB
-	// color.x = (n.x + 1) * 0.5;
-	// color.y = (n.y + 1) * 0.5;
-	// color.z = (n.z + 1) * 0.5;

@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 10:55:36 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/18 21:25:53 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "shapes.h"
 #include "vec4.h"
 #include <math.h>
+#include <stdio.h>
 
 #define PI 3.14159265359
 
@@ -60,13 +61,16 @@ static void	paint_pixel(t_minirt *ctx, t_ndc ndc)
 
 static unsigned int	ray_color(t_scene *scene, t_ray ray)
 {
-	t_hit				hits;
+	t_hit	hits;
+	t_color color;
 
 	hits = ray_collision(scene, ray);
 	if (!hits.num_roots)
-		return (0xc9d2ff);
+		return (0);
 	hits.cam_dir = vec4_minus(scene->camera->pos, hits.hit_point);
 	hits.cam_dir = vec4_unit_vector(hits.cam_dir);
-	return (phong(hits, scene));
+	color = phong(hits, scene, 4);
+	color = vec4_scale(255.0, color);
+	return ((int)color.x << 16 | (int)color.y << 8 | (int)color.z);
 }
 
