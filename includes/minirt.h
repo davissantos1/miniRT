@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/19 14:09:26 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/19 19:57:44 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ void		set_roots(void *me, double r1, double r2, t_hit *hits);
 
 int			hook_keys(int keycode, t_minirt *rt);
 int			close_cross(t_minirt *rt);
+
+void		fxaa(t_mlx *mlx);
 
 #endif
