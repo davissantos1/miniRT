@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/18 22:06:56 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/19 13:32:56 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ t_minirt meu_teste(void);
 
 int	main(int ac, char **av)
 {
-	(void) ac;
-	(void) av;
 	// t_minirt	*rt;
 	// int			fd;
 
@@ -33,17 +31,14 @@ int	main(int ac, char **av)
 	// 		return (panic(ERR_SYSCALL));
 	// 	rt = start_minirt(av[1]);
 	// 	parse_minirt(rt, fd);
-	// 	run_rt(&ctx);
+	// 	run_rt(rt);
 	// 	if (close(fd) == -1)
-	// 		desperation(rt->gc, ERR_SYSCALL);
+	// 		desperation(rt, ERR_SYSCALL);
 	// }
-	// mlx_destroy_image(rt->mlx->init, rt->mlx->img);
-	// mlx_destroy_window(rt->mlx->init, rt->mlx->win);
-	// mlx_destroy_display(rt->mlx->init);
-	// free(rt->mlx->init);
-	// gc_free_all(rt->gc);
-	t_minirt	ctx = meu_teste();
-	run_rt(&ctx);
+	(void) ac;
+	(void) av;
+	t_minirt minis = meu_teste();
+	run_rt(&minis);
 	return (SUCCESS);
 }
 
@@ -53,7 +48,7 @@ t_minirt meu_teste(void)
 	t_plane		*plane;
 	t_sphere	*sphere;
 	t_cylinder	*cylinder;
-	t_circle	*circle;
+	t_disk		*circle;
 
 	(void)plane;
 	(void)sphere;

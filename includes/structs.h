@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 17:52:38 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/14 12:46:56 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/19 17:51:30 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ typedef struct s_scene
 
 typedef struct s_mlx
 {
-	void		*init;
-	void		*win;
-	void		*img;
-	char		*addr;
-	int			bpp;
-	int			line;
-	int			end;
+	void	*init;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line;
+	int		end;
 }	t_mlx;
 
 typedef struct s_minirt

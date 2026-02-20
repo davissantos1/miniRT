@@ -6,16 +6,21 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/18 18:02:31 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/18 20:28:48 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHAPES_H
 # define SHAPES_H
 
+# include <math.h>
 # include "vec4.h"
 # include "ray.h"
-# include "minirt.h"
+# include "structs.h"
+# include "entities.h"
+
+# define PI 3.14159265359
+# define EPSILON 1e-7
 
 // enums
 typedef enum e_shape
@@ -23,7 +28,7 @@ typedef enum e_shape
 	SPHERE,
 	PLANE,
 	CYLINDER,
-	CIRCLE,
+	disk,
 	SHAPE_COUNT
 }	t_shape;
 
@@ -38,10 +43,10 @@ typedef struct	s_material
 	double	shininess;
 }	t_material;
 
-typedef struct	s_shape
+typedef struct	s_handle
 {
 	t_shape		type;
-}	t_wildcard;
+}	t_handle;
 
 typedef struct	s_hit
 {
@@ -83,14 +88,14 @@ typedef struct	s_cylinder
 }	t_cylinder;
 
 
-typedef struct	s_circle
+typedef struct	s_disk
 {
 	t_shape		type;
 	t_point		pos;
 	t_vec4		norm;
 	t_material	material;
 	double		diam;
-}	t_circle;
+}	t_disk;
 
 typedef struct	s_quadratic
 {
@@ -108,7 +113,7 @@ typedef bool	(*t_get_hit)(void*, t_hit*, t_ray);
 t_hit	ray_collision(t_scene *scene, t_ray ray);
 bool	hit_sphere(void *me, t_hit *hits, t_ray ray);
 bool	hit_cylinder(void *me, t_hit *hits, t_ray ray);
-bool	hit_circle(void *me, t_hit *hits, t_ray ray);
+bool	hit_disk(void *me, t_hit *hits, t_ray ray);
 bool	hit_plane(void *me, t_hit *hits, t_ray ray);
 
 t_color	phong(t_hit hits, t_scene *scene, int depth);

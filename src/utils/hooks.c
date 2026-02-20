@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/07 17:34:42 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/18 22:11:24 by dasimoes         ###   ########.fr       */
+/*   Created: 2026/02/19 13:13:59 by dasimoes          #+#    #+#             */
+/*   Updated: 2026/02/19 14:08:10 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	RAY_H
-# define RAY_H
+#include "minirt.h"
 
-# include "structs.h"
-
-typedef struct s_ray
+int	hook_keys(int keycode, t_minirt *rt)
 {
-	t_point	origin;
-	t_vec4	dir;
-}	t_ray;
+	if (keycode == 0xff1b)
+		desperation(rt, SUCCESS);
+	return (0);
+}
 
-t_ray	ray_init(t_point origin, t_vec4 dir);
-t_point	ray_pos(t_ray ray, double t);
-
-#endif
+int	close_cross(t_minirt *rt)
+{
+	desperation(rt, SUCCESS);
+	return (0);
+}

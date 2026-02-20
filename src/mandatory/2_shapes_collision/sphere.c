@@ -11,11 +11,6 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "shapes.h"
-#include "ray.h"
-#include "vec4.h"
-#include <math.h>
-#include <stdbool.h>
 
 static inline
 void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray);
@@ -32,12 +27,12 @@ bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
 	formula.h = vec4_dot(ray.dir, oc);
 	formula.c = vec4_squared_len(oc) - obj->diam * obj->diam / 4.0;
 	delt = formula.h * formula.h - formula.c;
-	if (delt < 1e-7)
+	if (delt < EPSILON)
 		return (false);
 	delt = sqrt(delt);
 	formula.r1 = (formula.h - delt);
 	formula.r2 = (formula.h + delt);
-	if (formula.r1 < 1e-7 && formula.r2 < 1e-7)
+	if (formula.r1 < EPSILON && formula.r2 < EPSILON)
 		return (false);
 	fill_hits(obj, hits, formula, ray);
 	return (true);
@@ -49,14 +44,14 @@ void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
 	t_point	point;
 	t_vec4	norm;
 
-	if (formula.r1 < 1e-7)
+	if (formula.r1 < EPSILON)
 		formula.r1 = formula.r2;
 	if (hits->num_roots && formula.r1 > hits->r1)
 		return ;
 	hits->num_roots = 1;
 	hits->r1 = formula.r1;
 	hits->r2 = formula.r2;
-	hits->num_roots += fabs(formula.r2 - formula.r1) > 1e-7;
+	hits->num_roots += fabs(formula.r2 - formula.r1) > EPSILON;
 	point = ray_pos(ray, formula.r1);
 	hits->hit_point = point;
 	norm = vec4_minus(point, obj->pos);
