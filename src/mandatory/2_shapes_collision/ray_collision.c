@@ -21,7 +21,7 @@ static void	fill_functions(t_get_hit *functions)
 {
 	functions[SPHERE] = hit_sphere;
 	functions[CYLINDER] = hit_cylinder;
-	functions[disk] = hit_disk;
+	functions[DISK] = hit_disk;
 	functions[PLANE] = hit_plane;
 }
 

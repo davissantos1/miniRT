@@ -58,7 +58,7 @@ static bool	put_cap(t_cylinder *obj, t_ray ray, t_hit *hits)
 	double	half_h;
 
 	hit_cap = false;
-	cap.type = disk;
+	cap.type = DISK;
 	cap.material = obj->material;
 	cap.norm = obj->norm;
 	cap.diam = obj->diam;
