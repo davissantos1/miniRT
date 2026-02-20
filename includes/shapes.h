@@ -28,7 +28,7 @@ typedef enum e_shape
 	SPHERE,
 	PLANE,
 	CYLINDER,
-	disk,
+	DISK,
 	SHAPE_COUNT
 }	t_shape;
 

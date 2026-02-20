@@ -23,7 +23,7 @@ static unsigned int	ray_color(t_scene *scene, t_ray ray);
 void	print_material(t_material *m)
 {
 	(void)m;
-	//	printf("===MATERIAL===\n color: %.1lf %.1lf %.1lf\n ks:  %.1lf %.1lf %.1lf\n ka:  %.1lf %.1lf %.1lf\n==============\n", m->color.x, m->color.y, m->color.z, m->spec_reflec.x, m->spec_reflec.y, m->spec_reflec.z, m->ambi_reflec.x, m->ambi_reflec.y, m->ambi_reflec.z);
+	//	printf("===MATERIAL===\n color: %.1lf %.1lf %.1lf\n ks:  %.1lf %.1lf %.1lf\n ka:  %.1lf %.1lf %.1lf\n==============\n", m->color.x, m->color.y, m->color.z, m->ks.x, m->ks.y, m->ks.z, m->ka.x, m->ka.y, m->ka.z);
 }
 
 void	print_cylinder(t_cylinder *obj)
