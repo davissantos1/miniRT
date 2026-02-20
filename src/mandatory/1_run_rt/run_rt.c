@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/19 18:13:08 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/20 09:54:50 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	print_sphere(t_sphere *obj)
 
 void	print_plane(t_plane *obj)
 {
-	obj->pos.y = -obj->pos.y;
 	printf("plane pos: %.1lf %.1lf %.1lf %.1lf norm: %.1lf %.1lf %.1lf %.1lf\n", obj->pos.x, obj->pos.y, obj->pos.z, obj->pos.w, obj->norm.x, obj->norm.y, obj->norm.z, obj->norm.w);
 	print_material(&obj->material);
 }
@@ -60,9 +59,9 @@ void    run_rt(t_minirt *ctx)
 	t_list	*lst = ctx->scene->shape;
 	while (lst)
 	{
-		if (((t_wildcard *)lst->content)->type == SPHERE)
+		if (((t_handle *)lst->content)->type == SPHERE)
 			print_sphere(lst->content);
-		else if (((t_wildcard *)lst->content)->type == PLANE)
+		else if (((t_handle *)lst->content)->type == PLANE)
 			print_plane(lst->content);
 		else
 			print_cylinder(lst->content);
@@ -79,6 +78,21 @@ void    run_rt(t_minirt *ctx)
     paint_pixel(ctx, ndc);
     mlx_loop(ctx->mlx->init);
 }
+
+static t_vec4  get_ray_dir(t_ndc ndc, int x, int y)
+{
+    t_vec4  temp_u;
+    t_vec4  temp_v;
+    double  px;
+    double  py;
+
+    px = (2.0 * ((double)x + 0.5) / WIDTH - 1.0) * ndc.scale * ndc.ratio;
+    py = (1.0 - 2.0 * ((double)y + 0.5) / HEIGHT) * ndc.scale;
+    temp_u = vec4_scale(px, ndc.u);
+    temp_v = vec4_scale(py, ndc.v);
+    return(vec4_minus(vec4_plus(temp_u, temp_v), ndc.w));
+}
+
 
 static void	paint_pixel(t_minirt *ctx, t_ndc ndc)
 {
@@ -99,7 +113,6 @@ static void	paint_pixel(t_minirt *ctx, t_ndc ndc)
 		}
 		y++;
 	}
-	fxaa(ctx->mlx);
 	mlx_put_image_to_window(ctx->mlx->init, ctx->mlx->win, ctx->mlx->img, 0, 0);
 }
 

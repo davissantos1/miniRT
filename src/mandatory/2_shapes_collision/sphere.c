@@ -28,7 +28,7 @@ bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
 	formula.h = vec4_dot(ray.dir, oc);
 	formula.c = vec4_squared_len(oc) - obj->diam * obj->diam / 4.0;
 	delt = formula.h * formula.h - formula.a * formula.c;
-	if (delt < 1e-7)
+	if (delt < EPSILON)
 		return (false);
 	delt = sqrt(delt);
 	formula.r1 = formula.h - delt / formula.a;
@@ -48,7 +48,7 @@ void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
 	hits->num_roots = 1;
 	hits->r1 = formula.r1;
 	hits->r2 = formula.r2;
-	hits->num_roots += fabs(formula.r2 - formula.r1) > 1e-7;
+	hits->num_roots += fabs(formula.r2 - formula.r1) > EPSILON;
 	point = ray_pos(ray, formula.r1);
 	hits->hit_point = point;
 	norm = vec4_minus(point, obj->pos);

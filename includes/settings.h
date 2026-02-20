@@ -19,9 +19,8 @@
 # define HEIGHT 720
 # define MAX_BOUNCES 5
 # define SAMPLES 1
-# define EPSILON 1e-4
 # define THREADS 8
-# define PI 3.14159265359
+
 
 typedef enum e_status
 {

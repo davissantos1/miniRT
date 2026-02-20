@@ -12,7 +12,7 @@
 
 #include "shapes.h"
 
-inline static t_shape	get_type(t_wildcard *me)
+inline static t_shape	get_type(t_handle *me)
 {
 	return (me->type);
 }
@@ -21,7 +21,7 @@ static void	fill_functions(t_get_hit *functions)
 {
 	functions[SPHERE] = hit_sphere;
 	functions[CYLINDER] = hit_cylinder;
-	functions[CIRCLE] = hit_circle;
+	functions[disk] = hit_disk;
 	functions[PLANE] = hit_plane;
 }
 

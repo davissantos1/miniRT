@@ -20,7 +20,7 @@ static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
 	t_vec4	ret;
 
 	angle = vec4_dot(hits.norm, light_dir);
-	if (angle <= 1e-7)
+	if (angle <= EPSILON)
 		return ((t_color){0});
 	light_color = vec4_scale(light->ratio, light->color);
 	ret = vec4_times(light_color, hits.material.color);

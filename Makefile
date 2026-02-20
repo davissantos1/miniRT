@@ -4,43 +4,44 @@ CC= cc
 CFLAGS= -Wall -Wextra -Werror -Wpedantic -I./includes -O3 -march=native -ffast-math
 LDFLAGS= -lXext -lX11 -lm -lz
 
+BASE_FILES= \
+		src/utils/check.c \
+		src/utils/start.c \
+		src/utils/hooks.c \
+		src/utils/panic.c \
+		src/utils/add.c \
+		src/utils/img_pixel_put.c \
+		src/math/matrix/mtx4_inverse.c \
+		src/math/matrix/mtx4_utils.c \
+		src/math/matrix/mtx4_det.c \
+		src/math/matrix/mtx4_basic.c \
+		src/math/ray/ray.c \
+		src/math/vec4/vec4_init.c \
+		src/math/vec4/vec4_multi_mtx4.c \
+		src/math/vec4/vec4_complex.c \
+		src/math/vec4/vec4_basics.c
+
 SRC= \
 		src/main.c \
-		src/settings.c \
-		src/parsing/parse.c \
-		src/hooks/hooks.c \
-		src/parsing/parse_shapes.c \
-		src/parsing/check_element.c \
-		src/parsing/check_part.c \
-		src/parsing/check_shapes.c \
-		src/vec4/vec4_basics.c \
-		src/vec4/vec4_complex.c \
-		src/vec4/vec4_init.c \
-		src/vec4/vec4_multi_mtx4.c \
-		src/matrix/mtx4_basic.c \
-		src/matrix/mtx4_det.c \
-		src/matrix/mtx4_inverse.c \
-		src/matrix/mtx4_utils.c \
-		src/shapes_collision/plane.c \
-		src/shapes_collision/cylinder.c \
-		src/shapes_collision/sphere.c \
-		src/shapes_collision/circle.c \
-		src/shapes_collision/ray_collision.c \
-		src/run_rt/fxaa.c \
-		src/ray/ray.c \
-		src/run_rt/get_ray_dir.c \
-		src/run_rt/run_rt.c \
-		src/phong/phong.c \
-		src/phong/shadows.c \
-		src/utils/panic.c \
-		src/utils/img_pixel_put.c \
-		src/utils/check.c \
-		src/utils/add.c \
-		src/utils/start.c 
+		src/mandatory/0_parsing/check_part.c \
+		src/mandatory/0_parsing/check_element.c \
+		src/mandatory/0_parsing/parse.c \
+		src/mandatory/0_parsing/parse_shapes.c \
+		src/mandatory/0_parsing/check_shapes.c \
+		src/mandatory/1_run_rt/run_rt.c \
+		src/mandatory/2_shapes_collision/plane.c \
+		src/mandatory/2_shapes_collision/ray_collision.c \
+		src/mandatory/2_shapes_collision/cylinder.c \
+		src/mandatory/2_shapes_collision/sphere.c \
+		src/mandatory/2_shapes_collision/disk.c \
+		src/mandatory/3_phong/shadows.c \
+		src/mandatory/3_phong/phong.c \
+		src/settings.c
 
 SRC_BONUS= \
 			src/main.c
 
+SRC+= $(BASE_FILES)
 OBJ= $(SRC:.c=.o)
 OBJ_BONUS= $(SRC_BONUS:.c=.o)
 NAME= miniRT
