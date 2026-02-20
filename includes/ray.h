@@ -23,6 +23,5 @@ typedef struct s_ray
 
 t_ray	ray_init(t_point origin, t_vec4 dir);
 t_point	ray_pos(t_ray ray, double t);
-t_vec4	get_ray_dir(t_ndc ndc, int x, int y);
 
 #endif

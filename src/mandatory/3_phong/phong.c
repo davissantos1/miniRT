@@ -20,7 +20,7 @@ static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
 	t_vec4	ret;
 
 	angle = vec4_dot(hits.norm, light_dir);
-	if (angle <= 1e-7)
+	if (angle <= EPSILON)
 		return ((t_color){0});
 	light_color = vec4_scale(light->ratio, light->color);
 	ret = vec4_times(light_color, hits.material.color);
@@ -42,7 +42,7 @@ static inline t_vec4	specular(t_hit hits, t_light *light, t_vec4 light_dir)
 	if (dot_ref < 0 || shinin < 0)
 		return ((t_color){0});
 	shinin = pow(shinin, hits.material.shininess);
-	color_shine = vec4_scale(shinin, hits.material.spec_reflec);
+	color_shine = vec4_scale(shinin, hits.material.ks);
 	return (vec4_times(color_shine, intensity));
 }
 
@@ -55,7 +55,7 @@ unsigned int	phong(t_hit hits, t_scene *scene)
 
 	light = scene->light;
 	ambi_color = vec4_scale(scene->alight->ratio, scene->alight->color);
-	ambi_color = vec4_times(ambi_color, hits.material.ambi_reflec);
+	ambi_color = vec4_times(ambi_color, hits.material.ka);
 	color = ambi_color;
 	while (light)
 	{

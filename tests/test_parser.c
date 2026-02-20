@@ -47,15 +47,15 @@ void	test_parser(t_minirt *rt)
 	printf("PLANE\n\n");
 	printf("position: x: %f, y: %f, z: %f, w: %f \n", pl->pos.x, pl->pos.y, pl->pos.z, pl->pos.w);
 	printf("normal: x: %f, y: %f, z: %f, w: %f \n", pl->norm.x, pl->norm.y, pl->norm.z, pl->norm.w);
-	printf("color: x: %f, y: %f, z: %f, w: %f \n\n", pl->color.x, pl->color.y, pl->color.z, pl->color.w);
+	printf("color: x: %f, y: %f, z: %f, w: %f \n\n", pl->material.color.x, pl->material.color.y, pl->material.color.z, pl->material.color.w);
 	printf("SPHERE\n\n");
 	printf("position: x: %f, y: %f, z: %f, w: %f \n", sp->pos.x, sp->pos.y, sp->pos.z, sp->pos.w);
 	printf("diameter: %f \n", sp->diam);
-	printf("color: x: %f, y: %f, z: %f, w: %f \n\n", sp->color.x, sp->color.y, sp->color.z, sp->color.w);
+	printf("color: x: %f, y: %f, z: %f, w: %f \n\n", sp->material.color.x, sp->material.color.y, sp->material.color.z, sp->material.color.w);
 	printf("CYLINDER\n\n");
 	printf("position: x: %f, y: %f, z: %f, w: %f \n", cy->pos.x, cy->pos.y, cy->pos.z, cy->pos.w);
 	printf("normal: x: %f, y: %f, z: %f, w: %f \n", cy->norm.x, cy->norm.y, cy->norm.z, cy->norm.w);
 	printf("diameter: %f \n", cy->diam);
 	printf("height: %f \n", cy->height);
-	printf("color: x: %f, y: %f, z: %f, w: %f \n\n", cy->color.x, cy->color.y, cy->color.z, cy->color.w);
+	printf("color: x: %f, y: %f, z: %f, w: %f \n\n", cy->material.color.x, cy->material.color.y, cy->material.color.z, cy->material.color.w);
 }

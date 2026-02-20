@@ -53,21 +53,21 @@ static bool	check_height(t_cylinder *obj, t_formula *fm, t_ray ray)
 
 static bool	put_cap(t_cylinder *obj, t_ray ray, t_hit *hits)
 {
-	t_circle	cap;
-	bool		hit_cap;
-	double		half_h;
+	t_disk	cap;
+	bool	hit_cap;
+	double	half_h;
 
 	hit_cap = false;
-	cap.type = CIRCLE;
+	cap.type = DISK;
 	cap.material = obj->material;
 	cap.norm = obj->norm;
 	cap.diam = obj->diam;
 	half_h = obj->height / 2;
 	cap.pos = vec4_plus(obj->pos, vec4_scale(half_h, cap.norm));
-	hit_cap = hit_circle(&cap, hits, ray);
+	hit_cap = hit_disk(&cap, hits, ray);
 	cap.norm = vec4_scale(-1, cap.norm);
 	cap.pos = vec4_plus(obj->pos, vec4_scale(half_h, cap.norm));
-	if (hit_circle(&cap, hits, ray))
+	if (hit_disk(&cap, hits, ray))
 		hit_cap = true;
 	return (hit_cap);
 }
@@ -84,7 +84,7 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 	hits->num_roots = 1;
 	hits->r1 = form.r1;
 	hits->r2 = form.r2;
-	hits->num_roots += fabs(form.r2 - form.r1) > 1e-7;
+	hits->num_roots += fabs(form.r2 - form.r1) > EPSILON;
 	point = ray_pos(ray, form.r1);
 	hits->hit_point = point;
 	hip = vec4_minus(point, obj->pos);

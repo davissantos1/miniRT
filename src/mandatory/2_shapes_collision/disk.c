@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   disk.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 08:52:46 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/18 19:32:26 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 10:16:53 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static bool	intersection(t_circle *obj, double t, t_hit *hits, t_ray ray);
+static bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray);
 
-bool	hit_circle(void *me, t_hit *hits, t_ray ray)
+bool	hit_disk(void *me, t_hit *hits, t_ray ray)
 {
-	t_circle	*obj;
+	t_disk	*obj;
 	double		denom;
 	double		t;
 	t_vec4		oc;
 	
 	obj = me;
 	denom = vec4_dot(obj->norm, ray.dir);
-	if (fabs(denom) <= 1e-7)
+	if (fabs(denom) <= EPSILON)
 		return (false);
 	oc = vec4_minus(obj->pos, ray.origin);
 	t = vec4_dot(oc, obj->norm) / denom;
-	if (fabs(t) <= 1e-7)
+	if (fabs(t) <= EPSILON)
 		return (false);
 	return (intersection(obj, t, hits, ray));	
 }
 
-static inline bool	intersection(t_circle *obj, double t, t_hit *hits, t_ray ray)
+static inline bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray)
 {
 	t_point	p;
 	t_vec4	v;

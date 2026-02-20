@@ -19,13 +19,16 @@
 # include "structs.h"
 # include "entities.h"
 
+# define PI 3.14159265359
+# define EPSILON 1e-7
+
 // enums
 typedef enum e_shape
 {
 	SPHERE,
 	PLANE,
 	CYLINDER,
-	CIRCLE,
+	DISK,
 	SHAPE_COUNT
 }	t_shape;
 
@@ -33,16 +36,16 @@ typedef enum e_shape
 
 typedef struct	s_material
 {
-	t_vec4	ambi_reflec;
-	t_vec4	spec_reflec;
+	t_vec4	ka;
+	t_vec4	ks;
 	t_vec4	color;
 	double	shininess;
 }	t_material;
 
-typedef struct	s_shape
+typedef struct	s_handle
 {
 	t_shape		type;
-}	t_wildcard;
+}	t_handle;
 
 typedef struct	s_hit
 {
@@ -83,14 +86,14 @@ typedef struct	s_cylinder
 }	t_cylinder;
 
 
-typedef struct	s_circle
+typedef struct	s_disk
 {
 	t_shape		type;
 	t_point		pos;
 	t_vec4		norm;
 	t_material	material;
 	double		diam;
-}	t_circle;
+}	t_disk;
 
 typedef struct	s_quadratic
 {
@@ -108,7 +111,7 @@ typedef bool	(*t_get_hit)(void*, t_hit*, t_ray);
 t_hit	ray_collision(t_scene *scene, t_ray ray);
 bool	hit_sphere(void *me, t_hit *hits, t_ray ray);
 bool	hit_cylinder(void *me, t_hit *hits, t_ray ray);
-bool	hit_circle(void *me, t_hit *hits, t_ray ray);
+bool	hit_disk(void *me, t_hit *hits, t_ray ray);
 bool	hit_plane(void *me, t_hit *hits, t_ray ray);
 
 unsigned int	phong(t_hit hits, t_scene *scene);
