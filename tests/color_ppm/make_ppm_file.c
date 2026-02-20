@@ -14,8 +14,6 @@
 #include <math.h>
 #include "vec4.h"
 
-#define EPSILON 1e-4
-
 typedef struct	s_projectile
 {
 	t_point		position;

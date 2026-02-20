@@ -24,11 +24,11 @@ bool	hit_plane(void *me, t_hit *hits, t_ray ray)
 
 	obj = me;
 	dot_rd_n = vec4_dot(ray.dir, obj->norm);
-	if (fabs(dot_rd_n) <= 1e-7)
+	if (fabs(dot_rd_n) <= EPSILON)
 		return (false);
 	p0_minus_origin = vec4_minus(obj->pos, ray.origin);
 	t = vec4_dot(p0_minus_origin, obj->norm) / dot_rd_n;
-	if (t < 1e-7 || (hits->num_roots && t > hits->r1))
+	if (t < EPSILON || (hits->num_roots && t > hits->r1))
 		return (false);
 	hits->num_roots = 1;
 	hits->r1 = t;
