@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 13:47:59 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/09 13:48:45 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:02:02 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,28 @@
 double	ft_atod(char *s)
 {
 	int		i;
+	double	sign;
 	double	point;
-	double	whole;
-	double	decimal;
+	double	res;
 
 	i = 0;
+	sign = 1;
 	point = 10;
-	decimal = 0;
-	whole = (double)ft_atoi(s);
-	while (s[i] != '.' && s[i])
+	while (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13))
 		i++;
-	if (s[i] == '.')
+	if (s[i] == '+' || s[i] == '-')
+		if (s[i++] == '-')
+			sign = -1;
+	res = ft_atoi(s + i);
+	while (s[i] >= '0' && s[i] <= '9')
+		i++;
+	if (s[i] && s[i++] == '.')
 	{
-		i++;
 		while (s[i] >= '0' && s[i] <= '9')
 		{
-			decimal += (s[i] - '0') / point;
+			res += (s[i++] - '0') / point;
 			point *= 10;
-			i++;
 		}
 	}
-	if (whole < 0)
-		return (whole - decimal);
-	return (whole + decimal);
+	return (res * sign);
 }

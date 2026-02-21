@@ -38,6 +38,7 @@ SRC= \
 		src/mandatory/2_shapes_collision/sphere.c \
 		src/mandatory/2_shapes_collision/disk.c \
 		src/mandatory/3_phong/shadows.c \
+		tests/test_parser.c \
 		src/mandatory/3_phong/phong.c
 
 SRC_BONUS= \
