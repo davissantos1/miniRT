@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 10:17:33 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 10:33:06 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/20 23:08:03 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,3 @@ t_hit	ray_collision(t_scene *scene, t_ray ray)
 	}
 	return (hits);
 }
-

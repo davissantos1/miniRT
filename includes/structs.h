@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 17:52:38 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/19 17:51:30 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 22:05:51 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_minirt
 	t_scene	*scene;
 }	t_minirt;
 
-typedef struct	s_ndc
+typedef struct s_ndc
 {
 	t_vec4	u;
 	t_vec4	v;

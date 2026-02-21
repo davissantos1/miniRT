@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   get_name.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/07 17:34:42 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 22:11:27 by dasimoes         ###   ########.fr       */
+/*   Created: 2026/02/20 23:10:27 by dasimoes          #+#    #+#             */
+/*   Updated: 2026/02/20 23:15:20 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#include "minirt.h"
 
-# include "structs.h"
-
-typedef struct s_ray
+char	*get_name(char *name)
 {
-	t_point	origin;
-	t_vec4	dir;
-}	t_ray;
+	char	*slash;
 
-t_ray	ray_init(t_point origin, t_vec4 dir);
-t_point	ray_pos(t_ray ray, double t);
-
-#endif
+	name[ft_strlen(name) - 3] = '\0';
+	slash = ft_strrchr(name, '/');
+	if (slash)
+		return (slash + 1);
+	return (name);
+}

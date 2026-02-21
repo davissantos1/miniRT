@@ -10,6 +10,7 @@ BASE_FILES= \
 		src/utils/hooks.c \
 		src/utils/panic.c \
 		src/utils/add.c \
+		src/utils/get_name.c \
 		src/utils/img_pixel_put.c \
 		src/math/matrix/mtx4_inverse.c \
 		src/math/matrix/mtx4_utils.c \
@@ -36,6 +37,7 @@ SRC= \
 		src/mandatory/2_shapes_collision/disk.c \
 		src/mandatory/3_phong/shadows.c \
 		src/mandatory/3_phong/phong.c \
+		tests/test_parser.c \
 		src/settings.c
 
 SRC_BONUS= \

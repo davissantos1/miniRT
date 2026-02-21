@@ -6,14 +6,31 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/18 19:35:41 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 23:07:29 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 static inline
-void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray);
+void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
+{
+	t_point	point;
+	t_vec4	norm;
+
+	if (hits->num_roots && formula.r1 > hits->r1)
+		return ;
+	hits->num_roots = 1;
+	hits->r1 = formula.r1;
+	hits->r2 = formula.r2;
+	hits->num_roots += fabs(formula.r2 - formula.r1) > EPSILON;
+	point = ray_pos(ray, formula.r1);
+	hits->hit_point = point;
+	norm = vec4_minus(point, obj->pos);
+	hits->norm = vec4_scale(2 / obj->diam, norm);
+	hits->mat = obj->mat;
+	hits->me = obj;
+}
 
 bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
 {
@@ -34,24 +51,4 @@ bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
 	formula.r2 = formula.h + delt;
 	fill_hits(obj, hits, formula, ray);
 	return (true);
-}
-
-static inline
-void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
-{
-	t_point	point;
-	t_vec4	norm;
-
-	if (hits->num_roots && formula.r1 > hits->r1)
-		return ;
-	hits->num_roots = 1;
-	hits->r1 = formula.r1;
-	hits->r2 = formula.r2;
-	hits->num_roots += fabs(formula.r2 - formula.r1) > EPSILON;
-	point = ray_pos(ray, formula.r1);
-	hits->hit_point = point;
-	norm = vec4_minus(point, obj->pos);
-	hits->norm = vec4_scale(2 / obj->diam, norm);
-	hits->material = obj->material;
-	hits->me = obj;
 }
