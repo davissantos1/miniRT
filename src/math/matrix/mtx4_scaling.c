@@ -1,43 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mtx4_utils.c                                       :+:      :+:    :+:   */
+/*   mtx4_scaling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 18:22:08 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/21 12:42:18 by vitosant         ###   ########.fr       */
+/*   Created: 2026/02/21 09:47:18 by vitosant          #+#    #+#             */
+/*   Updated: 2026/02/21 09:50:29 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mtx4.h"
-#include <stdio.h>
 
-#ifndef PI
-# define PI 3.14159265359
-#endif
-
-void	print_mtx(t_matrix4 m)
+inline t_matrix4	mtx4_scaling(double x, double y, double z)
 {
-	int	i;
+	t_matrix4	ret;
 
-	i = 0;
-	while (i < 16)
-	{
-		if (i % 4 == 0 && i != 0)
-			printf("\n");
-		printf("%.2f ", m.data[i]);
-		i++;
-	}
-	printf("\n");
-}
-
-inline double	dabs(double det)
-{
-	return ((det < 0) * -det + (det > 0) * det);
-}
-
-inline double	to_radians(double angle)
-{
-	return ((angle / 180) * PI);
+	ret = (t_matrix4){0};
+	ret.data[0] = x;
+	ret.data[5] =  y;
+	ret.data[10] = z;
+	ret.data[15] = 1.0;
+	return (ret);
 }

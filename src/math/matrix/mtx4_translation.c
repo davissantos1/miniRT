@@ -1,43 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mtx4_utils.c                                       :+:      :+:    :+:   */
+/*   mtx4_translation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/30 18:22:08 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/21 12:42:18 by vitosant         ###   ########.fr       */
+/*   Created: 2026/02/21 09:43:24 by vitosant          #+#    #+#             */
+/*   Updated: 2026/02/21 09:46:13 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mtx4.h"
-#include <stdio.h>
 
-#ifndef PI
-# define PI 3.14159265359
-#endif
-
-void	print_mtx(t_matrix4 m)
+inline t_matrix4	mtx4_translation(double x, double y, double z)
 {
-	int	i;
+	t_matrix4	mtx;
 
-	i = 0;
-	while (i < 16)
-	{
-		if (i % 4 == 0 && i != 0)
-			printf("\n");
-		printf("%.2f ", m.data[i]);
-		i++;
-	}
-	printf("\n");
-}
-
-inline double	dabs(double det)
-{
-	return ((det < 0) * -det + (det > 0) * det);
-}
-
-inline double	to_radians(double angle)
-{
-	return ((angle / 180) * PI);
+	mtx = mtx4_identity();
+	mtx.mtx[0][3] = x;
+	mtx.mtx[1][3] = y;
+	mtx.mtx[2][3] = z;
+	return (mtx);
 }
