@@ -6,13 +6,13 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:27 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 22:52:17 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:37:43 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static const t_settings		g_settings = {
+static t_settings		g_settings = {
 	.width = WIDTH,
 	.height = HEIGHT,
 	.aspect_ratio = WIDTH / HEIGHT,
@@ -54,4 +54,10 @@ const char	*get_error_msg(t_status status)
 	if (status < 0 || status >= COUNT)
 		return ("unknown internal error");
 	return (g_msgs[status]);
+}
+
+void	update_size(int width, int height)
+{
+	g_settings.width = width;
+	g_settings.height = height;
 }

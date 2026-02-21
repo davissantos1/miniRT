@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 23:11:31 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 15:14:45 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ int			hook_keys(int keycode, t_minirt *rt);
 int			close_cross(t_minirt *rt);
 void		test_parser(t_minirt *rt);
 char		*get_name(char *name);
+void		update_size(int width, int height);
+void		start_hooks(t_minirt *rt);
+int			handle_resize(int w, int h, t_minirt *rt);
 
 #endif

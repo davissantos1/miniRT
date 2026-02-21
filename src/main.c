@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/21 13:05:30 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:56:51 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int ac, char **av)
 		parse_minirt(rt, fd);
 		if (!gc_addlst(rt->scene->shape, rt->gc, GC_DEFAULT))
 			desperation(rt, ERR_SYSCALL);
+		start_hooks(rt);
 		run_rt(rt);
 		if (close(fd) == -1)
 			desperation(rt, ERR_SYSCALL);

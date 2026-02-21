@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 22:35:13 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:42:35 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void    run_rt(t_minirt *ctx)
 	}
 	printf("%i\n", i);
     cam = ctx->scene->camera;
-    ndc.ratio = (double)WIDTH / (double)HEIGHT;
+    ndc.ratio = (double) ctx->width / (double) ctx->height;
     ndc.scale = tanh(cam->fov * 0.5 * (PI / 180.0));
     ndc.w = vec4_scale(-1, cam->norm);
     ndc.u = vec4_unit_vector(vec4_cross(vec4_init(0, 1, 0, 0), ndc.w));
@@ -81,13 +81,15 @@ void    run_rt(t_minirt *ctx)
 
 static t_vec4  get_ray_dir(t_ndc ndc, int x, int y)
 {
-    t_vec4  temp_u;
-    t_vec4  temp_v;
-    double  px;
-    double  py;
+	const t_settings	*set;
+    t_vec4  			temp_u;
+    t_vec4  			temp_v;
+    double  			px;
+    double  			py;
 
-    px = (2.0 * ((double)x + 0.5) / WIDTH - 1.0) * ndc.scale * ndc.ratio;
-    py = (1.0 - 2.0 * ((double)y + 0.5) / HEIGHT) * ndc.scale;
+	set = get_settings();
+    px = (2.0 * ((double)x + 0.5) / set->width - 1.0) * ndc.scale * ndc.ratio;
+    py = (1.0 - 2.0 * ((double)y + 0.5) / set->height) * ndc.scale;
     temp_u = vec4_scale(px, ndc.u);
     temp_v = vec4_scale(py, ndc.v);
     return(vec4_minus(vec4_plus(temp_u, temp_v), ndc.w));
@@ -102,10 +104,10 @@ static void	paint_pixel(t_minirt *ctx, t_ndc ndc)
 
 	y = 0;
 	ray.origin = ctx->scene->camera->pos;
-	while (y < HEIGHT)
+	while (y < ctx->height)
 	{
 		x = 0;
-		while (x < WIDTH)
+		while (x < ctx->width)
 		{
 			ray.dir = vec4_unit_vector(get_ray_dir(ndc, x, y));
 			img_pixel_put(ctx->mlx, x, y, ray_color(ctx->scene, ray));

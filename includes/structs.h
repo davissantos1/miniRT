@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 17:52:38 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 22:05:51 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:19:47 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_mlx
 
 typedef struct s_minirt
 {
+	int		width;
+	int		height;
 	char	*name;
 	t_gc	*gc;
 	t_mlx	*mlx;
