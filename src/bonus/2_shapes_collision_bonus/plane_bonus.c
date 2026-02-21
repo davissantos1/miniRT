@@ -38,5 +38,6 @@ bool	hit_plane(void *me, t_hit *hits, t_ray ray)
 		hits->norm = vec4_scale(-1, obj->norm);
 	hits->hit_point = ray_pos(ray, t);
 	hits->me = me;
+	hits->inverse = obj->inverse;
 	return (true);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_rt.c                                           :+:      :+:    :+:   */
+/*   run_rt_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 09:54:50 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/21 12:51:26 by vitosant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "vec4.h"
 #include <math.h>
 #include <stdio.h>
+#include "pattern_bonus.h"
 
 static void	paint_pixel(t_minirt *ctx, t_ndc ndc);
 static unsigned int	ray_color(t_scene *scene, t_ray ray);
@@ -79,6 +80,7 @@ void    run_rt(t_minirt *ctx)
     mlx_loop(ctx->mlx->init);
 }
 
+
 static t_vec4  get_ray_dir(t_ndc ndc, int x, int y)
 {
     t_vec4  temp_u;
@@ -126,6 +128,11 @@ static unsigned int	ray_color(t_scene *scene, t_ray ray)
 		return (0);
 	hits.cam_dir = vec4_minus(scene->camera->pos, hits.hit_point);
 	hits.cam_dir = vec4_unit_vector(hits.cam_dir);
+	if (hits.mat.pattern != NO_PATTERN)
+	{
+		hits.mat.color = get_pattern(hits, hits.mat.pattern);
+		hits.mat.ka = vec4_scale(1.0 / 3.0, hits.mat.color);
+	}
 	color = phong(hits, scene, 4);
 	color = vec4_scale(255.0, color);
 	return ((int)color.x << 16 | (int)color.y << 8 | (int)color.z);

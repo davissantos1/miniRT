@@ -24,25 +24,22 @@ t_color gradient(t_point p, t_material m)
 	t_color	other;
 	double	t;
 
-	t = (p.x + 2.0);
-	t = fmax(0.0, fmin(1.0, t));
-	other = get_complementary(m.color);
-	result.x = m.color.x * (2.0 - t) + other.x * t;
-	result.y = m.color.y * (2.0 - t) + other.y * t;
-	result.z = m.color.z * (2.0 - t) + other.z * t;
-	result.w = 0.0;
+	t = (p.x + 1.0) / 2.0;
+	t = fmax(0, fmin(1.0, t));
+	other = vec4_minus(get_complementary(m.color), m.color);
+	result = vec4_plus(m.color, vec4_scale(t, other));
 	return (result);
 }
 
 t_color ring(t_point p, t_material m)
 {
-	double	x;
-	double	z;
+	double	sqrt_x;
+	double	sqrt_z;
 	int		result;
 
-	z = p.z * p.z;
-	x = p.x * p.x;
-	result = (int) floor(sqrt(x + z));
+	sqrt_z = p.z * p.z * 10;
+	sqrt_x = p.x * p.x * 10;
+	result = (int)floor(sqrt(sqrt_x + sqrt_z));
 	if (result % 2 == 0)
 		return(m.color);
 	return (get_complementary(m.color));
@@ -52,7 +49,7 @@ t_color	checker(t_point p, t_material m)
 {
 	int	result;
 
-	result = (int)(floor(p.x * 1 / 3.0) + floor(p.y * 1 / 3.0) + floor(p.z * 1 / 3.0));
+	result = (int)(floor(p.x) + floor(p.y) + floor(p.z));
 	if (result % 2 == 0)
 		return (m.color);
 	return (get_complementary(m.color));

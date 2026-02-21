@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phong.c                                            :+:      :+:    :+:   */
+/*   phong_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:49:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/18 21:58:19 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/21 12:44:50 by vitosant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shapes.h"
 #include "vec4.h"
-#include "pattern_bonus.h"
 
 static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
 {
@@ -24,10 +23,7 @@ static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
 	if (angle <= EPSILON)
 		return ((t_color){0});
 	light_color = vec4_scale(light->ratio, light->color);
-	if (hits.mat.pattern == NO_PATTERN)
-		ret = vec4_times(light_color, hits.mat.color);
-	else
-		ret = vec4_times(light_color, get_pattern(hits.hit_point, hits.mat, hits.mat.pattern));
+	ret = vec4_times(light_color, hits.mat.color);
 	return (vec4_scale(angle, ret));
 }
 

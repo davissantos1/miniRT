@@ -2,10 +2,14 @@
 #include "vec4.h"
 #include "shapes.h"
 #include "pattern_bonus.h"
+#include "mtx4.h"
+#include <stdio.h>
 
-t_color	get_pattern(t_point p, t_material m, t_pattern op)
+t_color	get_pattern(t_hit hit, t_pattern op)
 {
-	static t_patterns	patterns[] = {checker, gradient, striped, ring};
+	static t_patterns	patterns[4] = {checker, gradient, striped, ring};
+	t_point	p;
 
-	return (patterns[op](p, m));
+	p = hit.hit_point;
+	return (patterns[op](p, hit.mat));
 }

@@ -93,6 +93,7 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 	hits->norm = vec4_minus(hip, vec4_scale(m, obj->norm));
 	hits->norm = vec4_scale(2 / obj->diam, hits->norm);
 	hits->mat = obj->mat;
+	hits->inverse = obj->inverse;
 }
 
 bool	hit_cylinder(void *me, t_hit *hits, t_ray ray)

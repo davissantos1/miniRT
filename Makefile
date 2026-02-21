@@ -1,7 +1,7 @@
 # Variables
 
 CC= cc
-CFLAGS= -Wall -Wextra -Werror -Wpedantic -I./includes -O3 -march=native -ffast-math
+CFLAGS= -Wall -Wextra -Werror -Wpedantic -I./includes -I./includes_bonus -O3 -march=native -ffast-math
 LDFLAGS= -lXext -lX11 -lm -lz
 
 BASE_FILES= \
@@ -17,6 +17,9 @@ BASE_FILES= \
 		src/math/matrix/mtx4_inverse.c \
 		src/math/matrix/mtx4_utils.c \
 		src/math/matrix/mtx4_det.c \
+		src/math/matrix/mtx4_rotations.c \
+		src/math/matrix/mtx4_scaling.c \
+		src/math/matrix/mtx4_translation.c \
 		src/math/matrix/mtx4_basic.c \
 		src/math/ray/ray.c \
 		src/math/vec4/vec4_init.c \
@@ -48,6 +51,8 @@ SRC_BONUS= \
 			src/bonus/0_parsing_bonus/check_part_bonus.c \
 			src/bonus/0_parsing_bonus/check_shapes_bonus.c \
 			src/bonus/1_run_rt_bonus/run_rt_bonus.c \
+			src/bonus/1_run_rt_bonus/fill_matrix.c \
+			src/bonus/1_run_rt_bonus/rotation_calc.c \
 			src/bonus/2_shapes_collision_bonus/disk_bonus.c \
 			src/bonus/2_shapes_collision_bonus/ray_collision_bonus.c \
 			src/bonus/2_shapes_collision_bonus/plane_bonus.c \

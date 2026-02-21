@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   sphere_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/18 21:45:35 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/21 12:38:32 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "pattern_bonus.h"
 
 static inline
 void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray);
@@ -64,4 +65,5 @@ void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
 	hits->norm = vec4_scale(2 / obj->diam, norm);
 	hits->mat = obj->mat;
 	hits->me = obj;
+	hits->inverse = obj->inverse;
 }
