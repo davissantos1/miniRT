@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:44:14 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/18 16:04:59 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 22:16:32 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_pos(char **pos)
 {
-	if(!check_number_3mtx(pos))
+	if (!check_number_3mtx(pos))
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/19 13:32:56 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 23:11:54 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,43 +76,43 @@ t_minirt meu_teste(void)
 	sphere->type = SPHERE;
 	sphere->diam = 1;
 	sphere->pos = vec4_init(0.6, 0, -1, 1);
-	sphere->material.ka = vec4_init(0.3, 0, 0, 0);
-	sphere->material.color = vec4_init(1, 0, 0, 0);
-	sphere->material.ks = vec4_init(1, 1, 1, 0);
-	sphere->material.shininess = 32;
-	sphere->material.kr = vec4_init(0.2, 0.2, 0.2, 0);
-	sphere->material.pattern = RING;
+	sphere->mat.ka = vec4_init(0.3, 0, 0, 0);
+	sphere->mat.color = vec4_init(1, 0, 0, 0);
+	sphere->mat.ks = vec4_init(1, 1, 1, 0);
+	sphere->mat.shininess = 32;
+	sphere->mat.kr = vec4_init(0.2, 0.2, 0.2, 0);
+	sphere->mat.pattern = RING;
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
 	plane = gc_calloc(sizeof(t_plane), ctx.gc, GC_CUSTOM1);
 	plane->type = PLANE;
 	plane->pos = vec4_init(0, -0.8, 0, 1);
 	plane->norm = vec4_init(0, 1, 0, 0);
-	plane->material.color = vec4_init(0.5, 0, 0.5, 0);
-	plane->material.shininess = 42;
-	plane->material.ks = vec4_init(0, 0, 0, 0);
-	plane->material.ka = vec4_init(0.4, 0, 0.4, 0);
-	plane->material.pattern = CHECKER;
-	//plane->material.kr = vec4_init(0, 0, 0, 0);
+	plane->mat.color = vec4_init(0.5, 0, 0.5, 0);
+	plane->mat.shininess = 42;
+	plane->mat.ks = vec4_init(0, 0, 0, 0);
+	plane->mat.ka = vec4_init(0.4, 0, 0.4, 0);
+	plane->mat.pattern = CHECKER;
+	//plane->mal.kr = vec4_init(0, 0, 0, 0);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(plane));
 	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1);
 	sphere->type = SPHERE;
 	sphere->diam = 0.7;
 	sphere->pos = vec4_init(-0.6, 0, -1, 1);
-	sphere->material.shininess = 42;
-	sphere->material.color = vec4_init(0, 0, 1, 0);
-	sphere->material.ks = vec4_init(1, 1, 1, 0);
-	sphere->material.ka = vec4_init(0, 0, 0.3, 0);
-	sphere->material.kr = vec4_init(0.3, 0.3, 0.3, 0);
-	sphere->material.pattern = GRADIENT;
+	sphere->mat.shininess = 42;
+	sphere->mat.color = vec4_init(0, 0, 1, 0);
+	sphere->mat.ks = vec4_init(1, 1, 1, 0);
+	sphere->mat.ka = vec4_init(0, 0, 0.3, 0);
+	sphere->mat.kr = vec4_init(0.3, 0.3, 0.3, 0);
+	sphere->mat.pattern = GRADIENT;
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
 	/* circle = gc_calloc(sizeof(t_circle), ctx.gc, GC_CUSTOM1); */
 	/* circle->diam = 1; */
 	/* circle->type = CIRCLE; */
 	/* circle->pos = vec4_init(0, 0, -3, 1); */
-	/* circle->material.shininess = 80; */
-	/* circle->material.color = vec4_init(0, 1, 0.45, 0); */
-	/* circle->material.ks = vec4_init(1, 1, 1, 0); */
-	/* circle->material.ka = vec4_init(0, 0.3, 0.15, 0); */
+	/* circle->mat.shininess = 80; */
+	/* circle->mat.color = vec4_init(0, 1, 0.45, 0); */
+	/* circle->mat.ks = vec4_init(1, 1, 1, 0); */
+	/* circle->mat.ka = vec4_init(0, 0.3, 0.15, 0); */
 	/* circle->norm = vec4_unit_vector(vec4_minus(ctx.scene->camera->pos, circle->pos)); */
 	/* ft_lstadd_back(&ctx.scene->shape, ft_lstnew(circle)); */
 	cylinder = gc_calloc(sizeof(t_cylinder), ctx.gc, GC_CUSTOM1);
@@ -121,12 +121,12 @@ t_minirt meu_teste(void)
 	cylinder->height = 2.0;
 	cylinder->pos = vec4_init(0.2, 0, -3, 1);
 	cylinder->norm = vec4_unit_vector(vec4_init(1, 1, 0, 0));
-	cylinder->material.color = vec4_init(0, 0, 0.9, 0); 
-	cylinder->material.shininess = 42;
-	cylinder->material.ks = vec4_init(1, 1, 1, 0); 
-	cylinder->material.ka = vec4_init(0, 0, 0.4, 0); 
-	cylinder->material.kr = vec4_init(0, 0, 0, 0); 
-	cylinder->material.pattern = CHECKER;
+	cylinder->mat.color = vec4_init(0, 0, 0.9, 0); 
+	cylinder->mat.shininess = 42;
+	cylinder->mat.ks = vec4_init(1, 1, 1, 0); 
+	cylinder->mat.ka = vec4_init(0, 0, 0.4, 0); 
+	cylinder->mat.kr = vec4_init(0, 0, 0, 0); 
+	cylinder->mat.pattern = CHECKER;
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cylinder));
 	return (ctx);
 }

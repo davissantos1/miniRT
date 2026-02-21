@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:06:47 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/13 15:31:52 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 22:25:23 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	check_empty(char *line)
 	return (1);
 }
 
-int	check_positive(char *num)
+int	is_pos(char *num)
 {
 	double	number;
 

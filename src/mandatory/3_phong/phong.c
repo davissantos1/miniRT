@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:49:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 14:23:48 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/20 23:09:35 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
 	if (angle <= EPSILON)
 		return ((t_color){0});
 	light_color = vec4_scale(light->ratio, light->color);
-	ret = vec4_times(light_color, hits.material.color);
+	ret = vec4_times(light_color, hits.mat.color);
 	return (vec4_scale(angle, ret));
 }
 
@@ -41,8 +41,8 @@ static inline t_vec4	specular(t_hit hits, t_light *light, t_vec4 light_dir)
 	shinin = vec4_dot(hits.cam_dir, reflection);
 	if (dot_ref < 0 || shinin < 0)
 		return ((t_color){0});
-	shinin = pow(shinin, hits.material.shininess);
-	color_shine = vec4_scale(shinin, hits.material.ks);
+	shinin = pow(shinin, hits.mat.shininess);
+	color_shine = vec4_scale(shinin, hits.mat.ks);
 	return (vec4_times(color_shine, intensity));
 }
 
@@ -55,7 +55,7 @@ t_color	phong(t_hit hits, t_scene *scene, int depth)
 
 	light = scene->light;
 	ambi_color = vec4_scale(scene->alight->ratio, scene->alight->color);
-	ambi_color = vec4_times(ambi_color, hits.material.ka);
+	ambi_color = vec4_times(ambi_color, hits.mat.ka);
 	color = ambi_color;
 	while (light && depth)
 	{
@@ -68,22 +68,9 @@ t_color	phong(t_hit hits, t_scene *scene, int depth)
 		}
 		light = light->next;
 	}
-	//debug color pae pra ver se as normais estão certas
-	 /* t_vec4 n = hits.norm; */
-	 /* (void) scene; */
-	 /* color.x = (n.x + 1) * 0.5; */
-	 /* color.y = (n.y + 1) * 0.5; */
-	 /* color.z = (n.z + 1) * 0.5; */
 	color.x = fmin(1.0, color.x);
 	color.y = fmin(1.0, color.y);
 	color.z = fmin(1.0, color.z);
 	color = vec4_scale(255, color);
 	return (color);
 }
-
-	// t_vec4 n = hits.norm;
-	// (void) scene;
-	// // Mapeia de [-1, 1] para [0, 1] para virar cor RGB
-	// color.x = (n.x + 1) * 0.5;
-	// color.y = (n.y + 1) * 0.5;
-	// color.z = (n.z + 1) * 0.5;

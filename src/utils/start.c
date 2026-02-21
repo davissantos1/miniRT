@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 16:25:06 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/19 18:37:52 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 23:13:17 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_minirt	*start_minirt(char *name)
 	t_minirt	*rt;
 	t_gc		*garbage;
 
-	name[ft_strlen(name) - 5] = '\0';
 	garbage = gc_init();
 	if (!garbage)
 		real_panic(ERR_SYSCALL);

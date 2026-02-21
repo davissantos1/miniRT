@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:39:33 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/11 22:02:26 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 22:48:55 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_sphere(char **pos, char *diam, char **color)
 		return (0);
 	if (!check_color(color))
 		return (0);
-	if (!check_positive(diam))
+	if (!is_pos(diam))
 		return (0);
 	return (1);
 }

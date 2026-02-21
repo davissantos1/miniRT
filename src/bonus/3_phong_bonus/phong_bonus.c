@@ -24,10 +24,10 @@ static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
 	if (angle <= EPSILON)
 		return ((t_color){0});
 	light_color = vec4_scale(light->ratio, light->color);
-	if (hits.material.pattern == NO_PATTERN)
-		ret = vec4_times(light_color, hits.material.color);
+	if (hits.mat.pattern == NO_PATTERN)
+		ret = vec4_times(light_color, hits.mat.color);
 	else
-		ret = vec4_times(light_color, get_pattern(hits.hit_point, hits.material, hits.material.pattern));
+		ret = vec4_times(light_color, get_pattern(hits.hit_point, hits.mat, hits.mat.pattern));
 	return (vec4_scale(angle, ret));
 }
 
@@ -45,8 +45,8 @@ static inline t_vec4	specular(t_hit hits, t_light *light, t_vec4 light_dir)
 	shinin = vec4_dot(hits.cam_dir, reflection);
 	if (dot_ref < 0 || shinin < 0)
 		return ((t_color){0});
-	shinin = pow(shinin, hits.material.shininess);
-	color_shine = vec4_scale(shinin, hits.material.ks);
+	shinin = pow(shinin, hits.mat.shininess);
+	color_shine = vec4_scale(shinin, hits.mat.ks);
 	return (vec4_times(color_shine, intensity));
 }
 
@@ -59,7 +59,7 @@ t_color	phong(t_hit hits, t_scene *scene, int depth)
 
 	light = scene->light;
 	ambi_color = vec4_scale(scene->alight->ratio, scene->alight->color);
-	ambi_color = vec4_times(ambi_color, hits.material.ka);
+	ambi_color = vec4_times(ambi_color, hits.mat.ka);
 	color = ambi_color;
 	while (light)
 	{

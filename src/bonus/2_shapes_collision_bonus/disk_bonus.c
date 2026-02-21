@@ -45,7 +45,7 @@ static inline bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray)
 		return (false);
 	hits->r1 = t;
 	hits->num_roots = 1;
-	hits->material = obj->material;
+	hits->mat = obj->mat;
 	hits->norm = obj->norm;
 	hits->hit_point = p;
 	hits->me = obj;

@@ -6,14 +6,14 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:27 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/18 19:25:40 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 22:52:17 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static const t_settings	g_settings = {
-	.width =  WIDTH,
+static const t_settings		g_settings = {
+	.width = WIDTH,
 	.height = HEIGHT,
 	.aspect_ratio = WIDTH / HEIGHT,
 	.max_bounces = MAX_BOUNCES,
@@ -32,11 +32,11 @@ static const t_map_shape	g_shapes[] = {
 {NULL, NULL}
 };
 
-static const char	*g_msgs[] = {
-	[SUCCESS] = "Success",
-	[ERR_ARG_NUM] = "wrong argument number, type in ./miniRT <.rt file>",
-	[ERR_FILE_INVALID] = "format issue found in .rt file, try again!",
-	[ERR_ARG_INVALID] = "invalid file! input a valid .rt file path",
+static const char			*g_msgs[] = {
+[SUCCESS] = "Success",
+[ERR_ARG_NUM] = "wrong argument number, type in ./miniRT <.rt file>",
+[ERR_FILE_INVALID] = "format issue found in .rt file, try again!",
+[ERR_ARG_INVALID] = "invalid file! input a valid .rt file path",
 };
 
 const t_settings	*get_settings(void)
@@ -53,6 +53,5 @@ const char	*get_error_msg(t_status status)
 {
 	if (status < 0 || status >= COUNT)
 		return ("unknown internal error");
-
 	return (g_msgs[status]);
 }

@@ -34,5 +34,5 @@ t_color	reflections(t_scene *scene, t_hit hits, int depth)
 	collision = ray_collision(scene, reflected);
 	if (!collision.num_roots)
 		return ((t_color){0});
-	return (vec4_times(hits.material.kr, phong(collision, scene, depth - 1)));
+	return (vec4_times(hits.mat.kr, phong(collision, scene, depth - 1)));
 }

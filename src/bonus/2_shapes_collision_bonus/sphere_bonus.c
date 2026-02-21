@@ -62,6 +62,6 @@ void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
 	hits->hit_point = point;
 	norm = vec4_minus(point, obj->pos);
 	hits->norm = vec4_scale(2 / obj->diam, norm);
-	hits->material = obj->material;
+	hits->mat = obj->mat;
 	hits->me = obj;
 }

@@ -59,7 +59,7 @@ static bool	put_cap(t_cylinder *obj, t_ray ray, t_hit *hits)
 
 	hit_cap = false;
 	cap.type = DISK;
-	cap.material = obj->material;
+	cap.mat = obj->mat;
 	cap.norm = obj->norm;
 	cap.diam = obj->diam;
 	half_h = obj->height / 2;
@@ -92,7 +92,7 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 	m = vec4_dot(hip, obj->norm);
 	hits->norm = vec4_minus(hip, vec4_scale(m, obj->norm));
 	hits->norm = vec4_scale(2 / obj->diam, hits->norm);
-	hits->material = obj->material;
+	hits->mat = obj->mat;
 }
 
 bool	hit_cylinder(void *me, t_hit *hits, t_ray ray)

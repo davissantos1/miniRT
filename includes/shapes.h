@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/18 20:28:48 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 22:48:19 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ typedef struct	s_material
 	double		shininess;
 }	t_material;
 
-typedef struct	s_handle
+typedef struct s_handle
 {
 	t_shape		type;
 }	t_handle;
 
-typedef struct	s_hit
+typedef struct s_hit
 {
 	int			num_roots;
 	double		r1;
@@ -69,46 +69,45 @@ typedef struct	s_hit
 	t_vec4		cam_dir;
 	t_point		hit_point;
 	t_vec4		ray_dir;
-	t_material	material;
+	t_material	mat;
 }	t_hit;
 
-typedef struct	s_sphere
+typedef struct s_sphere
 {
 	t_shape		type;
 	t_point		pos;
-	t_material	material;
+	t_material	mat;
 	double		diam;
 }	t_sphere;
 
-typedef struct	s_plane
+typedef struct s_plane
 {
 	t_shape		type;
 	t_point		pos;
 	t_vec4		norm;
-	t_material	material;
+	t_material	mat;
 }	t_plane;
 
-typedef struct	s_cylinder
+typedef struct s_cylinder
 {
 	t_shape		type;
 	t_point		pos;
 	t_vec4		norm;
-	t_material	material;
+	t_material	mat;
 	double		diam;
 	double		height;
 }	t_cylinder;
 
-
-typedef struct	s_disk
+typedef struct s_disk
 {
 	t_shape		type;
 	t_point		pos;
 	t_vec4		norm;
-	t_material	material;
+	t_material	mat;
 	double		diam;
 }	t_disk;
 
-typedef struct	s_quadratic
+typedef struct s_quadratic
 {
 	double	a;
 	double	h;
@@ -128,8 +127,6 @@ bool	hit_disk(void *me, t_hit *hits, t_ray ray);
 bool	hit_plane(void *me, t_hit *hits, t_ray ray);
 
 t_color	phong(t_hit hits, t_scene *scene, int depth);
-bool	shadows(t_scene *scene,
-						t_light *light, t_hit hit, t_vec4 light_dir);
+bool	shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir);
 t_color	reflections(t_scene *scene, t_hit hits, int depth);
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 09:54:50 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/20 22:35:13 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ void	print_material(t_material *m)
 void	print_cylinder(t_cylinder *obj)
 {
 	printf("cylinder pos: %.1lf %.1lf %.1lf  %.1lf height:%.1lf diameter: %1.lf  norm: %.1lf %.1lf %.1lf %.1lf\n", obj->pos.x, obj->pos.y, obj->pos.z, obj->pos.w, obj->height, obj->diam, obj->norm.x, obj->norm.y, obj->norm.z, obj->norm.w);
-	print_material(&obj->material);
+	print_material(&obj->mat);
 }
 
 void	print_sphere(t_sphere *obj)
 {
 	printf("sphere pos: %.1lf %.1lf %.1lf %.1lf diam:%.1lf\n", obj->pos.x, obj->pos.y, obj->pos.z, obj->pos.w, obj->diam);
-	print_material(&obj->material);
+	print_material(&obj->mat);
 }
 
 void	print_plane(t_plane *obj)
 {
 	printf("plane pos: %.1lf %.1lf %.1lf %.1lf norm: %.1lf %.1lf %.1lf %.1lf\n", obj->pos.x, obj->pos.y, obj->pos.z, obj->pos.w, obj->norm.x, obj->norm.y, obj->norm.z, obj->norm.w);
-	print_material(&obj->material);
+	print_material(&obj->mat);
 }
 
 void	print_camera(t_camera *obj)

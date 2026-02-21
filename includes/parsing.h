@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:03:08 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/11 17:54:14 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/20 22:46:59 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 
 // Signatures
 void	parse_minirt(t_minirt *rt, int fd);
-void	parse_entity(t_minirt *rt, char **entity);
-void	parse_alight(t_minirt *rt, char **entity);
-void	parse_camera(t_minirt *rt, char **entity);
-void	parse_light(t_minirt *rt, char **entity);
+void	parse_entity(t_minirt *rt, char **ent);
+void	parse_alight(t_minirt *rt, char **ent);
+void	parse_camera(t_minirt *rt, char **ent);
+void	parse_light(t_minirt *rt, char **ent);
 
-void	parse_plane(t_minirt *rt, char **entity);
-void	parse_sphere(t_minirt *rt, char **entity);
-void	parse_cylinder(t_minirt *rt, char **entity);
+void	parse_plane(t_minirt *rt, char **ent);
+void	parse_sphere(t_minirt *rt, char **ent);
+void	parse_cylinder(t_minirt *rt, char **ent);
 
 int		check_alight(char *ratio, char **color);
 int		check_camera(char **pos, char **norm, char *fov);
