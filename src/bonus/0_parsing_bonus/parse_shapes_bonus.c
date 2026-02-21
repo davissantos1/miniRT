@@ -55,7 +55,6 @@ void	parse_sphere(t_minirt *rt, char **entity)
 	if (!sp)
 		desperation(rt, ERR_FILE_INVALID);
 	sp->type = SPHERE;
-	sp->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 0);
 	sp->material.color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
 	sp->material.color = vec4_scale((double)1 / 255, sp->material.color);
 	sp->material.ks = vec4_init(0.9, 0.9, 0.9, 0);

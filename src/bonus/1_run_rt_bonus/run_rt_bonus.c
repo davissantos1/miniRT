@@ -116,6 +116,7 @@ static void	paint_pixel(t_minirt *ctx, t_ndc ndc)
 	mlx_put_image_to_window(ctx->mlx->init, ctx->mlx->win, ctx->mlx->img, 0, 0);
 }
 
+
 static unsigned int	ray_color(t_scene *scene, t_ray ray)
 {
 	t_hit	hits;
@@ -125,6 +126,7 @@ static unsigned int	ray_color(t_scene *scene, t_ray ray)
 		return (0);
 	hits.cam_dir = vec4_minus(scene->camera->pos, hits.hit_point);
 	hits.cam_dir = vec4_unit_vector(hits.cam_dir);
-	color = phong(hits, scene, 1);
+	color = phong(hits, scene, 4);
+	color = vec4_scale(255.0, color);
 	return ((int)color.x << 16 | (int)color.y << 8 | (int)color.z);
 }

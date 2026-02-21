@@ -32,15 +32,26 @@ typedef enum e_shape
 	SHAPE_COUNT
 }	t_shape;
 
-//structs
+typedef enum e_pattern
+{
+	CHECKER,
+	GRADIENT,
+	STRIPED,
+	RING,
+	COUNT_PATTERNS,
+	NO_PATTERN
+}	t_pattern;
 
+
+//structs
 typedef struct	s_material
 {
-	t_vec4	ka;
-	t_vec4	ks;
-	t_vec4	kr;
-	t_vec4	color;
-	double	shininess;
+	t_pattern	pattern;
+	t_vec4		ka;
+	t_vec4		ks;
+	t_vec4		kr;
+	t_vec4		color;
+	double		shininess;
 }	t_material;
 
 typedef struct	s_handle
@@ -120,6 +131,5 @@ t_color	phong(t_hit hits, t_scene *scene, int depth);
 bool	shadows(t_scene *scene,
 						t_light *light, t_hit hit, t_vec4 light_dir);
 t_color	reflections(t_scene *scene, t_hit hits, int depth);
-t_vec4	reflec_dir(t_vec4 norm, t_vec4 dir);
 
 #endif

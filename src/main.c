@@ -58,7 +58,7 @@ t_minirt meu_teste(void)
 	ctx.mlx = start_mlx(ctx.gc, "TESTE");
 	ctx.scene = gc_calloc(sizeof(t_scene), ctx.gc, GC_CUSTOM1);
 	ctx.scene->camera = gc_calloc(sizeof(t_camera), ctx.gc, GC_CUSTOM1);
-	ctx.scene->camera->pos = vec4_init(0, 0, 0, 1);
+	ctx.scene->camera->pos = vec4_init(0, 0, 1, 1);
 	ctx.scene->camera->fov = 90;
 	ctx.scene->camera->norm = vec4_init(0, 0, -1, 0);
 	ctx.scene->light = gc_calloc(sizeof(t_light), ctx.gc, GC_CUSTOM1);
@@ -81,6 +81,7 @@ t_minirt meu_teste(void)
 	sphere->material.ks = vec4_init(1, 1, 1, 0);
 	sphere->material.shininess = 32;
 	sphere->material.kr = vec4_init(0.2, 0.2, 0.2, 0);
+	sphere->material.pattern = RING;
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
 	plane = gc_calloc(sizeof(t_plane), ctx.gc, GC_CUSTOM1);
 	plane->type = PLANE;
@@ -90,6 +91,7 @@ t_minirt meu_teste(void)
 	plane->material.shininess = 42;
 	plane->material.ks = vec4_init(0, 0, 0, 0);
 	plane->material.ka = vec4_init(0.4, 0, 0.4, 0);
+	plane->material.pattern = CHECKER;
 	//plane->material.kr = vec4_init(0, 0, 0, 0);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(plane));
 	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1);
@@ -101,6 +103,7 @@ t_minirt meu_teste(void)
 	sphere->material.ks = vec4_init(1, 1, 1, 0);
 	sphere->material.ka = vec4_init(0, 0, 0.3, 0);
 	sphere->material.kr = vec4_init(0.3, 0.3, 0.3, 0);
+	sphere->material.pattern = GRADIENT;
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
 	/* circle = gc_calloc(sizeof(t_circle), ctx.gc, GC_CUSTOM1); */
 	/* circle->diam = 1; */
@@ -112,17 +115,18 @@ t_minirt meu_teste(void)
 	/* circle->material.ka = vec4_init(0, 0.3, 0.15, 0); */
 	/* circle->norm = vec4_unit_vector(vec4_minus(ctx.scene->camera->pos, circle->pos)); */
 	/* ft_lstadd_back(&ctx.scene->shape, ft_lstnew(circle)); */
-	/* cylinder = gc_calloc(sizeof(t_cylinder), ctx.gc, GC_CUSTOM1); */
-	/* cylinder->type = CYLINDER; */
-	/* cylinder->diam = 0.1; */
-	/* cylinder->height = 2.0; */
-	/* cylinder->pos = vec4_init(0.2, 1, -2, 1); */
-	/* cylinder->norm = vec4_unit_vector(vec4_minus(ctx.scene->camera->pos, cylinder->pos)); */
-	/* cylinder->material.color = vec4_init(0, 0, 0.9, 0); */
-	/* cylinder->material.shininess = 42; */
-	/* cylinder->material.ks = vec4_init(1, 1, 1, 0); */
-	/* cylinder->material.ka = vec4_init(0, 0, 0.4, 0); */
-	/* cylinder->material.kr = vec4_init(0, 0, 0, 0); */
-	/* ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cylinder)); */
+	cylinder = gc_calloc(sizeof(t_cylinder), ctx.gc, GC_CUSTOM1);
+	cylinder->type = CYLINDER;
+	cylinder->diam = 0.1;
+	cylinder->height = 2.0;
+	cylinder->pos = vec4_init(0.2, 0, -3, 1);
+	cylinder->norm = vec4_unit_vector(vec4_init(1, 1, 0, 0));
+	cylinder->material.color = vec4_init(0, 0, 0.9, 0); 
+	cylinder->material.shininess = 42;
+	cylinder->material.ks = vec4_init(1, 1, 1, 0); 
+	cylinder->material.ka = vec4_init(0, 0, 0.4, 0); 
+	cylinder->material.kr = vec4_init(0, 0, 0, 0); 
+	cylinder->material.pattern = CHECKER;
+	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cylinder));
 	return (ctx);
 }

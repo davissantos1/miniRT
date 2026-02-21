@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 19:44:44 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/18 20:27:17 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:29:16 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool	infinity_cy(t_cylinder *obj, t_vec4 oc, t_ray ray, t_formula *form)
 	sqrt_delt = sqrt(sqrt_delt);
 	form->r1 = (form->h - sqrt_delt) / form->a;
 	form->r2 = (form->h + sqrt_delt) / form->a;
-	return (true);
+	return (!(form->r1 < 1e-7 && form->r2 < 1e-7));
 }
 
 static bool	check_height(t_cylinder *obj, t_formula *fm, t_ray ray)
@@ -81,6 +81,7 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 
 	if (hits->num_roots && form.r1 > hits->r1)
 		return ;
+	hits->me = obj;
 	hits->num_roots = 1;
 	hits->r1 = form.r1;
 	hits->r2 = form.r2;

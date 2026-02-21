@@ -5,6 +5,8 @@ CFLAGS= -Wall -Wextra -Werror -Wpedantic -I./includes -O3 -march=native -ffast-m
 LDFLAGS= -lXext -lX11 -lm -lz
 
 BASE_FILES= \
+		src/main.c \
+		src/settings.c \
 		src/utils/check.c \
 		src/utils/start.c \
 		src/utils/hooks.c \
@@ -22,7 +24,7 @@ BASE_FILES= \
 		src/math/vec4/vec4_basics.c
 
 SRC= \
-		src/main.c \
+		$(BASE_FILES) \
 		src/mandatory/0_parsing/check_part.c \
 		src/mandatory/0_parsing/check_element.c \
 		src/mandatory/0_parsing/parse.c \
@@ -35,13 +37,27 @@ SRC= \
 		src/mandatory/2_shapes_collision/sphere.c \
 		src/mandatory/2_shapes_collision/disk.c \
 		src/mandatory/3_phong/shadows.c \
-		src/mandatory/3_phong/phong.c \
-		src/settings.c
+		src/mandatory/3_phong/phong.c
 
 SRC_BONUS= \
-			src/main.c
+			$(BASE_FILES) \
+			src/bonus/0_parsing_bonus/check_element_bonus.c \
+			src/bonus/0_parsing_bonus/parse_shapes_bonus.c \
+			src/bonus/0_parsing_bonus/parse_bonus.c \
+			src/bonus/0_parsing_bonus/check_part_bonus.c \
+			src/bonus/0_parsing_bonus/check_shapes_bonus.c \
+			src/bonus/1_run_rt_bonus/run_rt_bonus.c \
+			src/bonus/2_shapes_collision_bonus/disk_bonus.c \
+			src/bonus/2_shapes_collision_bonus/ray_collision_bonus.c \
+			src/bonus/2_shapes_collision_bonus/plane_bonus.c \
+			src/bonus/2_shapes_collision_bonus/sphere_bonus.c \
+			src/bonus/2_shapes_collision_bonus/cylinder_bonus.c \
+			src/bonus/3_phong_bonus/shadows_bonus.c \
+			src/bonus/3_phong_bonus/phong_bonus.c \
+			src/bonus/3_phong_bonus/reflections_bonus.c \
+			src/bonus/3_phong_bonus/patterns_bonus.c \
+			src/bonus/3_phong_bonus/get_pattern_bonus.c
 
-SRC+= $(BASE_FILES)
 OBJ= $(SRC:.c=.o)
 OBJ_BONUS= $(SRC_BONUS:.c=.o)
 NAME= miniRT
@@ -62,8 +78,10 @@ BLUE := \033[34m
 RESET := \033[0m
 
 # Bonus setting
-ifeq ($(findstring bonus, $MAKECMDGOALS), bonus)
-	SRC = $(SRC_BONUS)
+ifneq ($(filter bonus,$(MAKECMDGOALS)),)
+    SRC := $(SRC_BONUS)
+	NAME := miniRT_bonus
+	CFLAGS += -I./includes_bonus
 endif
 
 # Rules
@@ -92,7 +110,7 @@ debug: re
 
 clean:
 	@echo "🧹 ${YELLOW}Cleaning: ${RESET}project objects"
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJ) $(OBJ_BONUS)
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@echo "🧹 ${YELLOW}Cleaning: ${RESET}libft objects"
 	@$(MAKE) -C $(MINILIBX_DIR) clean
@@ -100,7 +118,7 @@ clean:
 
 fclean: clean
 	@echo "💣 ${YELLOW}Cleaning: ${RESET}everything"
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) miniRT_bonus
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 delete:
@@ -108,5 +126,7 @@ delete:
 	@echo "💣  ${RED}Deleting: ${RESET}minilibx folder"
 
 re: fclean all
+
+bonus: all
 
 .PHONY: all clean fclean re bonus debug

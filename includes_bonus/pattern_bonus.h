@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   pattern_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/15 17:09:13 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/16 19:09:34 by vitosant         ###    ########.fr      */
+/*   Created: 2026/02/20 13:43:03 by vitosant          #+#    #+#             */
+/*   Updated: 2026/02/20 13:43:05 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec4.h"
+#ifndef PATTERN_BONUS_H
+# define PATTERN_BONUS_H
 
-t_vec4	reflec_dir(t_vec4 norm, t_vec4 dir)
-{
-	return (vec4_minus(dir, vec4_scale(vec4_dot(norm, dir) * 2.0, norm)));
-}
+# include "vec4.h"
+# include "shapes.h"
+
+typedef t_color(*t_patterns)(t_point,t_material);
+
+t_color	get_pattern(t_point p, t_material m, t_pattern op);
+t_color	striped(t_point p, t_material m);
+t_color gradient(t_point p, t_material m);
+t_color ring(t_point p, t_material m);
+t_color	checker(t_point p, t_material m);
+
+#endif
