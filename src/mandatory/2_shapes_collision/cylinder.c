@@ -16,20 +16,24 @@
 static bool	infinity_cy(t_cylinder *obj, t_vec4 oc, t_ray ray, t_formula *form)
 {
 	double		sqrt_delt;
-	t_vec4		oc_norm;
-	t_vec4		rd_norm;
+	double		dot_dn;
+	double		dot_noc;
 
-	oc_norm = vec4_cross(oc, obj->norm);
-	rd_norm = vec4_cross(ray.dir, obj->norm);
-	form->a = vec4_squared_len(rd_norm);
-	form->h = vec4_dot(rd_norm, oc_norm);
-	form->c = vec4_squared_len(oc_norm) - (obj->diam * obj->diam / 4);
-	sqrt_delt = form->h * form->h - form->a * form->c;
-	if (sqrt_delt < 0)
+	dot_dn = vec4_dot(ray.dir,obj->norm);
+	dot_noc = vec4_dot(obj->norm, oc);
+	form->a = 1 - dot_dn * dot_dn;
+	form->h = 2 * (vec4_dot(ray.dir, oc) - dot_dn * dot_noc);
+	form->c = vec4_dot(oc, oc) - dot_noc * dot_noc - obj->diam * obj->diam / 4;
+	sqrt_delt = form->h * form->h - 4.0 * form->a * form->c;
+	if (sqrt_delt < 0.0)
 		return (false);
 	sqrt_delt = sqrt(sqrt_delt);
-	form->r1 = (form->h - sqrt_delt) / form->a;
-	form->r2 = (form->h + sqrt_delt) / form->a;
+	form->r1 = (-form->h - sqrt_delt) / (2.0 * form->a);
+	form->r2 = (-form->h + sqrt_delt) / (2.0 * form->a);
+	if (form->r1 < EPSILON && form->r2 < EPSILON)
+		return (false);
+	if (form->r1 < 0 || form->r1 > form->r2)
+		form->r1 = form->r2;
 	return (true);
 }
 
@@ -45,10 +49,14 @@ static bool	check_height(t_cylinder *obj, t_formula *fm, t_ray ray)
 	p_to_pos = vec4_minus(p, obj->pos);
 	proje = vec4_dot(p_to_pos, obj->norm);
 	if (fabs(proje) <= half_h)
+	{	
+		fm->r2 = fm->r1;
 		return (true);
+	}
 	p = ray_pos(ray, fm->r2);
 	p_to_pos = vec4_minus(p, obj->pos);
 	proje = vec4_dot(p_to_pos, obj->norm);
+	fm->r1 = fm->r2;
 	return (fabs(proje) <= half_h);
 }
 
@@ -104,7 +112,7 @@ bool	hit_cylinder(void *me, t_hit *hits, t_ray ray)
 
 	obj = me;
 	hit_any = false;
-	oc = vec4_minus(obj->pos, ray.origin);
+	oc = vec4_minus(ray.origin, obj->pos);
 	if (infinity_cy(obj, oc, ray, &form))
 	{
 		if (check_height(obj, &form, ray))

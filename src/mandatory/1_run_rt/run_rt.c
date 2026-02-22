@@ -74,7 +74,7 @@ void    run_rt(t_minirt *ctx)
 	printf("%i\n", i);
     cam = ctx->scene->camera;
     ndc.ratio = get_settings()->aspect_ratio;
-    ndc.scale = tanh(cam->fov * 0.5 * (PI / 180.0));
+    ndc.scale = tan(cam->fov * 0.5 * (PI / 180.0));
     ndc.w = vec4_scale(-1, cam->norm);
     ndc.u = vec4_unit_vector(vec4_cross(vec4_init(0, 1, 0, 0), ndc.w));
     ndc.v = vec4_unit_vector(vec4_cross(ndc.w, ndc.u));
@@ -123,6 +123,7 @@ static unsigned int	ray_color(t_scene *scene, t_ray ray)
 {
 	t_hit	hits;
 	t_color	color;
+
 	hits = ray_collision(scene, ray);
 	if (!hits.num_roots)
 		return (0);

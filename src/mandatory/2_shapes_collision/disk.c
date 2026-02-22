@@ -30,6 +30,8 @@ bool	hit_disk(void *me, t_hit *hits, t_ray ray)
 	t = vec4_dot(oc, obj->norm) / denom;
 	if (fabs(t) <= EPSILON)
 		return (false);
+	if (hits->num_roots && t > hits->r1)
+		return (false);
 	return (intersection(obj, t, hits, ray));
 }
 
@@ -42,7 +44,7 @@ static inline bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray)
 	p = ray_pos(ray, t);
 	v = vec4_minus(p, obj->pos);
 	dist = vec4_squared_len(v);
-	if (dist > obj->diam * obj->diam / 4 || (t > hits->r1 && hits->num_roots))
+	if (dist > obj->diam * obj->diam / 4)
 		return (false);
 	hits->r1 = t;
 	hits->num_roots = 1;
