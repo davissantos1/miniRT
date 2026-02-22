@@ -6,11 +6,12 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 19:44:44 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 22:36:33 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 08:06:04 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "shapes.h"
+#include "settings.h"
 
 static bool	infinity_cy(t_cylinder *obj, t_vec4 oc, t_ray ray, t_formula *form)
 {

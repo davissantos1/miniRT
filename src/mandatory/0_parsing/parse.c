@@ -6,11 +6,13 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:31:39 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 22:44:51 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 07:58:13 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "parsing.h"
+#include "entities.h"
 
 void	parse_minirt(t_minirt *rt, int fd)
 {

@@ -6,16 +6,17 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:27 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 22:52:17 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 07:49:10 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "settings.h"
+#include "parsing.h"
 
 static const t_settings		g_settings = {
 	.width = WIDTH,
 	.height = HEIGHT,
-	.aspect_ratio = WIDTH / HEIGHT,
+	.aspect_ratio = (double)WIDTH / HEIGHT,
 	.max_bounces = MAX_BOUNCES,
 	.samples_per_pixel = SAMPLES,
 	.epsilon = EPSILON,

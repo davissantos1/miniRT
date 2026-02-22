@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 #include "ray.h"
-#include "shapes.h"
+#include "shapes_bonus.h"
 #include "vec4.h"
 #include <math.h>
 #include <stdio.h>

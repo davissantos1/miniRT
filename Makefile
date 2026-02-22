@@ -1,8 +1,11 @@
 # Variables
-
 CC= cc
-CFLAGS= -Wall -Wextra -Werror -Wpedantic -I./includes -I./includes_bonus -O3 -march=native -ffast-math
+CFLAGS= -Wall -Wextra -Werror -Wpedantic -O3 -march=native -ffast-math
 LDFLAGS= -lXext -lX11 -lm -lz
+COMMON_INCLUDES= -I./common_includes -I./minilibx-linux
+INCLUDES= -I./includes $(COMMON_INCLUDES)
+INCLUDES_BONUS= -I./includes_bonus $(COMMON_INCLUDES)
+
 
 BASE_FILES= \
 		src/main.c \
@@ -73,6 +76,7 @@ MINILIBX_DIR= minilibx-linux
 MINILIBX= $(MINILIBX_DIR)/libmlx.a
 
 
+
 # Makeflags
 MAKEFLAGS += --no-print-directory
 
@@ -87,7 +91,7 @@ RESET := \033[0m
 ifneq ($(filter bonus,$(MAKECMDGOALS)),)
     SRC := $(SRC_BONUS)
 	NAME := miniRT_bonus
-	CFLAGS += -I./includes_bonus
+	INCLUDES := $(INCLUDES_BONUS)
 endif
 
 # Rules
@@ -108,7 +112,7 @@ $(NAME): $(LIBFT) $(MINILIBX) $(OBJ)
 
 %.o: %.c
 	@echo "🛠️  ${BLUE}Compiling:${RESET} $< to $@"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 debug: CFLAGS += -g
 debug: re

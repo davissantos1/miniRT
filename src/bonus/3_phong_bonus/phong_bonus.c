@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shapes.h"
+#include "shapes_bonus.h"
 #include "vec4.h"
 
 static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)

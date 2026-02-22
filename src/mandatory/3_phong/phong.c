@@ -6,12 +6,13 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:49:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 23:09:35 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 08:09:09 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shapes.h"
 #include "vec4.h"
+#include "settings.h"
 
 static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
 {
@@ -46,7 +47,7 @@ static inline t_vec4	specular(t_hit hits, t_light *light, t_vec4 light_dir)
 	return (vec4_times(color_shine, intensity));
 }
 
-t_color	phong(t_hit hits, t_scene *scene, int depth)
+t_color	phong(t_hit hits, t_scene *scene)
 {
 	t_light	*light;
 	t_color	color;
@@ -57,7 +58,7 @@ t_color	phong(t_hit hits, t_scene *scene, int depth)
 	ambi_color = vec4_scale(scene->alight->ratio, scene->alight->color);
 	ambi_color = vec4_times(ambi_color, hits.mat.ka);
 	color = ambi_color;
-	while (light && depth)
+	while (light)
 	{
 		light_dir = vec4_minus(light->pos, hits.hit_point);
 		light_dir = vec4_unit_vector(light_dir);

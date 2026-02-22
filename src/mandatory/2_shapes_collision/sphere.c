@@ -6,11 +6,12 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 23:07:29 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 08:05:40 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "shapes.h"
+#include "settings.h"
 
 static inline
 void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
@@ -29,7 +30,6 @@ void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
 	norm = vec4_minus(point, obj->pos);
 	hits->norm = vec4_scale(2 / obj->diam, norm);
 	hits->mat = obj->mat;
-	hits->me = obj;
 }
 
 bool	hit_sphere(void *me, t_hit *hits, t_ray ray)

@@ -6,33 +6,17 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 23:11:31 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 07:42:19 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-// External includes
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdbool.h>
-# include <errno.h>
-# include <math.h>
-# include <sys/time.h>
-# include <stdlib.h>
-
 // Local includes
 # include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
 # include "settings.h"
 # include "structs.h"
-# include "parsing.h"
-# include "entities.h"
-# include "shapes.h"
-# include "vec4.h"
-# include "ray.h"
 
 //Signatures
 t_status	panic(t_status status);
@@ -50,8 +34,6 @@ int			is_pos(char *num);
 void		add_object(t_minirt *rt, void *obj);
 void		img_pixel_put(t_mlx *mlx, int x, int y, int color);
 void		run_rt(t_minirt	*ctx);
-
-void		set_roots(void *me, double r1, double r2, t_hit *hits);
 
 int			hook_keys(int keycode, t_minirt *rt);
 int			close_cross(t_minirt *rt);

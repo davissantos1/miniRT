@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:53 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 22:05:30 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 07:46:17 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # define MAX_BOUNCES 5
 # define SAMPLES 1
 # define THREADS 8
+# define PI 3.14159265359
+# define EPSILON 1e-7
 
 typedef enum e_status
 {

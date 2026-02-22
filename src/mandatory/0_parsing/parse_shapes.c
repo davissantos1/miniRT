@@ -6,11 +6,13 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 10:45:34 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 22:45:52 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 07:59:10 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "shapes.h"
+#include "parsing.h"
 
 void	parse_plane(t_minirt *rt, char **ent)
 {

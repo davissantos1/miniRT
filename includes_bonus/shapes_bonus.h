@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/22 07:46:02 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/21 12:18:55 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include "structs.h"
 # include "entities.h"
 
+# define PI 3.14159265359
+# define EPSILON 1e-7
+
 // enums
 typedef enum e_shape
 {
@@ -30,9 +33,21 @@ typedef enum e_shape
 	SHAPE_COUNT
 }	t_shape;
 
+typedef enum e_pattern
+{
+	CHECKER,
+	GRADIENT,
+	STRIPED,
+	RING,
+	COUNT_PATTERNS,
+	NO_PATTERN
+}	t_pattern;
+
+
 //structs
 typedef struct	s_material
 {
+	t_pattern	pattern;
 	t_vec4		ka;
 	t_vec4		ks;
 	t_vec4		kr;
@@ -50,10 +65,13 @@ typedef struct s_hit
 	int			num_roots;
 	double		r1;
 	double		r2;
+	void		*me;
 	t_vec4		norm;
 	t_vec4		cam_dir;
 	t_point		hit_point;
 	t_vec4		ray_dir;
+	t_matrix4	transform;
+	t_matrix4	inverse;
 	t_material	mat;
 }	t_hit;
 
@@ -63,6 +81,8 @@ typedef struct s_sphere
 	t_point		pos;
 	t_material	mat;
 	double		diam;
+	t_matrix4	transform;
+	t_matrix4	inverse;
 }	t_sphere;
 
 typedef struct s_plane
@@ -71,6 +91,8 @@ typedef struct s_plane
 	t_point		pos;
 	t_vec4		norm;
 	t_material	mat;
+	t_matrix4	transform;
+	t_matrix4	inverse;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -79,6 +101,8 @@ typedef struct s_cylinder
 	t_point		pos;
 	t_vec4		norm;
 	t_material	mat;
+	t_matrix4	transform;
+	t_matrix4	inverse;
 	double		diam;
 	double		height;
 }	t_cylinder;
@@ -90,6 +114,8 @@ typedef struct s_disk
 	t_vec4		norm;
 	t_material	mat;
 	double		diam;
+	t_matrix4	transform;
+	t_matrix4	inverse;
 }	t_disk;
 
 typedef struct s_quadratic
@@ -116,7 +142,7 @@ t_matrix4	cy_transform(t_cylinder *me, t_matrix4 *inv);
 t_matrix4	plane_transform(t_plane *me, t_matrix4 *inv);
 t_matrix4	disk_transform(t_disk *me, t_matrix4 *inv);
 
-t_color		phong(t_hit hits, t_scene *scene);
+t_color		phong(t_hit hits, t_scene *scene, int depth);
 bool		shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir);
-
+t_color		reflections(t_scene *scene, t_hit hits, int depth);
 #endif

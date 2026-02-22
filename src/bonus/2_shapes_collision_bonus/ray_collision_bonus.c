@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shapes.h"
+#include "shapes_bonus.h"
 
 inline static t_shape	get_type(t_handle *me)
 {

@@ -14,7 +14,7 @@
 #include "ray.h"
 #include "structs.h"
 #include "vec4.h"
-#include "shapes.h"
+#include "shapes_bonus.h"
 #include <stdbool.h>
 #include <stdio.h>
 

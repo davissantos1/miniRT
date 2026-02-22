@@ -6,11 +6,12 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 16:25:06 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 23:13:17 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 07:51:49 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "mlx.h"
 
 t_minirt	*start_minirt(char *name)
 {

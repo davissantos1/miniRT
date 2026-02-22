@@ -1,6 +1,6 @@
 
 #include "vec4.h"
-#include "shapes.h"
+#include "shapes_bonus.h"
 #include "pattern_bonus.h"
 #include "mtx4.h"
 #include <stdio.h>

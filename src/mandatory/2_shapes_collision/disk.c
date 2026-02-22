@@ -6,11 +6,12 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 08:52:46 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 23:03:08 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 08:06:34 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "shapes.h"
+#include "settings.h"
 
 static bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray);
 
@@ -48,6 +49,5 @@ static inline bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray)
 	hits->mat = obj->mat;
 	hits->norm = obj->norm;
 	hits->hit_point = p;
-	hits->me = obj;
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 09:56:10 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 22:14:13 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 08:08:43 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "structs.h"
 #include "vec4.h"
 #include "shapes.h"
+#include "settings.h"
 #include <stdbool.h>
-#include <stdio.h>
 
 bool	shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir)
 {

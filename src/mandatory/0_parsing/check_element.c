@@ -6,11 +6,11 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/11 22:01:29 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 07:57:04 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "parsing.h"
 
 int	check_alight(char *ratio, char **color)
 {

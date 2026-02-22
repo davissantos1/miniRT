@@ -6,14 +6,17 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 22:35:13 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 08:07:32 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "ray.h"
+#include "settings.h"
 #include "shapes.h"
 #include "vec4.h"
+#include "minirt.h"
+#include "mlx.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -70,13 +73,13 @@ void    run_rt(t_minirt *ctx)
 	}
 	printf("%i\n", i);
     cam = ctx->scene->camera;
-    ndc.ratio = (double)WIDTH / (double)HEIGHT;
+    ndc.ratio = get_settings()->aspect_ratio;
     ndc.scale = tanh(cam->fov * 0.5 * (PI / 180.0));
     ndc.w = vec4_scale(-1, cam->norm);
     ndc.u = vec4_unit_vector(vec4_cross(vec4_init(0, 1, 0, 0), ndc.w));
     ndc.v = vec4_unit_vector(vec4_cross(ndc.w, ndc.u));
     paint_pixel(ctx, ndc);
-    mlx_loop(ctx->mlx->init);
+	
 }
 
 static t_vec4  get_ray_dir(t_ndc ndc, int x, int y)
@@ -125,6 +128,6 @@ static unsigned int	ray_color(t_scene *scene, t_ray ray)
 		return (0);
 	hits.cam_dir = vec4_minus(scene->camera->pos, hits.hit_point);
 	hits.cam_dir = vec4_unit_vector(hits.cam_dir);
-	color = phong(hits, scene, 1);
+	color = phong(hits, scene);
 	return ((int)color.x << 16 | (int)color.y << 8 | (int)color.z);
 }

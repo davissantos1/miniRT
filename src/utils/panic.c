@@ -6,11 +6,13 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:11:30 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/19 20:14:04 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/02/22 07:53:48 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "mlx.h"
+#include <stdio.h>
 
 t_status	panic(t_status status)
 {

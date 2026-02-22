@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "mtx4.h"
-#include "shapes.h"
+#include "shapes_bonus.h"
 #include "pattern_bonus.h"
 
 t_matrix4	sphere_transform(t_sphere *me, t_matrix4 *inv)
