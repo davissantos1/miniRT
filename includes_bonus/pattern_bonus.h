@@ -14,7 +14,7 @@
 # define PATTERN_BONUS_H
 
 # include "vec4.h"
-# include "shapes.h"
+# include "shapes_bonus.h"
 # include "mtx4.h"
 
 typedef t_color(*t_patterns)(t_point,t_material);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "parsing_bonus.h"
 
 int	check_alight(char *ratio, char **color)
 {

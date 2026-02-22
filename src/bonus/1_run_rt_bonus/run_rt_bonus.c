@@ -12,11 +12,12 @@
 
 #include "minirt.h"
 #include "ray.h"
-#include "shapes_bonus.h"
 #include "vec4.h"
+#include "shapes_bonus.h"
+#include "pattern_bonus.h"
+#include "mlx.h"
 #include <math.h>
 #include <stdio.h>
-#include "pattern_bonus.h"
 
 static void	paint_pixel(t_minirt *ctx, t_ndc ndc);
 static unsigned int	ray_color(t_scene *scene, t_ray ray);
@@ -71,13 +72,12 @@ void    run_rt(t_minirt *ctx)
 	}
 	printf("%i\n", i);
     cam = ctx->scene->camera;
-    ndc.ratio = (double)WIDTH / (double)HEIGHT;
-    ndc.scale = tanh(cam->fov * 0.5 * (PI / 180.0));
+    ndc.ratio = get_settings()->aspect_ratio;
+    ndc.scale = tan(cam->fov * 0.5 * (PI / 180.0));
     ndc.w = vec4_scale(-1, cam->norm);
     ndc.u = vec4_unit_vector(vec4_cross(vec4_init(0, 1, 0, 0), ndc.w));
     ndc.v = vec4_unit_vector(vec4_cross(ndc.w, ndc.u));
     paint_pixel(ctx, ndc);
-    mlx_loop(ctx->mlx->init);
 }
 
 

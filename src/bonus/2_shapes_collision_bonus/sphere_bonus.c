@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "pattern_bonus.h"
+#include "ray.h"
+#include "shapes_bonus.h"
+#include "vec4.h"
+#include <stdbool.h>
 
 static inline
 void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray);

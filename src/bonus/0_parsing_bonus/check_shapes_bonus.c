@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "parsing_bonus.h"
 
 int	check_plane(char **pos, char **norm, char **color)
 {

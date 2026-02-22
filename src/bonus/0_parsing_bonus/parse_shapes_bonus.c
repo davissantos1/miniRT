@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "shapes_bonus.h"
+#include "settings.h"
 #include "minirt.h"
+#include "parsing_bonus.h"
 
 void	parse_plane(t_minirt *rt, char **ent)
 {

@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "ray.h"
+#include "shapes_bonus.h"
+#include "vec4.h"
+#include <stdbool.h>
 
 static bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray);
 

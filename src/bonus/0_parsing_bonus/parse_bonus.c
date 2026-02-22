@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "entities.h"
+#include "settings.h"
+#include "structs.h"
+#include "parsing_bonus.h"
 #include "minirt.h"
 
 void	parse_minirt(t_minirt *rt, int fd)
