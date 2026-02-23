@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shapes.h                                           :+:      :+:    :+:   */
+/*   shapes_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/21 12:18:55 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/22 19:40:37 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHAPES_H
 # define SHAPES_H
 
-# include <math.h>
 #include "mtx4.h"
 # include "vec4.h"
 # include "ray.h"
 # include "structs.h"
 # include "entities.h"
-
-# define PI 3.14159265359
-# define EPSILON 1e-7
 
 // enums
 typedef enum e_shape
@@ -52,6 +48,8 @@ typedef struct	s_material
 	t_vec4		ks;
 	t_vec4		kr;
 	t_vec4		color;
+	t_vec4		color2;
+	t_vec4		ks2;
 	double		shininess;
 }	t_material;
 
