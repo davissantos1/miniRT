@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/22 08:05:40 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/22 20:46:59 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
 	delt = sqrt(delt);
 	formula.r1 = formula.h - delt;
 	formula.r2 = formula.h + delt;
+	if (formula.r2 < EPSILON && formula.r1 < EPSILON)
+		return (false);
+	if (formula.r1 < EPSILON || formula.r2 < formula.r1)
+		formula.r1 = formula.r2;
 	fill_hits(obj, hits, formula, ray);
 	return (true);
 }
