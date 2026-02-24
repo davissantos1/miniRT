@@ -13,6 +13,8 @@
 #include "ray.h"
 #include "shapes_bonus.h"
 #include "vec4.h"
+#include "settings.h"
+#include <math.h>
 #include <stdbool.h>
 
 bool	hit_plane(void *me, t_hit *hits, t_ray ray)

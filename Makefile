@@ -28,7 +28,8 @@ BASE_FILES= \
 		src/math/vec4/vec4_init.c \
 		src/math/vec4/vec4_multi_mtx4.c \
 		src/math/vec4/vec4_complex.c \
-		src/math/vec4/vec4_basics.c
+		src/math/vec4/vec4_basics.c \
+		src/math/vec4/vec4_is_diff.c
 
 SRC= \
 		$(BASE_FILES) \

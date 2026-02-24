@@ -15,8 +15,8 @@
 #include "structs.h"
 #include "vec4.h"
 #include "shapes_bonus.h"
+#include "settings.h"
 #include <stdbool.h>
-#include <stdio.h>
 
 bool	shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir)
 {

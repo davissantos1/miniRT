@@ -43,5 +43,6 @@ t_vec4	vec4_unit_vector(t_vec4 v);
 
 t_vec4	vec4_multi_mtx4(t_matrix4 m, t_vec4 vec);
 t_vec4	vec4_init(double x, double y, double z, double w);
+bool	vec4_is_diff(t_vec4 u, t_vec4 v);
 
 #endif

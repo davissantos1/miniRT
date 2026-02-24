@@ -13,7 +13,9 @@
 #include "ray.h"
 #include "shapes_bonus.h"
 #include "vec4.h"
+#include "settings.h"
 #include <stdbool.h>
+#include <math.h>
 
 static bool	infinity_cy(t_cylinder *obj, t_vec4 oc, t_ray ray, t_formula *form)
 {
@@ -34,7 +36,7 @@ static bool	infinity_cy(t_cylinder *obj, t_vec4 oc, t_ray ray, t_formula *form)
 	form->r2 = (-form->h + sqrt_delt) / (2.0 * form->a);
 	if (form->r1 < EPSILON && form->r2 < EPSILON)
 		return (false);
-	if (form->r1 < 0 || form->r1 > form->r2)
+	if (form->r1 < EPSILON || form->r1 > form->r2)
 		form->r1 = form->r2;
 	return (true);
 }
@@ -62,7 +64,6 @@ static bool	check_height(t_cylinder *obj, t_formula *fm, t_ray ray)
 	return (fabs(proje) <= half_h);
 }
 
-
 static bool	put_cap(t_cylinder *obj, t_ray ray, t_hit *hits)
 {
 	t_disk	cap;
@@ -76,11 +77,12 @@ static bool	put_cap(t_cylinder *obj, t_ray ray, t_hit *hits)
 	cap.diam = obj->diam;
 	half_h = obj->height / 2;
 	cap.pos = vec4_plus(obj->pos, vec4_scale(half_h, cap.norm));
+	cap.transform = disk_transform(&cap, &cap.inverse);
 	hit_cap = hit_disk(&cap, hits, ray);
 	cap.norm = vec4_scale(-1, cap.norm);
 	cap.pos = vec4_plus(obj->pos, vec4_scale(half_h, cap.norm));
-	if (hit_disk(&cap, hits, ray))
-		hit_cap = true;
+	cap.transform = disk_transform(&cap, &cap.inverse);
+	hit_cap = (hit_disk(&cap, hits, ray) || hit_cap);
 	return (hit_cap);
 }
 
@@ -93,7 +95,6 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 
 	if (hits->num_roots && form.r1 > hits->r1)
 		return ;
-	hits->me = obj;
 	hits->num_roots = 1;
 	hits->r1 = form.r1;
 	hits->r2 = form.r2;
@@ -117,7 +118,7 @@ bool	hit_cylinder(void *me, t_hit *hits, t_ray ray)
 
 	obj = me;
 	hit_any = false;
-	oc = vec4_minus(obj->pos, ray.origin);
+	oc = vec4_minus(ray.origin, obj->pos);
 	if (infinity_cy(obj, oc, ray, &form))
 	{
 		if (check_height(obj, &form, ray))

@@ -32,7 +32,7 @@ static bool	infinity_cy(t_cylinder *obj, t_vec4 oc, t_ray ray, t_formula *form)
 	form->r2 = (-form->h + sqrt_delt) / (2.0 * form->a);
 	if (form->r1 < EPSILON && form->r2 < EPSILON)
 		return (false);
-	if (form->r1 < 0 || form->r1 > form->r2)
+	if (form->r1 < EPSILON || form->r1 > form->r2)
 		form->r1 = form->r2;
 	return (true);
 }

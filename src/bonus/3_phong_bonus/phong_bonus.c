@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "shapes_bonus.h"
+#include "settings.h"
+#include <math.h>
 #include "vec4.h"
 
 static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
@@ -68,7 +70,8 @@ t_color	phong(t_hit hits, t_scene *scene, int depth)
 		}
 		light = light->next;
 	}
-	color = vec4_plus(color, reflections(scene, hits, depth));
+	if (vec4_squared_len(hits.mat.kr) > EPSILON)
+		color = vec4_plus(color, reflections(scene, hits, depth));
 	color.x = fmin(1.0, color.x);
 	color.y = fmin(1.0, color.y);
 	color.z = fmin(1.0, color.z);

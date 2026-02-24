@@ -21,7 +21,9 @@ t_matrix4	rotation_calc(t_vec4 norm)
 	t_vec4		x;
 	t_vec4		z;
 	
-	if (fabs(norm.y) > 0.999999)
+	if (norm.y > 0.9)
+		return (mtx4_identity());
+	if (norm.y < -0.99)
 		up = vec4_init(1.0, 0.0, 0.0, 0.0);
 	else
 		up = vec4_init(0.0, 1.0, 0.0, 0.0);

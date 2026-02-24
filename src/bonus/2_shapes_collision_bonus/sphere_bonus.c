@@ -13,6 +13,8 @@
 #include "ray.h"
 #include "shapes_bonus.h"
 #include "vec4.h"
+#include "settings.h"
+#include <math.h>
 #include <stdbool.h>
 
 static inline
@@ -37,12 +39,6 @@ bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
 	formula.r2 = (formula.h + delt);
 	if (formula.r1 < EPSILON && formula.r2 < EPSILON)
 		return (false);
-	delt = formula.h * formula.h - formula.c;
-	if (delt < EPSILON)
-		return (false);
-	delt = sqrt(delt);
-	formula.r1 = formula.h - delt;
-	formula.r2 = formula.h + delt;
 	fill_hits(obj, hits, formula, ray);
 	return (true);
 }

@@ -49,7 +49,7 @@ t_matrix4	plane_transform(t_plane *me, t_matrix4 *inv)
 
 	translation = mtx4_translation(me->pos.x, me->pos.y, me->pos.z);
 	rotations = rotation_calc(me->norm);
-	transform = mtx4_times(rotations, mtx4_scaling(0.10, 1, 0.10));
+	transform = mtx4_times(rotations, mtx4_scaling(1, 1, 1));
 	transform = mtx4_times(translation, transform);
 	mtx4_inverse(transform, inv);
 	return (transform);

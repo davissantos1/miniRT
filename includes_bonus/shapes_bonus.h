@@ -32,7 +32,6 @@ typedef enum e_shape
 typedef enum e_pattern
 {
 	CHECKER,
-	GRADIENT,
 	STRIPED,
 	RING,
 	COUNT_PATTERNS,
@@ -44,12 +43,15 @@ typedef enum e_pattern
 typedef struct	s_material
 {
 	t_pattern	pattern;
+	int			pattern_const;
 	t_vec4		ka;
 	t_vec4		ks;
 	t_vec4		kr;
 	t_vec4		color;
 	t_vec4		color2;
 	t_vec4		ks2;
+	t_vec4		ka2;
+	t_vec4		kr2;
 	double		shininess;
 }	t_material;
 

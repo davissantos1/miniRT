@@ -17,24 +17,19 @@ inline static t_shape	get_type(t_handle *me)
 	return (me->type);
 }
 
-static void	fill_functions(t_get_hit *functions)
-{
-	functions[SPHERE] = hit_sphere;
-	functions[CYLINDER] = hit_cylinder;
-	functions[DISK] = hit_disk;
-	functions[PLANE] = hit_plane;
-}
-
 t_hit	ray_collision(t_scene *scene, t_ray ray)
 {
-	static t_get_hit	functions[SHAPE_COUNT];
 	t_hit				hits;
 	t_list				*lst;
+	static t_get_hit	functions[SHAPE_COUNT] = {
+		hit_sphere,
+		hit_plane,
+		hit_cylinder,
+		hit_disk
+	};
 
 	hits = (t_hit){0};
 	lst = scene->shape;
-	if (!functions[SPHERE])
-		fill_functions(functions);
 	while (lst)
 	{
 		functions[get_type(lst->content)](lst->content, &hits, ray);
@@ -43,4 +38,3 @@ t_hit	ray_collision(t_scene *scene, t_ray ray)
 	hits.ray_dir = ray.dir;
 	return (hits);
 }
-

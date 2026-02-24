@@ -131,7 +131,12 @@ static unsigned int	ray_color(t_scene *scene, t_ray ray)
 	if (hits.mat.pattern != NO_PATTERN)
 	{
 		hits.mat.color = get_pattern(hits, hits.mat.pattern);
-		hits.mat.ka = vec4_scale(1.0 / 3.0, hits.mat.color);
+		if (!vec4_is_diff(hits.mat.color, hits.mat.color2))
+		{
+			hits.mat.ka = hits.mat.ka2;
+			hits.mat.ks = hits.mat.ks2;
+			hits.mat.kr = hits.mat.kr2;
+		}
 	}
 	color = phong(hits, scene, 4);
 	color = vec4_scale(255.0, color);
