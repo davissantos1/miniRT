@@ -62,6 +62,7 @@ SRC_BONUS= \
 			src/bonus/2_shapes_collision_bonus/plane_bonus.c \
 			src/bonus/2_shapes_collision_bonus/sphere_bonus.c \
 			src/bonus/2_shapes_collision_bonus/cylinder_bonus.c \
+			src/bonus/2_shapes_collision_bonus/cone_bonus.c \
 			src/bonus/3_phong_bonus/shadows_bonus.c \
 			src/bonus/3_phong_bonus/phong_bonus.c \
 			src/bonus/3_phong_bonus/reflections_bonus.c \

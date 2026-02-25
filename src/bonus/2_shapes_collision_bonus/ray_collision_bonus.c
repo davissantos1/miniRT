@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_collision.c                                    :+:      :+:    :+:   */
+/*   ray_collision_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 10:17:33 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 10:33:06 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/25 08:44:35 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_hit	ray_collision(t_scene *scene, t_ray ray)
 		hit_sphere,
 		hit_plane,
 		hit_cylinder,
-		hit_disk
+		hit_disk,
+		hit_cone
 	};
 
 	hits = (t_hit){0};

@@ -6,14 +6,14 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/22 19:40:37 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/25 16:47:30 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHAPES_H
 # define SHAPES_H
 
-#include "mtx4.h"
+# include "mtx4.h"
 # include "vec4.h"
 # include "ray.h"
 # include "structs.h"
@@ -26,6 +26,7 @@ typedef enum e_shape
 	PLANE,
 	CYLINDER,
 	DISK,
+	CONE,
 	SHAPE_COUNT
 }	t_shape;
 
@@ -107,6 +108,19 @@ typedef struct s_cylinder
 	double		height;
 }	t_cylinder;
 
+typedef struct s_cone
+{
+	t_shape		type;
+	t_point		pos;
+	t_vec4		norm;
+	t_material	mat;
+	t_matrix4	transform;
+	t_matrix4	inverse;
+	double		diam;
+	double		height;
+}	t_cone;
+
+
 typedef struct s_disk
 {
 	t_shape		type;
@@ -136,11 +150,14 @@ bool		hit_sphere(void *me, t_hit *hits, t_ray ray);
 bool		hit_cylinder(void *me, t_hit *hits, t_ray ray);
 bool		hit_disk(void *me, t_hit *hits, t_ray ray);
 bool		hit_plane(void *me, t_hit *hits, t_ray ray);
+bool		hit_cone(void *me, t_hit *hits, t_ray ray);
 
 t_matrix4	sphere_transform(t_sphere *me, t_matrix4 *inv);
 t_matrix4	cy_transform(t_cylinder *me, t_matrix4 *inv);
 t_matrix4	plane_transform(t_plane *me, t_matrix4 *inv);
 t_matrix4	disk_transform(t_disk *me, t_matrix4 *inv);
+t_matrix4	cone_transform(t_cone *me, t_matrix4 *inv);
+
 
 t_color		phong(t_hit hits, t_scene *scene, int depth);
 bool		shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir);

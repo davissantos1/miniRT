@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:49:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/21 12:44:50 by vitosant         ###   ########.fr       */
+/*   Updated: 2026/02/25 16:05:08 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ t_color	phong(t_hit hits, t_scene *scene, int depth)
 	}
 	if (vec4_squared_len(hits.mat.kr) > EPSILON)
 		color = vec4_plus(color, reflections(scene, hits, depth));
+	/* t_vec4 n = hits.norm; */
+	/*   (void) scene; */
+	/*   color.x = (n.x + 1) * 0.5; */
+	/*   color.y = (n.y + 1) * 0.5; */
+	/*   color.z = (n.z + 1) * 0.5; */
 	color.x = fmin(1.0, color.x);
 	color.y = fmin(1.0, color.y);
 	color.z = fmin(1.0, color.z);

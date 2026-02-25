@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disk.c                                             :+:      :+:    :+:   */
+/*   disk_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 08:52:46 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/20 10:16:53 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/25 16:54:53 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray);
 bool	hit_disk(void *me, t_hit *hits, t_ray ray)
 {
 	t_disk	*obj;
-	double		denom;
-	double		t;
-	t_vec4		oc;
+	double	denom;
+	double	t;
+	t_vec4	oc;
 	
 	obj = me;
 	denom = vec4_dot(obj->norm, ray.dir);
@@ -54,5 +54,6 @@ static inline bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray)
 	hits->norm = obj->norm;
 	hits->hit_point = p;
 	hits->me = obj;
+	hits->inverse = obj->inverse;
 	return (true);
 }

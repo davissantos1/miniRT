@@ -6,11 +6,9 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/24 17:20:44 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/25 16:54:05 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include <fcntl.h>
 #include "parsing.h"
@@ -20,7 +18,7 @@
 #include "vec4.h"
 #include "mlx.h"
 
-// t_minirt meu_teste(void);
+//t_minirt meu_teste(void);
 
 int	main(int ac, char **av)
 {
@@ -45,11 +43,11 @@ int	main(int ac, char **av)
 			desperation(rt, ERR_SYSCALL);
 	}
 	mlx_loop(rt->mlx->init);
-	// (void) ac;
-	// (void) av;
-	// t_minirt teste = meu_teste();
-	// run_rt(&teste);
-	// mlx_loop(teste.mlx->init);
+	 /* (void) ac; */
+	 /* (void) av; */
+	 /* t_minirt teste = meu_teste(); */
+	 /* run_rt(&teste); */
+	 /* mlx_loop(teste.mlx->init); */
 	return (SUCCESS);
 }
 
@@ -60,18 +58,20 @@ int	main(int ac, char **av)
 /* 	t_sphere	*sphere; */
 /* 	t_cylinder	*cylinder; */
 /* 	t_disk		*circle; */
+/* 	t_cone		*cone; */
 
 /* 	(void)plane; */
 /* 	(void)sphere; */
 /* 	(void)cylinder; */
 /* 	(void)circle; */
+/*  	(void)cone; */
 /* 	ctx.gc = gc_init(); */
 /* 	ctx.mlx = start_mlx(ctx.gc, "TESTE"); */
 /* 	ctx.scene = gc_calloc(sizeof(t_scene), ctx.gc, GC_CUSTOM1); */
 /* 	ctx.scene->camera = gc_calloc(sizeof(t_camera), ctx.gc, GC_CUSTOM1); */
-/* 	ctx.scene->camera->pos = vec4_init(-1, 1, 0, 1); */
+/* 	ctx.scene->camera->pos = vec4_init(0, 0, 0, 1); */
 /* 	ctx.scene->camera->fov = 90; */
-/* 	ctx.scene->camera->norm = vec4_unit_vector(vec4_init(1, -1, -1, 0)); */
+/* 	ctx.scene->camera->norm = vec4_unit_vector(vec4_init(0, 0, -1, 0)); */
 /* 	ctx.scene->light = gc_calloc(sizeof(t_light), ctx.gc, GC_CUSTOM1); */
 /* 	ctx.scene->light->color = vec4_init(1, 1, 1, 0); */
 /* 	ctx.scene->light->pos = vec4_init(0, 1, 0, 1); */
@@ -83,38 +83,79 @@ int	main(int ac, char **av)
 /* 	ctx.scene->alight = gc_calloc(sizeof(t_alight), ctx.gc, GC_CUSTOM1); */
 /* 	ctx.scene->alight->ratio = 1; */
 /* 	ctx.scene->alight->color = vec4_init(1, 1, 1, 0); */
-/* 	sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1); */
-/* 	sphere->type = SPHERE; */
-/* 	sphere->diam = 1; */
-/* 	sphere->pos = vec4_init(0, 0, -3, 1); */
-/* 	sphere->mat.color = vec4_init(1, 0, 0, 0); */
-/* 	sphere->mat.ka = vec4_init(0.3, 0, 0, 0); */
-/* 	sphere->mat.ks = vec4_init(1, 1, 1, 0); */
-/* 	sphere->mat.kr = vec4_init(0.2, 0.2, 0.2, 0); */
-/* 	sphere->mat.shininess = 32; */
-/* 	sphere->mat.color2 = vec4_init(0, 1, 1, 0); */
-/* 	sphere->mat.ka2 = vec4_init(0, 0.3, 0.3, 0); */
-/* 	sphere->mat.ks2 = vec4_init(1, 1, 1, 0); */
-/* 	sphere->mat.kr2 = vec4_init(0.2, 0.2, 0.2, 0); */
-/* 	sphere->mat.pattern = STRIPED; */
-/* 	sphere->transform = sphere_transform(sphere, &sphere->inverse); */
-/* 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere)); */
-/* 	plane = gc_calloc(sizeof(t_plane), ctx.gc, GC_CUSTOM1); */
-/* 	plane->type = PLANE; */
-/* 	plane->pos = vec4_init(0, -0.8, 0, 1); */
-/* 	plane->norm = vec4_init(0, 1, 0, 0); */
-/* 	plane->mat.shininess = 42; */
-/* 	plane->mat.color = vec4_init(0.5, 0, 0.5, 0); */
-/* 	plane->mat.ks = vec4_init(0, 0, 0, 0); */
-/* 	plane->mat.ka = vec4_init(0.4, 0, 0.4, 0); */
-/* 	plane->mat.kr = vec4_init(0, 0, 0, 0); */
-/* 	plane->mat.color2 = vec4_init(0.5, 1, 0.5, 0); */
-/* 	plane->mat.ks2 = vec4_init(0, 0, 0, 0); */
-/* 	plane->mat.ka2 = vec4_init(0.4, 0.8, 0.4, 0); */
-/* 	plane->mat.kr2 = vec4_init(0, 0, 0, 0); */
-/* 	plane->mat.pattern = RING; */
-/* 	plane->transform = plane_transform(plane, &plane->inverse); */
-/* 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(plane)); */
+/* 	/\* sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1); *\/ */
+/* 	/\* sphere->type = SPHERE; *\/ */
+/* 	/\* sphere->diam = 1; *\/ */
+/* 	/\* sphere->pos = vec4_init(1, 0, -3, 1); *\/ */
+/* 	/\* sphere->mat.color = vec4_init(1, 0, 0, 0); *\/ */
+/* 	/\* sphere->mat.ka = vec4_init(0.3, 0, 0, 0); *\/ */
+/* 	/\* sphere->mat.ks = vec4_init(1, 1, 1, 0); *\/ */
+/* 	/\* sphere->mat.kr = vec4_init(0.2, 0.2, 0.2, 0); *\/ */
+/* 	/\* sphere->mat.shininess = 32; *\/ */
+/* 	/\* sphere->mat.color2 = vec4_init(0, 1, 1, 0); *\/ */
+/* 	/\* sphere->mat.ka2 = vec4_init(0, 0.3, 0.3, 0); *\/ */
+/* 	/\* sphere->mat.ks2 = vec4_init(1, 1, 1, 0); *\/ */
+/* 	/\* sphere->mat.kr2 = vec4_init(0.2, 0.2, 0.2, 0); *\/ */
+/* 	/\* sphere->mat.pattern = STRIPED; *\/ */
+/* 	/\* sphere->transform = sphere_transform(sphere, &sphere->inverse); *\/ */
+/* 	/\* ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere)); *\/ */
+/* 	/\* plane = gc_calloc(sizeof(t_plane), ctx.gc, GC_CUSTOM1); *\/ */
+/* 	/\* plane->type = PLANE; *\/ */
+/* 	/\* plane->pos = vec4_init(0, -1, 0, 1); *\/ */
+/* 	/\* plane->norm = vec4_init(0, 1, 0, 0); *\/ */
+/* 	/\* plane->mat.shininess = 42; *\/ */
+/* 	/\* plane->mat.pattern_const = 1; *\/ */
+/* 	/\* plane->mat.color = vec4_init(0.5, 0, 0.5, 0); *\/ */
+/* 	/\* plane->mat.ks = vec4_init(0, 0, 0, 0); *\/ */
+/* 	/\* plane->mat.ka = vec4_init(0.4, 0, 0.4, 0); *\/ */
+/* 	/\* plane->mat.kr = vec4_init(0, 0, 0, 0); *\/ */
+/* 	/\* plane->mat.color2 = vec4_init(0.5, 1, 0.5, 0); *\/ */
+/* 	/\* plane->mat.ks2 = vec4_init(0, 0, 0, 0); *\/ */
+/* 	/\* plane->mat.ka2 = vec4_init(0.4, 0.8, 0.4, 0); *\/ */
+/* 	/\* plane->mat.kr2 = vec4_init(0, 0, 0, 0); *\/ */
+/* 	/\* plane->mat.pattern = CHECKER; *\/ */
+/* 	/\* plane->transform = plane_transform(plane, &plane->inverse); *\/ */
+/* 	/\* ft_lstadd_back(&ctx.scene->shape, ft_lstnew(plane)); *\/ */
+/* 	cone = gc_calloc(sizeof(t_cone), ctx.gc, GC_CUSTOM1); */
+/* 	cone->type = CONE; */
+/* 	cone->pos = vec4_init(1, 0, -1, 1); */
+/* 	cone->norm = vec4_init(0, 0, -1, 0); */
+/* 	cone->diam = 0.4; */
+/* 	cone->height = 0.4; */
+/* 	cone->mat.shininess = 32; */
+/* 	cone->mat.pattern_const = 2; */
+/* 	cone->mat.color = vec4_init(0.8, 0, 0.5, 0); */
+/* 	cone->mat.ks = vec4_init(1, 1, 1, 0); */
+/* 	cone->mat.ka = vec4_init(0.4, 0, 0.4, 0); */
+/* 	cone->mat.kr = vec4_init(0, 0, 0, 0); */
+/* 	cone->mat.color2 = vec4_init(0.5, 1, 0.5, 0); */
+/* 	cone->mat.ks2 = vec4_init(0.2, 0.2, 0.2, 0); */
+/* 	cone->mat.ka2 = vec4_init(0.4, 0.8, 0.4, 0); */
+/* 	cone->mat.kr2 = vec4_init(0, 0, 0, 0); */
+/* 	cone->mat.pattern = RING; */
+/* 	cone->transform = cone_transform(cone, &cone->inverse); */
+/* 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cone)); */
+
+
+/* 	cone = gc_calloc(sizeof(t_cone), ctx.gc, GC_CUSTOM1); */
+/* 	cone->type = CONE; */
+/* 	cone->pos = vec4_init(-1, 0, -1, 1); */
+/* 	cone->norm = vec4_init(0, 1, 0, 0); */
+/* 	cone->diam = 0.4; */
+/* 	cone->height = 0.4; */
+/* 	cone->mat.shininess = 32; */
+/* 	cone->mat.pattern_const = 2; */
+/* 	cone->mat.color = vec4_init(0.8, 0, 0.5, 0); */
+/* 	cone->mat.ks = vec4_init(1, 1, 1, 0); */
+/* 	cone->mat.ka = vec4_init(0.4, 0, 0.4, 0); */
+/* 	cone->mat.kr = vec4_init(0, 0, 0, 0); */
+/* 	cone->mat.color2 = vec4_init(0.5, 1, 0.5, 0); */
+/* 	cone->mat.ks2 = vec4_init(0.2, 0.2, 0.2, 0); */
+/* 	cone->mat.ka2 = vec4_init(0.4, 0.8, 0.4, 0); */
+/* 	cone->mat.kr2 = vec4_init(0, 0, 0, 0); */
+/* 	cone->mat.pattern = RING; */
+/* 	cone->transform = cone_transform(cone, &cone->inverse); */
+/* 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cone)); */
 /* 	/\* sphere = gc_calloc(sizeof(t_sphere), ctx.gc, GC_CUSTOM1); *\/ */
 /* 	/\* sphere->type = SPHERE; *\/ */
 /* 	/\* sphere->diam = 0.7; *\/ */
