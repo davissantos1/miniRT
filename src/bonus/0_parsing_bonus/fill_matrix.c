@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 11:00:55 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/25 16:47:01 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/27 09:09:42 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,15 @@ t_matrix4	disk_transform(t_disk *me, t_matrix4 *inv)
 t_matrix4	cone_transform(t_cone *me, t_matrix4 *inv)
 {
 	t_matrix4	transform;
+	t_matrix4	scaling;
 	t_matrix4	translation;
+	double		r;
 
+	r = me->diam / 2.0;
 	translation = mtx4_translation(me->pos.x, me->pos.y, me->pos.z);
+	scaling = mtx4_scaling(r, me->height / 2.0, r);
 	transform = mtx4_times(translation, rotation_calc(me->norm));
+	transform = mtx4_times(transform, scaling);
 	mtx4_inverse(transform, inv);	
 	return (transform);
 }
