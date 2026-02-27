@@ -6,18 +6,18 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/25 14:41:24 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/27 17:39:05 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "ray.h"
+#include "texture_bonus.h"
 #include "vec4.h"
 #include "shapes_bonus.h"
 #include "pattern_bonus.h"
 #include "mlx.h"
 #include <math.h>
-#include <stdio.h>
 
 static void	paint_pixel(t_minirt *ctx, t_ndc ndc);
 static unsigned int	ray_color(t_scene *scene, t_ray ray);
@@ -79,21 +79,16 @@ static unsigned int	ray_color(t_scene *scene, t_ray ray)
 {
 	t_hit	hits;
 	t_color	color;
+
 	hits = ray_collision(scene, ray);
 	if (!hits.num_roots)
 		return (0);
 	hits.cam_dir = vec4_minus(scene->camera->pos, hits.hit_point);
 	hits.cam_dir = vec4_unit_vector(hits.cam_dir);
 	if (hits.mat.pattern != NO_PATTERN)
-	{
-		hits.mat.color = get_pattern(hits, hits.mat.pattern);
-		if (!vec4_is_diff(hits.mat.color, hits.mat.color2))
-		{
-			hits.mat.ka = hits.mat.ka2;
-			hits.mat.ks = hits.mat.ks2;
-			hits.mat.kr = hits.mat.kr2;
-		}
-	}
+		get_pattern(&hits, hits.mat.pattern);
+	if (hits.mat.map_type != NO_TEXTURE)
+		get_texture(&hits);
 	color = phong(hits, scene, 4);
 	color = vec4_scale(255.0, color);
 	return ((int)color.x << 16 | (int)color.y << 8 | (int)color.z);

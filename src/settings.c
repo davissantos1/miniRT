@@ -6,12 +6,12 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:27 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/22 07:49:10 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/27 08:17:56 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "settings.h"
-#include "parsing.h"
+#include "parsing_bonus.h"
 
 static const t_settings		g_settings = {
 	.width = WIDTH,

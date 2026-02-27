@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/25 16:47:30 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/27 17:27:34 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "ray.h"
 # include "structs.h"
 # include "entities.h"
+# include "texture_bonus.h"
 
 // enums
 typedef enum e_shape
@@ -45,6 +46,8 @@ typedef struct	s_material
 {
 	t_pattern	pattern;
 	int			pattern_const;
+	t_map_type	map_type;
+	t_texture	texture;
 	t_vec4		ka;
 	t_vec4		ks;
 	t_vec4		kr;
@@ -63,10 +66,10 @@ typedef struct s_handle
 
 typedef struct s_hit
 {
+	t_shape		type;
 	int			num_roots;
 	double		r1;
 	double		r2;
-	void		*me;
 	t_vec4		norm;
 	t_vec4		cam_dir;
 	t_point		hit_point;
@@ -143,6 +146,7 @@ typedef struct s_quadratic
 
 // functions array
 typedef bool	(*t_get_hit)(void*, t_hit*, t_ray);
+typedef void	(*texture_map)(t_hit*, uv_map*, t_point);
 
 // prototypes
 t_hit		ray_collision(t_scene *scene, t_ray ray);
@@ -158,8 +162,12 @@ t_matrix4	plane_transform(t_plane *me, t_matrix4 *inv);
 t_matrix4	disk_transform(t_disk *me, t_matrix4 *inv);
 t_matrix4	cone_transform(t_cone *me, t_matrix4 *inv);
 
-
 t_color		phong(t_hit hits, t_scene *scene, int depth);
 bool		shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir);
 t_color		reflections(t_scene *scene, t_hit hits, int depth);
+
+void 		normal_map(t_hit *hit, uv_map *maps, t_point p);
+void 		bump_map(t_hit *hit, uv_map *maps, t_point p);
+void		get_texture(t_hit *hit);
+
 #endif

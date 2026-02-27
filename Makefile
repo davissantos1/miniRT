@@ -56,7 +56,11 @@ SRC_BONUS= \
 			src/bonus/0_parsing_bonus/check_shapes_bonus.c \
 			src/bonus/0_parsing_bonus/fill_matrix.c \
 			src/bonus/0_parsing_bonus/rotation_calc.c \
+			src/bonus/0_parsing_bonus/load_img.c \
 			src/bonus/1_run_rt_bonus/run_rt_bonus.c \
+			src/bonus/1_run_rt_bonus/get_texture_bonus.c \
+			src/bonus/1_run_rt_bonus/textures_bonus.c \
+			src/bonus/1_run_rt_bonus/uv_mapping_bonus.c \
 			src/bonus/2_shapes_collision_bonus/disk_bonus.c \
 			src/bonus/2_shapes_collision_bonus/ray_collision_bonus.c \
 			src/bonus/2_shapes_collision_bonus/plane_bonus.c \

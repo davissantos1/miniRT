@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 08:52:46 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/25 16:54:53 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/27 15:42:59 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static inline bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray)
 	hits->mat = obj->mat;
 	hits->norm = obj->norm;
 	hits->hit_point = p;
-	hits->me = obj;
+	hits->type = DISK;
 	hits->inverse = obj->inverse;
+	hits->transform = obj->transform;
 	return (true);
 }

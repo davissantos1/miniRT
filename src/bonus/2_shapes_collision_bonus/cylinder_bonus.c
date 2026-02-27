@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 19:44:44 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/25 08:19:15 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/27 15:42:41 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	fill_hits(t_cylinder *obj, t_hit *hits, t_formula form, t_ray ray)
 	hits->norm = vec4_scale(2 / obj->diam, hits->norm);
 	hits->mat = obj->mat;
 	hits->inverse = obj->inverse;
+	hits->type = CYLINDER;
+	hits->transform = obj->transform;
 }
 
 bool	hit_cylinder(void *me, t_hit *hits, t_ray ray)

@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 08:05:22 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/25 16:49:07 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/27 15:41:16 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	fill_hits(t_cone *obj, t_hit *hits, t_formula form, t_ray ray)
 	hits->norm = vec4_minus(p2apex, vec4_scale(p_height * k, obj->norm));
 	hits->norm = vec4_unit_vector(hits->norm);
 	hits->inverse = obj->inverse;
+	hits->type = CONE;
+	hits->transform = obj->transform;
 }
 
 static bool	put_cap(t_cone *obj, t_hit *hits, t_ray ray)

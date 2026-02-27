@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/21 12:38:32 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/27 15:43:49 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
 	norm = vec4_minus(point, obj->pos);
 	hits->norm = vec4_scale(2 / obj->diam, norm);
 	hits->mat = obj->mat;
-	hits->me = obj;
+	hits->type = SPHERE;
 	hits->inverse = obj->inverse;
+	hits->transform = obj->transform;
 }
