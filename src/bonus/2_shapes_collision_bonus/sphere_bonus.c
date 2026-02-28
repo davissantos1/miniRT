@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:36:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/27 15:43:49 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/28 12:03:21 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,6 @@
 #include "settings.h"
 #include <math.h>
 #include <stdbool.h>
-
-static inline
-void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray);
-
-bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
-{
-	t_sphere	*obj;
-	t_vec4		oc;
-	t_formula	formula;
-	double		delt;
-
-	obj = me;
-	oc = vec4_minus(obj->pos, ray.origin);
-	formula.h = vec4_dot(ray.dir, oc);
-	formula.c = vec4_squared_len(oc) - obj->diam * obj->diam / 4.0;
-	delt = formula.h * formula.h - formula.c;
-	if (delt < EPSILON)
-		return (false);
-	delt = sqrt(delt);
-	formula.r1 = (formula.h - delt);
-	formula.r2 = (formula.h + delt);
-	if (formula.r1 < EPSILON && formula.r2 < EPSILON)
-		return (false);
-	fill_hits(obj, hits, formula, ray);
-	return (true);
-}
 
 static inline
 void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
@@ -65,4 +39,27 @@ void	fill_hits(t_sphere *obj, t_hit *hits, t_formula formula, t_ray ray)
 	hits->type = SPHERE;
 	hits->inverse = obj->inverse;
 	hits->transform = obj->transform;
+}
+
+bool	hit_sphere(void *me, t_hit *hits, t_ray ray)
+{
+	t_sphere	*obj;
+	t_vec4		oc;
+	t_formula	formula;
+	double		delt;
+
+	obj = me;
+	oc = vec4_minus(obj->pos, ray.origin);
+	formula.h = vec4_dot(ray.dir, oc);
+	formula.c = vec4_squared_len(oc) - obj->diam * obj->diam / 4.0;
+	delt = formula.h * formula.h - formula.c;
+	if (delt < EPSILON)
+		return (false);
+	delt = sqrt(delt);
+	formula.r1 = (formula.h - delt);
+	formula.r2 = (formula.h + delt);
+	if (formula.r1 < EPSILON && formula.r2 < EPSILON)
+		return (false);
+	fill_hits(obj, hits, formula, ray);
+	return (true);
 }

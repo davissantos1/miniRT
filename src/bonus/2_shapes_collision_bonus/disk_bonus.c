@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 08:52:46 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/27 15:42:59 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/28 12:01:29 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	hit_disk(void *me, t_hit *hits, t_ray ray)
 	double	denom;
 	double	t;
 	t_vec4	oc;
-	
+
 	obj = me;
 	denom = vec4_dot(obj->norm, ray.dir);
 	if (fabs(denom) <= EPSILON)
@@ -34,14 +34,14 @@ bool	hit_disk(void *me, t_hit *hits, t_ray ray)
 	t = vec4_dot(oc, obj->norm) / denom;
 	if ((t <= EPSILON) || (hits->num_roots && t > hits->r1))
 		return (false);
-	return (intersection(obj, t, hits, ray));	
+	return (intersection(obj, t, hits, ray));
 }
 
 static inline bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray)
 {
 	t_point	p;
 	t_vec4	v;
-	double distance;
+	double	distance;
 
 	p = ray_pos(ray, t);
 	v = vec4_minus(p, obj->pos);

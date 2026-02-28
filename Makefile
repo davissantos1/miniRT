@@ -54,13 +54,15 @@ SRC_BONUS= \
 			src/bonus/0_parsing_bonus/parse_bonus.c \
 			src/bonus/0_parsing_bonus/check_part_bonus.c \
 			src/bonus/0_parsing_bonus/check_shapes_bonus.c \
-			src/bonus/0_parsing_bonus/fill_matrix.c \
-			src/bonus/0_parsing_bonus/rotation_calc.c \
-			src/bonus/0_parsing_bonus/load_img.c \
+			src/bonus/0_parsing_bonus/fill_matrix_bonus.c \
+			src/bonus/0_parsing_bonus/rotation_calc_bonus.c \
+			src/bonus/0_parsing_bonus/load_img_bonus.c \
 			src/bonus/1_run_rt_bonus/run_rt_bonus.c \
-			src/bonus/1_run_rt_bonus/get_texture_bonus.c \
-			src/bonus/1_run_rt_bonus/textures_bonus.c \
-			src/bonus/1_run_rt_bonus/uv_mapping_bonus.c \
+			src/bonus/1_run_rt_bonus/texture/get_texture_bonus.c \
+			src/bonus/1_run_rt_bonus/texture/textures_bonus.c \
+			src/bonus/1_run_rt_bonus/texture/uv_mapping_bonus.c \
+			src/bonus/1_run_rt_bonus/patterns/patterns_bonus.c \
+			src/bonus/1_run_rt_bonus/patterns/get_pattern_bonus.c \
 			src/bonus/2_shapes_collision_bonus/disk_bonus.c \
 			src/bonus/2_shapes_collision_bonus/ray_collision_bonus.c \
 			src/bonus/2_shapes_collision_bonus/plane_bonus.c \
@@ -69,9 +71,7 @@ SRC_BONUS= \
 			src/bonus/2_shapes_collision_bonus/cone_bonus.c \
 			src/bonus/3_phong_bonus/shadows_bonus.c \
 			src/bonus/3_phong_bonus/phong_bonus.c \
-			src/bonus/3_phong_bonus/reflections_bonus.c \
-			src/bonus/3_phong_bonus/patterns_bonus.c \
-			src/bonus/3_phong_bonus/get_pattern_bonus.c
+			src/bonus/3_phong_bonus/reflections_bonus.c
 
 OBJ= $(SRC:.c=.o)
 OBJ_BONUS= $(SRC_BONUS:.c=.o)

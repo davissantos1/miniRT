@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/27 17:43:24 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/28 09:24:18 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,9 @@ t_minirt meu_teste(void)
 	sphere->mat.ka2 = vec4_init(0, 0.3, 0.3, 0);
 	sphere->mat.ks2 = vec4_init(1, 1, 1, 0);
 	sphere->mat.kr2 = vec4_init(0.2, 0.2, 0.2, 0);
-	sphere->mat.pattern = NO_PATTERN;
-	sphere->mat.texture = load_img(&ctx, "./teste.xpm");
+	sphere->mat.pattern = CHECKER;
+	sphere->mat.pattern_const = 2;
+	sphere->mat.texture = load_img(&ctx, "./normal/earth.xpm");
 	sphere->mat.map_type = NORMAL_MAP;
 	sphere->transform = sphere_transform(sphere, &sphere->inverse);
 	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));

@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 08:05:22 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/27 15:41:16 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/28 11:59:54 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static bool	infinity_co(t_cone *obj, t_vec4 oc, t_ray ray, t_formula *form)
 	double	k;
 
 	k = 1.0 + (obj->diam * obj->diam) / (4.0 * obj->height * obj->height);
-	dot_dn = vec4_dot(ray.dir,obj->norm);
+	dot_dn = vec4_dot(ray.dir, obj->norm);
 	dot_noc = vec4_dot(obj->norm, oc);
 	form->a = 1 - k * dot_dn * dot_dn;
 	form->h = 2 * (vec4_dot(ray.dir, oc) - k * dot_dn * dot_noc);
-	form->c = vec4_dot(oc, oc) - k * dot_noc * dot_noc,
+	form->c = vec4_dot(oc, oc) - k * dot_noc * dot_noc;
 	sqrt_delt = form->h * form->h - 4.0 * form->a * form->c;
 	if (sqrt_delt < 0.0)
 		return (false);
@@ -64,12 +64,11 @@ static bool	check_heigh(t_cone *obj, t_ray ray, t_formula *form, t_vec4 apex)
 	return (proje <= EPSILON && proje > -obj->height);
 }
 
-
 static inline
 void	fill_hits(t_cone *obj, t_hit *hits, t_formula form, t_ray ray)
 {
 	t_point	p;
-	t_point apex_pos;
+	t_point	apex_pos;
 	t_vec4	p2apex;
 	double	p_height;
 	double	k;
@@ -105,7 +104,7 @@ static bool	put_cap(t_cone *obj, t_hit *hits, t_ray ray)
 	cap.mat = obj->mat;
 	cap.diam = obj->diam;
 	cap.transform = disk_transform(&cap, &cap.inverse);
-	return(hit_disk(&cap, hits, ray));	
+	return (hit_disk(&cap, hits, ray));
 }
 
 bool	hit_cone(void *me, t_hit *hits, t_ray ray)
@@ -115,7 +114,7 @@ bool	hit_cone(void *me, t_hit *hits, t_ray ray)
 	t_vec4		oc;
 	t_vec4		apex_pos;
 	bool		hit_any;
-	
+
 	obj = me;
 	apex_pos = vec4_plus(obj->pos, vec4_scale(obj->height / 2, obj->norm));
 	oc = vec4_minus(ray.origin, apex_pos);
@@ -130,5 +129,4 @@ bool	hit_cone(void *me, t_hit *hits, t_ray ray)
 	}
 	hit_any = (put_cap(obj, hits, ray) || hit_any);
 	return (hit_any);
-
 }

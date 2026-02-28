@@ -6,10 +6,11 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:49:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/25 16:05:08 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/28 12:10:33 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "entities.h"
 #include "shapes_bonus.h"
 #include "settings.h"
 #include <math.h>
@@ -48,17 +49,23 @@ static inline t_vec4	specular(t_hit hits, t_light *light, t_vec4 light_dir)
 	return (vec4_times(color_shine, intensity));
 }
 
+static inline t_color	ambi_color(t_alight *alight, t_material material)
+{
+	t_color	color;
+
+	color = vec4_scale(alight->ratio, alight->color);
+	color = vec4_times(color, material.ka);
+	return (color);
+}
+
 t_color	phong(t_hit hits, t_scene *scene, int depth)
 {
 	t_light	*light;
 	t_color	color;
-	t_vec4	ambi_color;
 	t_vec4	light_dir;
 
 	light = scene->light;
-	ambi_color = vec4_scale(scene->alight->ratio, scene->alight->color);
-	ambi_color = vec4_times(ambi_color, hits.mat.ka);
-	color = ambi_color;
+	color = ambi_color(scene->alight, hits.mat);
 	while (light)
 	{
 		light_dir = vec4_minus(light->pos, hits.hit_point);
@@ -72,20 +79,8 @@ t_color	phong(t_hit hits, t_scene *scene, int depth)
 	}
 	if (vec4_squared_len(hits.mat.kr) > EPSILON)
 		color = vec4_plus(color, reflections(scene, hits, depth));
-	/* t_vec4 n = hits.norm; */
-	/*   (void) scene; */
-	/*   color.x = (n.x + 1) * 0.5; */
-	/*   color.y = (n.y + 1) * 0.5; */
-	/*   color.z = (n.z + 1) * 0.5; */
 	color.x = fmin(1.0, color.x);
 	color.y = fmin(1.0, color.y);
 	color.z = fmin(1.0, color.z);
 	return (color);
 }
-
-	//debug color pae pra ver se as normais estão certas
-	  /* t_vec4 n = hits.norm;  */
-	  /* (void) scene;  */
-	  /* color.x = (n.x + 1) * 0.5;  */
-	  /* color.y = (n.y + 1) * 0.5;  */
-	  /* color.z = (n.z + 1) * 0.5;  */

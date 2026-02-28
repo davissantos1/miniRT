@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 19:44:44 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/27 15:42:41 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/28 12:00:33 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static bool	infinity_cy(t_cylinder *obj, t_vec4 oc, t_ray ray, t_formula *form)
 	double		dot_dn;
 	double		dot_noc;
 
-	dot_dn = vec4_dot(ray.dir,obj->norm);
+	dot_dn = vec4_dot(ray.dir, obj->norm);
 	dot_noc = vec4_dot(obj->norm, oc);
 	form->a = 1 - dot_dn * dot_dn;
 	form->h = 2 * (vec4_dot(ray.dir, oc) - dot_dn * dot_noc);
@@ -53,7 +53,7 @@ static bool	check_height(t_cylinder *obj, t_formula *fm, t_ray ray)
 	p_to_pos = vec4_minus(p, obj->pos);
 	proje = vec4_dot(p_to_pos, obj->norm);
 	if (fabs(proje) <= half_h)
-	{	
+	{
 		fm->r2 = fm->r1;
 		return (true);
 	}

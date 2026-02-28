@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_matrix.c                                      :+:      :+:    :+:   */
+/*   fill_matrix_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 11:00:55 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/27 09:09:42 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/28 09:28:18 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ t_matrix4	cone_transform(t_cone *me, t_matrix4 *inv)
 	scaling = mtx4_scaling(r, me->height / 2.0, r);
 	transform = mtx4_times(translation, rotation_calc(me->norm));
 	transform = mtx4_times(transform, scaling);
-	mtx4_inverse(transform, inv);	
+	mtx4_inverse(transform, inv);
 	return (transform);
 }

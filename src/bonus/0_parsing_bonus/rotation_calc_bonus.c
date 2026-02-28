@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotation_calc.c                                    :+:      :+:    :+:   */
+/*   rotation_calc_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 11:35:58 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/21 11:51:20 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/02/28 11:45:29 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mtx4.h"
 #include "vec4.h"
-#include <math.h>
 
 t_matrix4	rotation_calc(t_vec4 norm)
 {
@@ -20,7 +19,7 @@ t_matrix4	rotation_calc(t_vec4 norm)
 	t_vec4		up;
 	t_vec4		x;
 	t_vec4		z;
-	
+
 	if (norm.y > 0.9)
 		return (mtx4_identity());
 	if (norm.y < -0.99)

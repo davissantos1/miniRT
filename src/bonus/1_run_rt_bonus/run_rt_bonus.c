@@ -19,38 +19,36 @@
 #include "mlx.h"
 #include <math.h>
 
-static void	paint_pixel(t_minirt *ctx, t_ndc ndc);
+static void			paint_pixel(t_minirt *ctx, t_ndc ndc);
 static unsigned int	ray_color(t_scene *scene, t_ray ray);
 
-void    run_rt(t_minirt *ctx)
+void	run_rt(t_minirt *ctx)
 {
-    t_camera    *cam;
-    t_ndc       ndc;
+	t_camera	*cam;
+	t_ndc		ndc;
 
-    cam = ctx->scene->camera;
-    ndc.ratio = get_settings()->aspect_ratio;
-    ndc.scale = tan(cam->fov * 0.5 * (PI / 180.0));
-    ndc.w = vec4_scale(-1, cam->norm);
-    ndc.u = vec4_unit_vector(vec4_cross(vec4_init(0, 1, 0, 0), ndc.w));
-    ndc.v = vec4_unit_vector(vec4_cross(ndc.w, ndc.u));
-    paint_pixel(ctx, ndc);
+	cam = ctx->scene->camera;
+	ndc.ratio = get_settings()->aspect_ratio;
+	ndc.scale = tan(cam->fov * 0.5 * (PI / 180.0));
+	ndc.w = vec4_scale(-1, cam->norm);
+	ndc.u = vec4_unit_vector(vec4_cross(vec4_init(0, 1, 0, 0), ndc.w));
+	ndc.v = vec4_unit_vector(vec4_cross(ndc.w, ndc.u));
+	paint_pixel(ctx, ndc);
 }
 
-
-static t_vec4  get_ray_dir(t_ndc ndc, int x, int y)
+static t_vec4	get_ray_dir(t_ndc ndc, int x, int y)
 {
-    t_vec4  temp_u;
-    t_vec4  temp_v;
-    double  px;
-    double  py;
+	t_vec4	temp_u;
+	t_vec4	temp_v;
+	double	px;
+	double	py;
 
-    px = (2.0 * ((double)x + 0.5) / WIDTH - 1.0) * ndc.scale * ndc.ratio;
-    py = (1.0 - 2.0 * ((double)y + 0.5) / HEIGHT) * ndc.scale;
-    temp_u = vec4_scale(px, ndc.u);
-    temp_v = vec4_scale(py, ndc.v);
-    return(vec4_minus(vec4_plus(temp_u, temp_v), ndc.w));
+	px = (2.0 * ((double)x + 0.5) / WIDTH - 1.0) * ndc.scale * ndc.ratio;
+	py = (1.0 - 2.0 * ((double)y + 0.5) / HEIGHT) * ndc.scale;
+	temp_u = vec4_scale(px, ndc.u);
+	temp_v = vec4_scale(py, ndc.v);
+	return (vec4_minus(vec4_plus(temp_u, temp_v), ndc.w));
 }
-
 
 static void	paint_pixel(t_minirt *ctx, t_ndc ndc)
 {
@@ -73,7 +71,6 @@ static void	paint_pixel(t_minirt *ctx, t_ndc ndc)
 	}
 	mlx_put_image_to_window(ctx->mlx->init, ctx->mlx->win, ctx->mlx->img, 0, 0);
 }
-
 
 static unsigned int	ray_color(t_scene *scene, t_ray ray)
 {
