@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_texture_bonus.c                                :+:      :+:    :+:   */
+/*   load_img_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/27 17:03:17 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/27 17:30:45 by vitosant         ###    ########.fr      */
+/*   Created: 2026/02/27 08:39:24 by vitosant          #+#    #+#             */
+/*   Updated: 2026/02/28 09:27:42 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
+#include "settings.h"
 #include "texture_bonus.h"
-#include "vec4.h"
-#include "shapes_bonus.h"
+#include "mlx.h"
 
-void	get_texture(t_hit *hit)
+t_texture	load_img(t_minirt *ctx, char *path)
 {
-	static texture_map	options[2] = {bump_map, normal_map};
-	static uv_map 		maps[SHAPE_COUNT] = {uv_sphere, uv_plane,
-							uv_cylinder, uv_disk, uv_cone};
-	t_point p;
+	t_texture	ret;
 
-	p = vec4_multi_mtx4(hit->inverse, hit->hit_point);
-	options[hit->mat.map_type](hit, maps, p);
+	ret.img = mlx_xpm_file_to_image(ctx->mlx->init, path,
+			&ret.width, &ret.height);
+	if (!ret.img)
+		desperation(ctx, ERR_SYSCALL);
+	ret.addr = mlx_get_data_addr(ret.img, &ret.bpp,
+			&ret.line, &ret.end);
+	if (!ret.addr)
+		desperation(ctx, ERR_SYSCALL);
+	return (ret);
 }
