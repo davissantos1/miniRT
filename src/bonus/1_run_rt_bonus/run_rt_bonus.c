@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/27 17:39:05 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/01 16:39:43 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	run_rt(t_minirt *ctx)
 	ndc.ratio = get_settings()->aspect_ratio;
 	ndc.scale = tan(cam->fov * 0.5 * (PI / 180.0));
 	ndc.w = vec4_scale(-1, cam->norm);
-	ndc.u = vec4_unit_vector(vec4_cross(vec4_init(0, 1, 0, 0), ndc.w));
+	if (fabs(ndc.w.y) > 0.999)
+		ndc.u = vec4_unit_vector(vec4_cross(vec4_init(1, 0, 0, 0), ndc.w));
+	else
+		ndc.u = vec4_unit_vector(vec4_cross(vec4_init(0, 1, 0, 0), ndc.w));
 	ndc.v = vec4_unit_vector(vec4_cross(ndc.w, ndc.u));
 	paint_pixel(ctx, ndc);
 }
