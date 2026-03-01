@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:39:24 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/28 09:27:42 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/01 16:29:16 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ t_texture	load_img(t_minirt *ctx, char *path)
 			&ret.line, &ret.end);
 	if (!ret.addr)
 		desperation(ctx, ERR_SYSCALL);
+	ret.mlx_ptr = ctx->mlx->init;
 	return (ret);
 }

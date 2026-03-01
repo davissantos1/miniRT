@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:21:27 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/28 13:51:21 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/01 16:26:15 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TEXTURE_H
 
 # include "structs.h"
+# include "vec4.h"
 
 typedef enum e_map_type
 {
@@ -24,6 +25,7 @@ typedef enum e_map_type
 
 typedef struct	s_texture
 {
+	void	*mlx_ptr;
 	void	*img;
 	char	*addr;
 	int		bpp;
