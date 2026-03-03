@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:13:55 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/01 09:19:46 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/02 11:02:25 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_minirt meu_teste(void)
 	sphere->mat.texture = load_img(&ctx, "./normal_map/earth.xpm");
 	sphere->mat.map_type = NORMAL_MAP;
 	sphere->transform = sphere_transform(sphere, &sphere->inverse);
-	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
+	//ft_lstadd_back(&ctx.scene->shape, ft_lstnew(sphere));
 	/* plane = gc_calloc(sizeof(t_plane), ctx.gc, GC_CUSTOM1); */
 	/* plane->type = PLANE; */
 	/* plane->pos = vec4_init(0, -1, 0, 1); */
@@ -136,11 +136,11 @@ t_minirt meu_teste(void)
 	cone->mat.ks2 = vec4_init(0.2, 0.2, 0.2, 0);
 	cone->mat.ka2 = vec4_init(0.4, 0.8, 0.4, 0);
 	cone->mat.kr2 = vec4_init(0, 0, 0, 0);
-	cone->mat.pattern = RING;
+	cone->mat.pattern = STRIPED;
+	cone->mat.pattern_const = 7;
+	cone->mat.map_type = NO_TEXTURE;
 	cone->transform = cone_transform(cone, &cone->inverse);
-	//	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cone));
-
-
+	ft_lstadd_back(&ctx.scene->shape, ft_lstnew(cone));
 /* 	cone = gc_calloc(sizeof(t_cone), ctx.gc, GC_CUSTOM1); */
 /* 	cone->type = CONE; */
 /* 	cone->pos = vec4_init(-1, 0, -1, 1); */
