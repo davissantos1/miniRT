@@ -10,6 +10,6 @@ compile_commands.json
 .clangd
 .cache
 .vscode
-TAGSminiRT_bonus
+TAGS
 miniRT_bonus
 to_xpm.py
