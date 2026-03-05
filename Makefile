@@ -17,6 +17,7 @@ BASE_FILES= \
 		src/utils/add.c \
 		src/utils/get_name.c \
 		src/utils/img_pixel_put.c \
+		src/utils/camera_move.c \
 		src/math/matrix/mtx4_inverse.c \
 		src/math/matrix/mtx4_utils.c \
 		src/math/matrix/mtx4_det.c \

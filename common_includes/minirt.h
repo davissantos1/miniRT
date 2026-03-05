@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/22 07:42:19 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/05 17:45:28 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // Local includes
 # include "../libft/libft.h"
 # include "settings.h"
+# include "entities.h"
 # include "structs.h"
 
 //Signatures
@@ -39,5 +40,9 @@ int			hook_keys(int keycode, t_minirt *rt);
 int			close_cross(t_minirt *rt);
 void		test_parser(t_minirt *rt);
 char		*get_name(char *name);
+
+// rotate camera
+void    rotate_x(t_camera *cam, double angle);
+void    rotate_y(t_camera *cam, double angle);
 
 #endif
