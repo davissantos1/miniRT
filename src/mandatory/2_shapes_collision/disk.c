@@ -6,30 +6,33 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 08:52:46 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/22 08:06:34 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/07 19:32:14 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shapes.h"
 #include "settings.h"
+#include "vec4.h"
 
 static bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray);
 
 bool	hit_disk(void *me, t_hit *hits, t_ray ray)
 {
 	t_disk		*obj;
-	double		denom;
+	double		cosine;
 	double		t;
 	t_vec4		oc;
 
 	obj = me;
-	denom = vec4_dot(obj->norm, ray.dir);
-	if (fabs(denom) <= EPSILON)
+	cosine = vec4_dot(obj->norm, ray.dir);
+	if (fabs(cosine) <= EPSILON)
 		return (false);
 	oc = vec4_minus(obj->pos, ray.origin);
-	t = vec4_dot(oc, obj->norm) / denom;
+	t = vec4_dot(oc, obj->norm) / cosine;
 	if ((t <= EPSILON) || (hits->num_roots && t > hits->r1))
 		return (false);
+	if (cosine > 0)
+		obj->norm = vec4_scale(-1.0, obj->norm);
 	return (intersection(obj, t, hits, ray));
 }
 
@@ -42,7 +45,7 @@ static inline bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray)
 	p = ray_pos(ray, t);
 	v = vec4_minus(p, obj->pos);
 	dist = vec4_squared_len(v);
-	if (dist > obj->diam * obj->diam / 4)
+	if (dist > obj->diam * obj->diam * 0.25)
 		return (false);
 	hits->r1 = t;
 	hits->num_roots = 1;
