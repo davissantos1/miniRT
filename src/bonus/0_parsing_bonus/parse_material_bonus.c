@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:43:54 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 15:40:30 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:29:48 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,9 @@ t_material	parse_material(t_minirt *rt, char **ent)
 	else
 	{
 		fill_material(rt, &m, ent);
-		fill_pattern_map(rt, &m, ent[4], ent[10]);
-		m.texture = load_img(rt, ent[11]);
+		fill_pattern_map(rt, &m, ent[4], ent[5]);
+		if (ft_strcmp(ent[5], "NO_TEXTURE") != 0)
+			m.texture = load_img(rt, ent[6]);
 	}
 	return (m);
 }
