@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 10:45:34 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 15:29:21 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 17:23:33 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	parse_plane(t_minirt *rt, char **ent)
 	pl->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
 	pl->mat = parse_material(rt, ent + 3);
 	pl->mat.pattern_const = 1;
+	pl->transform = plane_transform(pl, &pl->inverse);
 	add_object(rt, pl);
 	ft_mtxfree(p);
 	ft_mtxfree(n);
@@ -54,6 +55,7 @@ void	parse_sphere(t_minirt *rt, char **ent)
 	sp->diam = ft_atod(ent[2]);
 	sp->mat = parse_material(rt, ent + 3);
 	sp->mat.pattern_const = 2;
+	sp->transform = sphere_transform(sp, &sp->inverse);
 	add_object(rt, sp);
 	ft_mtxfree(p);
 }
@@ -80,6 +82,7 @@ void	parse_cylinder(t_minirt *rt, char **ent)
 	cy->height = ft_atod(ent[4]);
 	cy->mat = parse_material(rt, ent + 5);
 	cy->mat.pattern_const = 2;
+	cy->transform = cy_transform(cy, &cy->inverse);
 	add_object(rt, cy);
 	ft_mtxfree(p);
 	ft_mtxfree(n);
@@ -105,6 +108,7 @@ void	parse_cone(t_minirt *rt, char **ent)
 	co->height = ft_atod(ent[4]);
 	co->mat = parse_material(rt, ent + 5);
 	co->mat.pattern_const = 7;
+	co->transform = cone_transform(co, &co->inverse);
 	add_object(rt, co);
 	ft_mtxfree(p);
 	ft_mtxfree(n);
@@ -129,6 +133,7 @@ void	parse_disk(t_minirt *rt, char **ent)
 	di->diam = ft_atod(ent[3]);
 	di->mat = parse_material(rt, ent + 4);
 	di->mat.pattern_const = 2;
+	di->transform = disk_transform(di, &di->inverse);
 	add_object(rt, di);
 	ft_mtxfree(p);
 	ft_mtxfree(n);

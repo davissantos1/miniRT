@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:39:33 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 14:39:24 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:55:07 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	check_plane(t_minirt *rt, char **pos, char **norm, char **ent)
 {
 	int		status;
 	char	***v;
-	
+
 	status = 1;
 	v = get_vars(rt, ent);
-  	if (!check_pos(pos) || !check_norm(norm))
-  		status = 0;
-  	if (!check_color(v[0]))
-  		status = 0;
+	if (!check_pos(pos) || !check_norm(norm))
+		status = 0;
+	if (!check_color(v[0]))
+		status = 0;
 	if (ent[1])
 	{
 		if (!check_color(v[7]) || !is_pos(v[11][0]))
@@ -41,7 +41,7 @@ int	check_sphere(t_minirt *rt, char **pos, char *diam, char **ent)
 {
 	int		status;
 	char	***v;
-	
+
 	status = 1;
 	v = get_vars(rt, ent);
 	if (!check_pos(pos))
@@ -67,7 +67,7 @@ int	check_cylinder(t_minirt *rt, char **pos, char **norm, char **ent)
 {
 	int		status;
 	char	***v;
-	
+
 	status = 1;
 	if (!check_pos(pos) || !check_norm(norm))
 		return (0);
@@ -89,7 +89,7 @@ int	check_cone(t_minirt *rt, char **pos, char **norm, char **ent)
 {
 	int		status;
 	char	***v;
-	
+
 	status = 1;
 	if (!check_pos(pos) || !check_norm(norm))
 		return (0);
@@ -111,7 +111,7 @@ int	check_disk(t_minirt *rt, char **pos, char **norm, char **ent)
 {
 	int		status;
 	char	***v;
-	
+
 	status = 1;
 	if (!check_pos(pos) || !check_norm(norm))
 		return (0);
