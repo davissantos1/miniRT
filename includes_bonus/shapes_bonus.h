@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/27 17:27:34 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 14:12:33 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_hit
 	double		r1;
 	double		r2;
 	t_vec4		norm;
+	t_vec4		ambi_norm;
 	t_vec4		cam_dir;
 	t_point		hit_point;
 	t_vec4		ray_dir;
