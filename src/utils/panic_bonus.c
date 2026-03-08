@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   panic.c                                            :+:      :+:    :+:   */
+/*   panic_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:11:30 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 11:47:59 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 11:49:55 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "mlx.h"
 #include <stdio.h>
+#include "texture_bonus.h"
 
 t_status	panic(t_status status)
 {
@@ -45,6 +46,7 @@ void	desperation(t_minirt *rt, t_status status)
 		real_panic(status);
 	else
 	{
+		ft_lstiter(rt->scene->shape, destroy_texture);
 		mlx_destroy_image(rt->mlx->init, rt->mlx->img);
 		mlx_destroy_window(rt->mlx->init, rt->mlx->win);
 		mlx_destroy_display(rt->mlx->init);

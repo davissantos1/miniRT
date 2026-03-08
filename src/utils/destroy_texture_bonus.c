@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 13:33:01 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/01 16:28:38 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 11:44:24 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,4 @@ void	destroy_texture(void *content)
 	tex = handle_texture(get_type(content), content);
 	if (tex.img)
 		mlx_destroy_image(tex.mlx_ptr, tex.img);
-	//free(content);
 }

@@ -9,11 +9,9 @@ INCLUDES_BONUS= -I./includes_bonus $(COMMON_INCLUDES)
 
 BASE_FILES= \
 		src/main.c \
-		src/settings.c \
 		src/utils/check.c \
 		src/utils/start.c \
 		src/utils/hooks.c \
-		src/utils/panic.c \
 		src/utils/add.c \
 		src/utils/get_name.c \
 		src/utils/img_pixel_put.c \
@@ -34,6 +32,8 @@ BASE_FILES= \
 
 SRC= \
 		$(BASE_FILES) \
+		src/settings.c \
+		src/utils/panic.c \
 		src/mandatory/0_parsing/check_part.c \
 		src/mandatory/0_parsing/check_element.c \
 		src/mandatory/0_parsing/parse.c \
@@ -50,14 +50,19 @@ SRC= \
 
 SRC_BONUS= \
 			$(BASE_FILES) \
+			src/utils/panic_bonus.c \
+			src/bonus/settings_bonus.c \
+			src/utils/destroy_texture_bonus.c \
 			src/bonus/0_parsing_bonus/check_element_bonus.c \
 			src/bonus/0_parsing_bonus/parse_shapes_bonus.c \
 			src/bonus/0_parsing_bonus/parse_bonus.c \
+			src/bonus/0_parsing_bonus/parse_material_bonus.c \
 			src/bonus/0_parsing_bonus/check_part_bonus.c \
 			src/bonus/0_parsing_bonus/check_shapes_bonus.c \
 			src/bonus/0_parsing_bonus/fill_matrix_bonus.c \
 			src/bonus/0_parsing_bonus/rotation_calc_bonus.c \
 			src/bonus/0_parsing_bonus/load_img_bonus.c \
+			src/bonus/0_parsing_bonus/get_vars_bonus.c \
 			src/bonus/1_run_rt_bonus/0_run_rt_bonus.c \
 			src/bonus/1_run_rt_bonus/1_threads_bonus.c \
 			src/bonus/1_run_rt_bonus/2_routine_bonus.c \
