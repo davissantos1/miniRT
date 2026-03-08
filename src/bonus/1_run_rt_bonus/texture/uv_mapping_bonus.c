@@ -12,7 +12,6 @@
 
 #include "vec4.h"
 #include <math.h>
-#include <stdio.h>
 
 void	uv_sphere(t_point p, double *u, double *v)
 {
@@ -25,8 +24,8 @@ void	uv_plane(t_point p, double *u, double *v)
 	double	integer_x;
 	double	integer_z;
 
-	*u = (((int)fabs(p.x)) % 2) + modf(fabs(p.x), &integer_x);
-	*v = (((int)fabs(p.z)) % 2) + modf(fabs(p.z), &integer_z);
+	*u = ((((int)fabs(p.x)) % 2) + modf(fabs(p.x), &integer_x)) * 0.5;
+	*v = ((((int)fabs(p.z)) % 2) + modf(fabs(p.z), &integer_z)) * 0.5;
 }
 
 void	uv_cylinder(t_point p, double *u, double *v)
