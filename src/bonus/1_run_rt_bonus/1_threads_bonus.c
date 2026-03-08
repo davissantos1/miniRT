@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 17:41:36 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/08 15:50:35 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:10:42 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	create_threads(t_minirt *ctx, t_ndc ndc)
 		i++;
 	}
 	start_routine(thread_param, tot_threads);
+	free(thread_param);
 }
 
 static void	start_routine(t_thread *param, int total)
