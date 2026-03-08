@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 08:52:46 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/28 12:01:29 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/07 19:34:10 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,20 @@ static bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray);
 bool	hit_disk(void *me, t_hit *hits, t_ray ray)
 {
 	t_disk	*obj;
-	double	denom;
+	double	cosine;
 	double	t;
 	t_vec4	oc;
 
 	obj = me;
-	denom = vec4_dot(obj->norm, ray.dir);
-	if (fabs(denom) <= EPSILON)
+	cosine = vec4_dot(obj->norm, ray.dir);
+	if (fabs(cosine) <= EPSILON)
 		return (false);
 	oc = vec4_minus(obj->pos, ray.origin);
-	t = vec4_dot(oc, obj->norm) / denom;
+	t = vec4_dot(oc, obj->norm) / cosine;
 	if ((t <= EPSILON) || (hits->num_roots && t > hits->r1))
 		return (false);
+	if (cosine > 0)
+		obj->norm = vec4_scale(-1.0, obj->norm);
 	return (intersection(obj, t, hits, ray));
 }
 

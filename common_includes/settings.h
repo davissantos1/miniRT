@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:53 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/22 07:46:17 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 11:51:14 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef enum e_status
 	ERR_ARG_INVALID,
 	ERR_FILE_INVALID,
 	ERR_SYSCALL,
+	ERR_MAP_INVALID,
 	COUNT
 }	t_status;
 

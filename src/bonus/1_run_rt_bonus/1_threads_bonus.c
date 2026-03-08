@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 17:41:36 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/03 21:07:35 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 16:10:42 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	create_threads(t_minirt *ctx, t_ndc ndc)
 
 	i = 0;
 	tot_threads = (int)sysconf(_SC_NPROCESSORS_ONLN);
-	thread_param = malloc(sizeof(*thread_param) * tot_threads);
+	thread_param = ft_calloc(sizeof(*thread_param), tot_threads);
 	while (i < tot_threads)
 	{
 		thread_param[i].ctx = ctx;
@@ -39,6 +39,7 @@ void	create_threads(t_minirt *ctx, t_ndc ndc)
 		i++;
 	}
 	start_routine(thread_param, tot_threads);
+	free(thread_param);
 }
 
 static void	start_routine(t_thread *param, int total)
