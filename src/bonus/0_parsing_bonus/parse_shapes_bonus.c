@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 10:45:34 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 12:14:56 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 15:29:21 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parse_plane(t_minirt *rt, char **ent)
 	n = ft_split(ent[2], ',');
 	if (!check_plane(rt, p, n, ent + 3))
 		desperation(rt, ERR_FILE_INVALID);
-	pl = gc_malloc(sizeof(t_plane), rt->gc, GC_DEFAULT);
+	pl = gc_calloc(sizeof(t_plane), rt->gc, GC_DEFAULT);
 	if (!pl)
 		desperation(rt, ERR_FILE_INVALID);
 	pl->type = PLANE;
@@ -46,7 +46,7 @@ void	parse_sphere(t_minirt *rt, char **ent)
 	p = ft_split(ent[1], ',');
 	if (!check_sphere(rt, p, ent[2], ent + 3))
 		desperation(rt, ERR_FILE_INVALID);
-	sp = gc_malloc(sizeof(t_sphere), rt->gc, GC_DEFAULT);
+	sp = gc_calloc(sizeof(t_sphere), rt->gc, GC_DEFAULT);
 	if (!sp)
 		desperation(rt, ERR_FILE_INVALID);
 	sp->type = SPHERE;
@@ -66,7 +66,7 @@ void	parse_cylinder(t_minirt *rt, char **ent)
 
 	p = ft_split(ent[1], ',');
 	n = ft_split(ent[2], ',');
-	cy = gc_malloc(sizeof(t_cylinder), rt->gc, GC_DEFAULT);
+	cy = gc_calloc(sizeof(t_cylinder), rt->gc, GC_DEFAULT);
 	if (!check_cylinder(rt, p, n, ent + 5))
 		desperation(rt, ERR_FILE_INVALID);
 	if (!is_pos(ent[3]) || !is_pos(ent[4]))
@@ -93,7 +93,7 @@ void	parse_cone(t_minirt *rt, char **ent)
 
 	p = ft_split(ent[1], ',');
 	n = ft_split(ent[2], ',');
-	co = gc_malloc(sizeof(t_cone), rt->gc, GC_DEFAULT);
+	co = gc_calloc(sizeof(t_cone), rt->gc, GC_DEFAULT);
 	if (!check_cone(rt, p, n, ent + 5) || !is_pos(ent[3]) || !is_pos(ent[4]))
 		desperation(rt, ERR_FILE_INVALID);
 	if (!co)
@@ -118,7 +118,7 @@ void	parse_disk(t_minirt *rt, char **ent)
 
 	p = ft_split(ent[1], ',');
 	n = ft_split(ent[2], ',');
-	di = gc_malloc(sizeof(t_disk), rt->gc, GC_DEFAULT);
+	di = gc_calloc(sizeof(t_disk), rt->gc, GC_DEFAULT);
 	if (!check_disk(rt, p, n, ent + 4) || !is_pos(ent[3]))
 		desperation(rt, ERR_FILE_INVALID);
 	if (!di)

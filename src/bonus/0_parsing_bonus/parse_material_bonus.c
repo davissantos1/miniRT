@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:43:54 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 14:48:55 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 15:40:30 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,22 @@
 #include "settings.h"
 #include "minirt.h"
 #include "parsing_bonus.h"
+
+static void check_filled(t_minirt *rt, char ***v)
+{
+	int	i;
+
+	i = 0;
+	
+	if (!v || !*v || !**v)
+		desperation(rt, ERR_FILE_INVALID);
+	while (v[i])
+	{
+		if (!v[i])
+			desperation(rt, ERR_FILE_INVALID);
+		i++;
+	}
+}
 
 static void fill_material_aux(t_material *m, char ***v)
 {
@@ -37,6 +53,7 @@ static void	fill_material(t_minirt *rt, t_material *m, char **ent)
 	char	***v;
 	
 	v = get_vars(rt, ent);
+	check_filled(rt, v);
 	fill_material_aux(m, v);
 	if (v[1])
 	{
@@ -84,6 +101,7 @@ t_material	parse_material(t_minirt *rt, char **ent)
 	char		**c;
 	t_material	m;
 
+	m = (t_material) {0};
 	if (!ent[1])
 	{
 		c = ft_split(ent[0], ',');
@@ -93,6 +111,7 @@ t_material	parse_material(t_minirt *rt, char **ent)
 		m.color = vec4_scale((double) 1 / 255, m.color);
 		m.pattern = NO_PATTERN;
 		m.map_type = NO_TEXTURE;
+		m.shininess = 32.0;
 		ft_mtxfree(c);
 	}
 	else
