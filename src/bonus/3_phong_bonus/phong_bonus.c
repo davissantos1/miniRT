@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:49:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/28 12:10:33 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 14:44:09 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,18 @@ static inline t_vec4	specular(t_hit hits, t_light *light, t_vec4 light_dir)
 	return (vec4_times(color_shine, intensity));
 }
 
-static inline t_color	ambi_color(t_alight *alight, t_material material)
+static inline t_color	ambi_color(t_alight *alight, t_hit hits)
 {
-	t_color	color;
+	double	angle;
+	t_vec4	ambi_light;
+	t_vec4	ret;
 
-	color = vec4_scale(alight->ratio, alight->color);
-	color = vec4_times(color, material.ka);
-	return (color);
+	angle = vec4_dot(hits.norm, hits.ambi_norm);
+	if (angle <= EPSILON)
+		return ((t_color){0});
+	ambi_light = vec4_scale(alight->ratio, alight->color);
+	ret = vec4_times(ambi_light, hits.mat.color);
+	return (vec4_times(vec4_scale(angle, hits.mat.ka), ret));
 }
 
 t_color	phong(t_hit hits, t_scene *scene, int depth)
@@ -65,7 +70,7 @@ t_color	phong(t_hit hits, t_scene *scene, int depth)
 	t_vec4	light_dir;
 
 	light = scene->light;
-	color = ambi_color(scene->alight, hits.mat);
+	color = ambi_color(scene->alight, hits);
 	while (light)
 	{
 		light_dir = vec4_minus(light->pos, hits.hit_point);

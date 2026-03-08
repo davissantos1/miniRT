@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 18:28:53 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/03 21:08:36 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 16:47:13 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "minirt.h"
 #include "pattern_bonus.h"
 #include "texture_bonus.h"
-#include <stdio.h>
 
 static t_vec4	get_ray_dir(t_ndc ndc, int x, int y)
 {
@@ -43,6 +42,7 @@ static unsigned int	ray_color(t_scene *scene, t_ray ray)
 		return (0);
 	hits.cam_dir = vec4_minus(scene->camera->pos, hits.hit_point);
 	hits.cam_dir = vec4_unit_vector(hits.cam_dir);
+	hits.ambi_norm = hits.norm;
 	if (hits.mat.pattern != NO_PATTERN)
 		get_pattern(&hits, hits.mat.pattern);
 	if (hits.mat.map_type != NO_TEXTURE)
