@@ -1,6 +1,6 @@
 # Variables
 CC= cc
-CFLAGS= -Wall -Wextra -Werror -Wpedantic -O3 -march=native -ffast-math
+CFLAGS= -Wall -Wextra -Werror -Wpedantic -g -march=native -ffast-math
 LDFLAGS= -lXext -lX11 -lm -lz
 COMMON_INCLUDES= -I./common_includes -I./minilibx-linux
 INCLUDES= -I./includes $(COMMON_INCLUDES)
@@ -8,7 +8,6 @@ INCLUDES_BONUS= -I./includes_bonus $(COMMON_INCLUDES)
 
 
 BASE_FILES= \
-		src/main.c \
 		src/utils/check.c \
 		src/utils/start.c \
 		src/utils/hooks.c \
@@ -32,6 +31,7 @@ BASE_FILES= \
 
 SRC= \
 		$(BASE_FILES) \
+		src/main.c \
 		src/settings.c \
 		src/utils/panic.c \
 		src/mandatory/0_parsing/check_part.c \
@@ -50,6 +50,7 @@ SRC= \
 
 SRC_BONUS= \
 			$(BASE_FILES) \
+			src/main_bonus.c \
 			src/utils/panic_bonus.c \
 			src/bonus/settings_bonus.c \
 			src/utils/destroy_texture_bonus.c \
