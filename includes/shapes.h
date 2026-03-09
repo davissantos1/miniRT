@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/22 07:46:02 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 19:55:25 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SHAPES_H
 
 # include <math.h>
-#include "mtx4.h"
+# include "mtx4.h"
 # include "vec4.h"
 # include "ray.h"
 # include "structs.h"
@@ -31,7 +31,7 @@ typedef enum e_shape
 }	t_shape;
 
 //structs
-typedef struct	s_material
+typedef struct s_material
 {
 	t_vec4		ka;
 	t_vec4		ks;

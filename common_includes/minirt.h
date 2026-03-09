@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/05 17:45:28 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 19:59:51 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		test_parser(t_minirt *rt);
 char		*get_name(char *name);
 
 // rotate camera
-void    rotate_x(t_camera *cam, double angle);
-void    rotate_y(t_camera *cam, double angle);
+void		rotate_x(t_camera *cam, double angle);
+void		rotate_y(t_camera *cam, double angle);
 
 #endif

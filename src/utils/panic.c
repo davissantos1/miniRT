@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:11:30 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 12:36:25 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 19:52:48 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_status	panic(t_status status)
 
 	if (status == SUCCESS)
 		return (SUCCESS);
-
 	ft_putstr_fd("Error\n", 2);
 	if (status == ERR_SYSCALL)
 		perror("miniRT");

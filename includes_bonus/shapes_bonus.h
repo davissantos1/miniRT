@@ -6,12 +6,12 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 14:12:33 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 20:02:07 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHAPES_H
-# define SHAPES_H
+#ifndef SHAPES_BONUS_H
+# define SHAPES_BONUS_H
 
 # include "mtx4.h"
 # include "vec4.h"
@@ -40,9 +40,8 @@ typedef enum e_pattern
 	NO_PATTERN
 }	t_pattern;
 
-
 //structs
-typedef struct	s_material
+typedef struct s_material
 {
 	t_pattern	pattern;
 	int			pattern_const;
@@ -124,7 +123,6 @@ typedef struct s_cone
 	double		height;
 }	t_cone;
 
-
 typedef struct s_disk
 {
 	t_shape		type;
@@ -150,25 +148,25 @@ typedef bool	(*t_get_hit)(void*, t_hit*, t_ray);
 typedef void	(*texture_map)(t_hit*, uv_map*, t_point);
 
 // prototypes
-t_hit		ray_collision(t_scene *scene, t_ray ray);
-bool		hit_sphere(void *me, t_hit *hits, t_ray ray);
-bool		hit_cylinder(void *me, t_hit *hits, t_ray ray);
-bool		hit_disk(void *me, t_hit *hits, t_ray ray);
-bool		hit_plane(void *me, t_hit *hits, t_ray ray);
-bool		hit_cone(void *me, t_hit *hits, t_ray ray);
+t_hit			ray_collision(t_scene *scene, t_ray ray);
+bool			hit_sphere(void *me, t_hit *hits, t_ray ray);
+bool			hit_cylinder(void *me, t_hit *hits, t_ray ray);
+bool			hit_disk(void *me, t_hit *hits, t_ray ray);
+bool			hit_plane(void *me, t_hit *hits, t_ray ray);
+bool			hit_cone(void *me, t_hit *hits, t_ray ray);
 
-t_matrix4	sphere_transform(t_sphere *me, t_matrix4 *inv);
-t_matrix4	cy_transform(t_cylinder *me, t_matrix4 *inv);
-t_matrix4	plane_transform(t_plane *me, t_matrix4 *inv);
-t_matrix4	disk_transform(t_disk *me, t_matrix4 *inv);
-t_matrix4	cone_transform(t_cone *me, t_matrix4 *inv);
+t_matrix4		sphere_transform(t_sphere *me, t_matrix4 *inv);
+t_matrix4		cy_transform(t_cylinder *me, t_matrix4 *inv);
+t_matrix4		plane_transform(t_plane *me, t_matrix4 *inv);
+t_matrix4		disk_transform(t_disk *me, t_matrix4 *inv);
+t_matrix4		cone_transform(t_cone *me, t_matrix4 *inv);
 
-t_color		phong(t_hit hits, t_scene *scene, int depth);
-bool		shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir);
-t_color		reflections(t_scene *scene, t_hit hits, int depth);
+t_color			phong(t_hit hits, t_scene *scene, int depth);
+bool			shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir);
+t_color			reflections(t_scene *scene, t_hit hits, int depth);
 
-void 		normal_map(t_hit *hit, uv_map *maps, t_point p);
-void 		bump_map(t_hit *hit, uv_map *maps, t_point p);
-void		get_texture(t_hit *hit);
+void 			normal_map(t_hit *hit, uv_map *maps, t_point p);
+void 			bump_map(t_hit *hit, uv_map *maps, t_point p);
+void			get_texture(t_hit *hit);
 
 #endif

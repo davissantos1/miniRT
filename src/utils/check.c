@@ -6,11 +6,11 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:06:47 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 22:25:23 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 19:52:14 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minirt.h"
+#include "minirt.h"
 
 int	check_if_double(char *str)
 {
@@ -27,7 +27,7 @@ int	check_if_double(char *str)
 		i++;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]) && str[i] != '.')	
+		if (!ft_isdigit(str[i]) && str[i] != '.')
 			return (0);
 		if (str[i] == '.')
 			p++;
@@ -53,7 +53,7 @@ int	check_number_3mtx(char **num)
 
 int	check_filename(char *file)
 {
-	size_t len;
+	size_t	len;
 
 	len = ft_strlen(file);
 	if (len < 4)

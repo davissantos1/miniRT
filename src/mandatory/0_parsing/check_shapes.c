@@ -6,13 +6,12 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:39:33 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/22 08:00:16 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 19:54:27 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "parsing.h"
-
 
 int	check_plane(char **pos, char **norm, char **color)
 {

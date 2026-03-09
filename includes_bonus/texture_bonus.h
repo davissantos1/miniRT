@@ -6,12 +6,12 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:21:27 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/01 16:26:15 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/08 19:58:50 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEXTURE_H
-# define TEXTURE_H
+#ifndef TEXTURE_BONUS_H
+# define TEXTURE_BONUS_H
 
 # include "structs.h"
 # include "vec4.h"
@@ -23,7 +23,7 @@ typedef enum e_map_type
 	NO_TEXTURE
 }	t_map_type;
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	void	*mlx_ptr;
 	void	*img;
@@ -36,15 +36,15 @@ typedef struct	s_texture
 }	t_texture;
 
 typedef void (*uv_map)(t_point, double *, double *);
-	
+
 t_texture	load_img(t_minirt *ctx, char *path);
 
-void	uv_sphere(t_point p, double *u, double *v);
-void	uv_cylinder(t_point p, double *u, double *v);
-void	uv_plane(t_point p, double *u, double *v);
-void	uv_disk(t_point p, double *u, double *v);
-void	uv_cone(t_point p, double *u, double *v);
+void		uv_sphere(t_point p, double *u, double *v);
+void		uv_cylinder(t_point p, double *u, double *v);
+void		uv_plane(t_point p, double *u, double *v);
+void		uv_disk(t_point p, double *u, double *v);
+void		uv_cone(t_point p, double *u, double *v);
 
-void	destroy_texture(void *content);
+void		destroy_texture(void *content);
 
 #endif

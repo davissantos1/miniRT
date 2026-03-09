@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 13:33:01 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/08 11:44:24 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 19:53:32 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static inline t_shape	get_type(t_handle *content)
 	return (content->type);
 }
 
-static t_texture handle_texture(t_shape type, void *content)
+static t_texture	handle_texture(t_shape type, void *content)
 {
 	if (type == SPHERE)
 		return (((t_sphere *)content)->mat.texture);
@@ -34,7 +34,7 @@ static t_texture handle_texture(t_shape type, void *content)
 
 void	destroy_texture(void *content)
 {
-	t_texture tex;
+	t_texture	tex;
 
 	tex = handle_texture(get_type(content), content);
 	if (tex.img)

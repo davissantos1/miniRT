@@ -6,12 +6,12 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:03:08 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 12:14:19 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/08 20:03:54 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef PARSING_BONUS_H
+# define PARSING_BONUS_H
 
 # include "structs.h"
 # include "shapes_bonus.h"
@@ -45,7 +45,7 @@ int			check_ratio(char *ratio);
 int			check_fov(char *fov);
 int			check_color(char **color);
 
-char	 	***get_vars(t_minirt *rt, char **ent);
+char		***get_vars(t_minirt *rt, char **ent);
 void		free_vars(char ***vars);
 t_material	parse_material(t_minirt *rt, char **ent);
 
