@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 18:28:53 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/08 16:47:13 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/10 14:03:00 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,6 @@ static unsigned int	ray_color(t_scene *scene, t_ray ray)
 	hits.cam_dir = vec4_minus(scene->camera->pos, hits.hit_point);
 	hits.cam_dir = vec4_unit_vector(hits.cam_dir);
 	hits.ambi_norm = hits.norm;
-	if (hits.mat.pattern != NO_PATTERN)
-		get_pattern(&hits, hits.mat.pattern);
-	if (hits.mat.map_type != NO_TEXTURE)
-		get_texture(&hits);
 	color = phong(hits, scene, 4);
 	color = vec4_scale(255.0, color);
 	return ((int)color.x << 16 | (int)color.y << 8 | (int)color.z);

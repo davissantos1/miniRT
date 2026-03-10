@@ -67,11 +67,11 @@ SRC_BONUS= \
 			src/bonus/1_run_rt_bonus/0_run_rt_bonus.c \
 			src/bonus/1_run_rt_bonus/1_threads_bonus.c \
 			src/bonus/1_run_rt_bonus/2_routine_bonus.c \
-			src/bonus/1_run_rt_bonus/texture/get_texture_bonus.c \
-			src/bonus/1_run_rt_bonus/texture/textures_bonus.c \
-			src/bonus/1_run_rt_bonus/texture/uv_mapping_bonus.c \
-			src/bonus/1_run_rt_bonus/patterns/patterns_bonus.c \
-			src/bonus/1_run_rt_bonus/patterns/get_pattern_bonus.c \
+			src/bonus/2_shapes_collision_bonus/texture/get_texture_bonus.c \
+			src/bonus/2_shapes_collision_bonus/texture/textures_bonus.c \
+			src/bonus/2_shapes_collision_bonus/texture/uv_mapping_bonus.c \
+			src/bonus/2_shapes_collision_bonus/patterns/patterns_bonus.c \
+			src/bonus/2_shapes_collision_bonus/patterns/get_pattern_bonus.c \
 			src/bonus/2_shapes_collision_bonus/disk_bonus.c \
 			src/bonus/2_shapes_collision_bonus/ray_collision_bonus.c \
 			src/bonus/2_shapes_collision_bonus/plane_bonus.c \
