@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:21:27 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/08 19:58:50 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/10 18:24:54 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_texture
 	int		end;
 }	t_texture;
 
-typedef void (*uv_map)(t_point, double *, double *);
+typedef void	(*t_uv_map)(t_point, double *, double *);
 
 t_texture	load_img(t_minirt *ctx, char *path);
 

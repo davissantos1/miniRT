@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 20:02:07 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/10 18:25:52 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ typedef struct s_quadratic
 
 // functions array
 typedef bool	(*t_get_hit)(void*, t_hit*, t_ray);
-typedef void	(*texture_map)(t_hit*, uv_map*, t_point);
+typedef void	(*t_texture_map)(t_hit*, t_uv_map*, t_point);
 
 // prototypes
 t_hit			ray_collision(t_scene *scene, t_ray ray);
@@ -165,8 +165,8 @@ t_color			phong(t_hit hits, t_scene *scene, int depth);
 bool			shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir);
 t_color			reflections(t_scene *scene, t_hit hits, int depth);
 
-void 			normal_map(t_hit *hit, uv_map *maps, t_point p);
-void 			bump_map(t_hit *hit, uv_map *maps, t_point p);
+void			normal_map(t_hit *hit, t_uv_map *maps, t_point p);
+void			bump_map(t_hit *hit, t_uv_map *maps, t_point p);
 void			get_texture(t_hit *hit);
 
 #endif

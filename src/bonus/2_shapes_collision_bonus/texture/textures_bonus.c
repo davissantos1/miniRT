@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 09:59:18 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/28 11:53:38 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/10 18:17:06 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	get_magnitude(t_hit *hit, double *mags, double u, double v)
 	mags[1] = mag_u * 2;
 }
 
-void	normal_map(t_hit *hit, uv_map *maps, t_point p)
+void	normal_map(t_hit *hit, t_uv_map *maps, t_point p)
 {
 	t_vec4	tan;
 	t_vec4	bitan;
@@ -94,7 +94,7 @@ void	normal_map(t_hit *hit, uv_map *maps, t_point p)
 	hit->norm = vec4_unit_vector(hit->norm);
 }
 
-void	bump_map(t_hit *hit, uv_map *maps, t_point p)
+void	bump_map(t_hit *hit, t_uv_map *maps, t_point p)
 {
 	t_vec4	tan;
 	t_vec4	bitan;
