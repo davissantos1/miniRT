@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 13:43:03 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/08 20:04:30 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/10 18:27:17 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include "shapes_bonus.h"
 # include "mtx4.h"
 
-typedef t_color(*t_patterns)(t_point,t_material);
+typedef t_color	(*t_patterns)(t_point,t_material);
 
 void		get_pattern(t_hit *hit, t_pattern op);
 t_color		striped(t_point p, t_material m);
-t_color 	ring(t_point p, t_material m);
+t_color		ring(t_point p, t_material m);
 t_color		checker(t_point p, t_material m);
 t_matrix4	rotation_calc(t_vec4 norm);
 

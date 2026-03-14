@@ -35,7 +35,7 @@ typedef struct s_texture
 	int		end;
 }	t_texture;
 
-typedef void (*uv_map)(t_point, double *, double *);
+typedef void	(*t_uv_map)(t_point, double *, double *);
 
 t_texture	load_img(t_minirt *ctx, char *path);
 

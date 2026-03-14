@@ -73,7 +73,7 @@ static void	get_magnitude(t_hit *hit, double *mags, double u, double v)
 	mags[1] = mag_u * 2;
 }
 
-void	normal_map(t_hit *hit, uv_map *maps, t_point p)
+void	normal_map(t_hit *hit, t_uv_map *maps, t_point p)
 {
 	t_vec4	tan;
 	t_vec4	bitan;
@@ -95,7 +95,7 @@ void	normal_map(t_hit *hit, uv_map *maps, t_point p)
 	hit->norm = vec4_unit_vector(hit->norm);
 }
 
-void	bump_map(t_hit *hit, uv_map *maps, t_point p)
+void	bump_map(t_hit *hit, t_uv_map *maps, t_point p)
 {
 	t_vec4	tan;
 	t_vec4	bitan;

@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:31:39 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/20 22:44:51 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/10 18:22:21 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	parse_alight(t_minirt *rt, char **ent)
 	c = ft_split(ent[2], ',');
 	if (!check_alight(ent[1], c))
 		desperation(rt, ERR_FILE_INVALID);
-	amb = gc_malloc(sizeof(t_alight), rt->gc, GC_DEFAULT);
+	amb = gc_calloc(sizeof(t_alight), rt->gc, GC_DEFAULT);
 	if (!amb)
 		desperation(rt, ERR_FILE_INVALID);
 	amb->ratio = ft_atod(ent[1]);
@@ -97,7 +97,7 @@ void	parse_camera(t_minirt *rt, char **ent)
 	n = ft_split(ent[2], ',');
 	if (!check_camera(p, n, ent[3]))
 		desperation(rt, ERR_FILE_INVALID);
-	cam = gc_malloc(sizeof(t_camera), rt->gc, GC_DEFAULT);
+	cam = gc_calloc(sizeof(t_camera), rt->gc, GC_DEFAULT);
 	if (!cam)
 		desperation(rt, ERR_FILE_INVALID);
 	cam->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
@@ -114,21 +114,23 @@ void	parse_light(t_minirt *rt, char **ent)
 	char		**c;
 	char		**p;
 
-	if (rt->scene->light)
+	if (rt->scene->light && !ft_strcmp(ent[0], "L"))
 		desperation(rt, ERR_FILE_INVALID);
 	c = ft_split(ent[3], ',');
 	p = ft_split(ent[1], ',');
 	if (!check_light(p, ent[2], c))
 		desperation(rt, ERR_FILE_INVALID);
-	lig = gc_malloc(sizeof(t_light), rt->gc, GC_DEFAULT);
+	lig = gc_calloc(sizeof(t_light), rt->gc, GC_DEFAULT);
 	if (!lig)
 		desperation(rt, ERR_FILE_INVALID);
 	lig->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
 	lig->color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
 	lig->color = vec4_scale((double) 1 / 255, lig->color);
 	lig->ratio = ft_atod(ent[2]);
-	lig->next = rt->scene->light;
-	rt->scene->light = lig;
+	if (!ft_strcmp(ent[0], "l"))
+		add_light(rt, lig);
+	else
+		rt->scene->light = lig;
 	ft_mtxfree(c);
 	ft_mtxfree(p);
 }

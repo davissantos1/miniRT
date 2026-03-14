@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:45:56 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/10 14:16:05 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/10 18:31:30 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ t_color	reflections(t_scene *scene, t_hit hits, int depth)
 		return ((t_color){0});
 	collision = (t_hit){0};
 	reflected.dir = vec4_unit_vector(reflec_dir(hits.norm, hits.ray_dir));
-	reflected.origin = vec4_plus(vec4_scale(EPSILON, hits.norm), hits.hit_point);
+	reflected.origin = vec4_plus(
+			vec4_scale(EPSILON, hits.norm), hits.hit_point);
 	collision = ray_collision(scene, reflected);
 	if (!collision.num_roots)
 		return ((t_color){0});

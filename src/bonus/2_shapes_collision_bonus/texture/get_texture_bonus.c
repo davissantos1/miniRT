@@ -16,9 +16,9 @@
 
 void	get_texture(t_hit *hit)
 {
-	static texture_map	options[2] = {bump_map, normal_map};
-	static uv_map		maps[SHAPE_COUNT] = {uv_sphere, uv_plane,
-											 uv_cylinder, uv_disk, uv_cone, uv_rectangle};
+	static t_texture_map	options[2] = {bump_map, normal_map};
+	static t_uv_map			maps[SHAPE_COUNT] = {uv_sphere, uv_plane,
+		uv_cylinder, uv_disk, uv_cone, uv_rectangle};
 	t_point				p;
 
 	p = vec4_multi_mtx4(hit->inverse, hit->hit_point);

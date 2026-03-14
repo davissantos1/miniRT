@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:39:33 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 16:55:07 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/10 16:31:53 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int	check_plane(t_minirt *rt, char **pos, char **norm, char **ent)
 	char	***v;
 
 	status = 1;
-	v = get_vars(rt, ent);
+	if (ft_mtxlen(ent) != 1 && ft_mtxlen(ent) != 12)
+		return (0);
 	if (!check_pos(pos) || !check_norm(norm))
 		status = 0;
+	v = get_vars(rt, ent);
 	if (!check_color(v[0]))
 		status = 0;
 	if (ent[1])
@@ -43,13 +45,13 @@ int	check_sphere(t_minirt *rt, char **pos, char *diam, char **ent)
 	char	***v;
 
 	status = 1;
-	v = get_vars(rt, ent);
-	if (!check_pos(pos))
-		return (0);
 	if (!check_if_double(diam))
 		return (0);
-	if (!is_pos(diam))
+	if (!check_pos(pos) || !is_pos(diam))
 		return (0);
+	if (ft_mtxlen(ent) != 1 && ft_mtxlen(ent) != 12)
+		return (0);
+	v = get_vars(rt, ent);
 	if (ent[1])
 	{
 		if (!check_color(v[7]) || !is_pos(v[11][0]))
@@ -70,6 +72,8 @@ int	check_cylinder(t_minirt *rt, char **pos, char **norm, char **ent)
 
 	status = 1;
 	if (!check_pos(pos) || !check_norm(norm))
+		return (0);
+	if (ft_mtxlen(ent) != 1 && ft_mtxlen(ent) != 12)
 		return (0);
 	if (ent[1])
 	{
@@ -93,6 +97,8 @@ int	check_cone(t_minirt *rt, char **pos, char **norm, char **ent)
 	status = 1;
 	if (!check_pos(pos) || !check_norm(norm))
 		return (0);
+	if (ft_mtxlen(ent) != 1 && ft_mtxlen(ent) != 12)
+		return (0);
 	if (ent[1])
 	{
 		v = get_vars(rt, ent);
@@ -114,6 +120,8 @@ int	check_disk(t_minirt *rt, char **pos, char **norm, char **ent)
 
 	status = 1;
 	if (!check_pos(pos) || !check_norm(norm))
+		return (0);
+	if (ft_mtxlen(ent) != 1 && ft_mtxlen(ent) != 12)
 		return (0);
 	if (ent[1])
 	{

@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:20:36 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 19:59:51 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/10 17:53:08 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int			check_empty(char *line);
 int			is_pos(char *num);
 
 void		add_object(t_minirt *rt, void *obj);
+void		add_light(t_minirt *rt, t_light *l);
 void		img_pixel_put(t_mlx *mlx, int x, int y, int color);
 void		run_rt(t_minirt	*ctx);
 
