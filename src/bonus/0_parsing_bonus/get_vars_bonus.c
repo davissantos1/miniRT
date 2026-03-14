@@ -6,11 +6,10 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:54:52 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 17:11:14 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/14 08:07:52 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shapes_bonus.h"
 #include "settings.h"
 #include "minirt.h"
 #include "parsing_bonus.h"
