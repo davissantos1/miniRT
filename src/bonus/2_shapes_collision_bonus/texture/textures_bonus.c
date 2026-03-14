@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 09:59:18 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/28 11:53:38 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/14 14:43:54 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	normal_map(t_hit *hit, uv_map *maps, t_point p)
 			(int)(v * (hit->mat.texture.height - 1)));
 	hit->mat.ka = hit->mat.color;
 	hit->mat.ks = (t_color){0};
+	hit->mat.kr = (t_color){0};
 	get_tan_bitan(hit, &tan, &bitan);
 	tan = vec4_scale(hit->mat.color.x, tan);
 	bitan = vec4_scale(hit->mat.color.y, bitan);
