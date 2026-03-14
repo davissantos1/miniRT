@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 13:33:01 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/08 19:53:32 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/14 10:44:15 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ static t_texture	handle_texture(t_shape type, void *content)
 		return (((t_disk *)content)->mat.texture);
 	if (type == CYLINDER)
 		return (((t_cylinder *)content)->mat.texture);
+	if (type == RECTANGLE)
+		return (((t_rectangle *)content)->mat.texture);
+	if (type == PARALLELEPIPED)
+		return (((t_parallelepiped *)content)->mat.texture);
 	return (((t_cone *)content)->mat.texture);
 }
 

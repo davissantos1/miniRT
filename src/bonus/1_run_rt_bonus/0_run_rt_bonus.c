@@ -6,11 +6,12 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 17:43:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/03 21:05:28 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/14 14:01:25 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "structs.h"
 #include "vec4.h"
 #include "entities.h"
 #include "threads_bonus.h"

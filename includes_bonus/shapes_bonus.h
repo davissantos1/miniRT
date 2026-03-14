@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 20:02:07 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/14 10:50:55 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef enum e_shape
 	CYLINDER,
 	DISK,
 	CONE,
+	RECTANGLE,
+	PARALLELEPIPED,
 	SHAPE_COUNT
 }	t_shape;
 
@@ -99,6 +101,33 @@ typedef struct s_plane
 	t_matrix4	inverse;
 }	t_plane;
 
+typedef struct s_retangle
+{
+	t_shape		type;
+	t_point		pos;
+	double		height;
+	double		width;
+	t_vec4		norm;
+	t_material	mat;
+	t_matrix4	transform;
+	t_matrix4	inverse;
+}	t_rectangle;
+
+
+typedef struct s_parallelepiped
+{
+	t_shape		type;
+	t_point		pos;
+	double		height;
+	double		width;
+	double		depth;
+	t_vec4		norm;
+	t_material	mat;
+	t_matrix4	transform;
+	t_matrix4	inverse;
+}	t_parallelepiped;
+
+
 typedef struct s_cylinder
 {
 	t_shape		type;
@@ -154,12 +183,15 @@ bool			hit_cylinder(void *me, t_hit *hits, t_ray ray);
 bool			hit_disk(void *me, t_hit *hits, t_ray ray);
 bool			hit_plane(void *me, t_hit *hits, t_ray ray);
 bool			hit_cone(void *me, t_hit *hits, t_ray ray);
+bool			hit_rectangle(void *me, t_hit *hits, t_ray ray);
+bool			hit_parallelepiped(void *me, t_hit *hits, t_ray ray);
 
 t_matrix4		sphere_transform(t_sphere *me, t_matrix4 *inv);
 t_matrix4		cy_transform(t_cylinder *me, t_matrix4 *inv);
 t_matrix4		plane_transform(t_plane *me, t_matrix4 *inv);
 t_matrix4		disk_transform(t_disk *me, t_matrix4 *inv);
 t_matrix4		cone_transform(t_cone *me, t_matrix4 *inv);
+t_matrix4		rectangle_transform(t_rectangle *me, t_matrix4 *inv);
 
 t_color			phong(t_hit hits, t_scene *scene, int depth);
 bool			shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir);

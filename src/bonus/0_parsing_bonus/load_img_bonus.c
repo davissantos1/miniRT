@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:39:24 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/08 11:55:42 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/14 08:04:08 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ t_texture	load_img(t_minirt *ctx, char *path)
 {
 	t_texture	ret;
 
+	ret.mlx_ptr = ctx->mlx->init;
 	ret.img = mlx_xpm_file_to_image(ctx->mlx->init, path,
 			&ret.width, &ret.height);
 	if (!ret.img)
-		desperation(ctx, ERR_SYSCALL);
+		desperation(ctx, ERR_MAP_INVALID);
 	ret.addr = mlx_get_data_addr(ret.img, &ret.bpp,
 			&ret.line, &ret.end);
 	if (!ret.addr)
-	{
-		mlx_destroy_image(ctx->mlx->init, ret.img);
-		desperation(ctx, ERR_SYSCALL);
-	}
-	ret.mlx_ptr = ctx->mlx->init;
+		desperation(ctx, ERR_MAP_INVALID);
 	return (ret);
 }
