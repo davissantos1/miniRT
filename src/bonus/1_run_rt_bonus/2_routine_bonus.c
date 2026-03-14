@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 18:28:53 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/10 14:03:00 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/14 08:08:34 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "settings.h"
 #include "ray.h"
 #include "minirt.h"
-#include "pattern_bonus.h"
-#include "texture_bonus.h"
 
 static t_vec4	get_ray_dir(t_ndc ndc, int x, int y)
 {

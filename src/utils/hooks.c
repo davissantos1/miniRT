@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 13:13:59 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/07 18:30:50 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/14 14:36:09 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	hook_keys(int keycode, t_minirt *rt)
 	else if (keycode == 65361)
 		rotate_x(cam, 7);
 	else if (keycode == 65362)
-		rotate_y(cam, 7);
-	else if (keycode == 65364)
 		rotate_y(cam, -7);
+	else if (keycode == 65364)
+		rotate_y(cam, 7);
 	else if (keycode == 119)
 		cam->pos = vec4_plus(cam->pos, vec4_scale(0.3, cam->norm));
 	else if (keycode == 115)
