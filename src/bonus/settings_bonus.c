@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:26:27 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 11:31:03 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/17 12:04:01 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static const t_map_shape	g_shapes[] = {
 {"cy", &parse_cylinder},
 {"co", &parse_cone},
 {"di", &parse_disk},
+{"re", &parse_rect},
+{"pa", &parse_paral},
 {"l", &parse_light},
 {NULL, NULL}
 };

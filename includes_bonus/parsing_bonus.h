@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 13:03:08 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 20:03:54 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/17 12:19:10 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void		parse_sphere(t_minirt *rt, char **ent);
 void		parse_cylinder(t_minirt *rt, char **ent);
 void		parse_cone(t_minirt *rt, char **ent);
 void		parse_disk(t_minirt *rt, char **ent);
+void		parse_paral(t_minirt *rt, char **ent);
+void		parse_rect(t_minirt *rt, char **ent);
 
 int			check_alight(char *ratio, char **color);
 int			check_camera(char **pos, char **norm, char *fov);
@@ -38,6 +40,8 @@ int			check_sphere(t_minirt *rt, char **pos, char *diam, char **ent);
 int			check_cylinder(t_minirt *rt, char **pos, char **norm, char **ent);
 int			check_cone(t_minirt *rt, char **pos, char **norm, char **ent);
 int			check_disk(t_minirt *rt, char **pos, char **norm, char **ent);
+int			check_paral(t_minirt *rt, char **pos, char **norm, char **ent);
+int			check_rect(t_minirt *rt, char **pos, char **norm, char **ent);
 
 int			check_pos(char **pos);
 int			check_norm(char **norm);

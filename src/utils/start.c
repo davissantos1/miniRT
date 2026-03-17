@@ -32,8 +32,8 @@ t_minirt	*start_minirt(char *name)
 	rt->mlx = start_mlx(rt->gc, name);
 	if (!rt->mlx)
 		desperation(rt, ERR_SYSCALL);
-	mlx_key_hook(rt->mlx->win, hook_keys, rt);
-	mlx_hook(rt->mlx->win, 17, 1L << 17, close_cross, rt);
+	mlx_key_hook(rt->mlx->win, (void *)hook_keys, rt);
+	mlx_hook(rt->mlx->win, 17, 1L << 17, (void *)close_cross, rt);
 	rt->scene = gc_calloc(sizeof(t_scene), garbage, GC_DEFAULT);
 	if (!rt->scene)
 		desperation(rt, ERR_SYSCALL);

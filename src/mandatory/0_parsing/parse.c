@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:31:39 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/02/22 07:58:13 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/17 11:39:32 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	parse_minirt(t_minirt *rt, int fd)
 			free(line);
 			continue ;
 		}
-		line[ft_strlen(line) - 1] = '\0';
+		rm_newline(&line);
 		split = ft_split(line, ' ');
 		if (!split)
 			desperation(rt, ERR_SYSCALL);

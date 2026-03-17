@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/14 10:50:55 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/17 12:32:59 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,6 @@ typedef struct s_parallelepiped
 	double		depth;
 	t_vec4		norm;
 	t_material	mat;
-	t_matrix4	transform;
-	t_matrix4	inverse;
 }	t_parallelepiped;
 
 
