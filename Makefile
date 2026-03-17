@@ -1,6 +1,7 @@
 # Variables
+
 CC= cc
-CFLAGS= -Wall -Wextra -Werror -Wpedantic -g -march=native -ffast-math
+CFLAGS= -Wall -Wextra -Werror -g -march=native -ffast-math
 LDFLAGS= -lXext -lX11 -lm -lz
 COMMON_INCLUDES= -I./common_includes -I./minilibx-linux
 INCLUDES= -I./includes $(COMMON_INCLUDES)
@@ -13,6 +14,7 @@ BASE_FILES= \
 		src/utils/hooks.c \
 		src/utils/add.c \
 		src/utils/get_name.c \
+		src/utils/rm_newline.c \
 		src/utils/img_pixel_put.c \
 		src/utils/camera_move.c \
 		src/math/matrix/mtx4_inverse.c \
@@ -56,10 +58,12 @@ SRC_BONUS= \
 			src/utils/destroy_texture_bonus.c \
 			src/bonus/0_parsing_bonus/check_element_bonus.c \
 			src/bonus/0_parsing_bonus/parse_shapes_bonus.c \
+			src/bonus/0_parsing_bonus/parse_other_shapes_bonus.c \
 			src/bonus/0_parsing_bonus/parse_bonus.c \
 			src/bonus/0_parsing_bonus/parse_material_bonus.c \
 			src/bonus/0_parsing_bonus/check_part_bonus.c \
 			src/bonus/0_parsing_bonus/check_shapes_bonus.c \
+			src/bonus/0_parsing_bonus/check_other_shapes_bonus.c \
 			src/bonus/0_parsing_bonus/fill_matrix_bonus.c \
 			src/bonus/0_parsing_bonus/rotation_calc_bonus.c \
 			src/bonus/0_parsing_bonus/load_img_bonus.c \
@@ -115,45 +119,45 @@ endif
 all: $(NAME)
 
 $(LIBFT):
-	@echo "📚 ${BLUE}Compiling:${RESET} libft"
+	@printf "📚 ${BLUE}Compiling:${RESET} libft\n"
 	@$(MAKE) -C $(LIBFT_DIR) bonus
 
 $(MINILIBX):
-	@echo "📚 ${BLUE}Compiling:${RESET} minilibx"
+	@printf "📚 ${BLUE}Compiling:${RESET} minilibx\n"
 	@tar -xf ./minilibx-linux.tgz
 	@$(MAKE) -C $(MINILIBX_DIR)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJ) 
-	@echo "💻 ${GREEN}Building:${RESET} ${NAME}"
+	@printf "💻 ${GREEN}Building:${RESET} ${NAME}\n"
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MINILIBX) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
-	@echo "🛠️  ${BLUE}Compiling:${RESET} $< to $@"
+	@printf "🛠️  ${BLUE}Compiling:${RESET} $< to $@\n"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 debug: CFLAGS += -g
 debug: re
-	@echo "⚠️  ${RED}Compilation mode:${RESET} debug"
+	@printf "⚠️  ${RED}Compilation mode:${RESET} debug\n"
 
 clean:
-	@echo "🧹 ${YELLOW}Cleaning: ${RESET}project objects"
+	@printf "🧹 ${YELLOW}Cleaning: ${RESET}project objects\n"
 	@rm -rf $(OBJ) $(OBJ_BONUS)
 	@$(MAKE) -C $(LIBFT_DIR) clean
-	@echo "🧹 ${YELLOW}Cleaning: ${RESET}libft objects"
+	@printf "🧹 ${YELLOW}Cleaning: ${RESET}libft objects\n"
 	@$(MAKE) -C $(MINILIBX_DIR) clean
-	@echo "🧹 ${YELLOW}Cleaning: ${RESET}minilibx"
+	@printf "🧹 ${YELLOW}Cleaning: ${RESET}minilibx\n"
 
 fclean: clean
-	@echo "💣 ${YELLOW}Cleaning: ${RESET}everything"
+	@printf "💣 ${YELLOW}Cleaning: ${RESET}everything\n"
 	@rm -rf $(NAME) miniRT_bonus
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 delete:
 	@rm -rf $(MINILIBX_DIR)
-	@echo "💣  ${RED}Deleting: ${RESET}minilibx folder"
+	@printf "💣  ${RED}Deleting: ${RESET}minilibx folder\n"
 
 re: fclean all
 
 bonus: all
 
-.PHONY: all clean fclean re bonus debug
+.PHONY: all clean fclean re bonus debug arch
