@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:44:14 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 11:23:29 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/17 21:20:55 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	check_pos(char **pos)
 {
+	if (!pos || !*pos || !pos[1] || !pos[2])
+		return (1);
 	if (!check_number_3mtx(pos))
 		return (0);
 	return (1);
@@ -24,6 +26,8 @@ int	check_norm(char **norm)
 	t_vec4	test;
 	double	len;
 
+	if (!norm || !*norm || !norm[1] || !norm[2])
+		return (1);
 	test = vec4_init(ft_atod(norm[0]), ft_atod(norm[1]), ft_atod(norm[2]), 0);
 	len = vec4_length(test);
 	if (!check_number_3mtx(norm) || len > 1.0)
@@ -41,6 +45,8 @@ int	check_ratio(char *ratio)
 {
 	double	rat;
 
+	if (!ratio)
+		return (1);
 	if (!check_if_double(ratio))
 		return (0);
 	rat = ft_atod(ratio);
@@ -53,6 +59,8 @@ int	check_fov(char *fov)
 {
 	int	field;
 
+	if (!fov)
+		return (1);
 	if (!check_if_double(fov))
 		return (0);
 	field = ft_atoi(fov);
@@ -67,6 +75,8 @@ int	check_color(char **color)
 	int	g;
 	int	b;
 
+	if (!color || !*color || !color[1] || !color[2])
+		return (1);
 	if (!check_number_3mtx(color))
 		return (0);
 	r = ft_atoi(color[0]);
