@@ -75,6 +75,7 @@ SRC_BONUS= \
 			src/bonus/2_shapes_collision_bonus/texture/get_texture_bonus.c \
 			src/bonus/2_shapes_collision_bonus/texture/textures_bonus.c \
 			src/bonus/2_shapes_collision_bonus/texture/uv_mapping_bonus.c \
+			src/bonus/2_shapes_collision_bonus/texture/uv_other_mapping_bonus.c \
 			src/bonus/2_shapes_collision_bonus/patterns/patterns_bonus.c \
 			src/bonus/2_shapes_collision_bonus/patterns/get_pattern_bonus.c \
 			src/bonus/2_shapes_collision_bonus/disk_bonus.c \

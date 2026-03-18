@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 08:46:33 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/14 09:44:18 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/18 20:15:27 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdbool.h>
 
 static inline
-bool fill_hits(t_rectangle *obj, t_hit * hit, t_ray ray, double t)
+bool	fill_hits(t_rectangle *obj, t_hit *hit, t_ray ray, double t)
 {
 	t_point	wrld_point;
 	t_point	obj_point;
@@ -44,9 +44,9 @@ bool fill_hits(t_rectangle *obj, t_hit * hit, t_ray ray, double t)
 bool	hit_rectangle(void *me, t_hit *hits, t_ray ray)
 {
 	t_rectangle	*obj;
-	t_vec4	p0_minus_origin;
-	double	cosine;
-	double	t;
+	t_vec4		p0_minus_origin;
+	double		cosine;
+	double		t;
 
 	obj = me;
 	cosine = vec4_dot(ray.dir, obj->norm);

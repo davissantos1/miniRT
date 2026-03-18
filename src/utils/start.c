@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 16:25:06 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/18 19:59:43 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/18 20:10:05 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_minirt	*start_minirt(char *name)
 		desperation(rt, ERR_SYSCALL);
 	mlx_key_hook(rt->mlx->win, (void *)hook_keys, rt);
 	mlx_hook(rt->mlx->win, 17, 1L << 17, (void *)close_cross, rt);
-	mlx_hook(rt->mlx->win, 12, 1L << 15, (void *)rt_redraw, rt);	
+	mlx_hook(rt->mlx->win, 12, 1L << 15, (void *)rt_redraw, rt);
 	rt->scene = gc_calloc(sizeof(t_scene), garbage, GC_DEFAULT);
 	if (!rt->scene)
 		desperation(rt, ERR_SYSCALL);
