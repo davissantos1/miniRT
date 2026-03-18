@@ -6,12 +6,13 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 13:13:59 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/14 14:36:09 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/18 20:00:54 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "entities.h"
 #include "minirt.h"
+#include "mlx.h"
 
 int	hook_keys(int keycode, t_minirt *rt)
 {
@@ -35,6 +36,12 @@ int	hook_keys(int keycode, t_minirt *rt)
 	else
 		return (0);
 	run_rt(rt);
+	return (0);
+}
+
+int	rt_redraw(t_minirt *rt)
+{
+	mlx_put_image_to_window(rt->mlx->init, rt->mlx->win, rt->mlx->img, 0, 0);
 	return (0);
 }
 

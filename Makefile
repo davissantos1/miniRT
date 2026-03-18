@@ -65,6 +65,7 @@ SRC_BONUS= \
 			src/bonus/0_parsing_bonus/check_shapes_bonus.c \
 			src/bonus/0_parsing_bonus/check_other_shapes_bonus.c \
 			src/bonus/0_parsing_bonus/fill_matrix_bonus.c \
+			src/bonus/0_parsing_bonus/fill_other_matrix_bonus.c \
 			src/bonus/0_parsing_bonus/rotation_calc_bonus.c \
 			src/bonus/0_parsing_bonus/load_img_bonus.c \
 			src/bonus/0_parsing_bonus/get_vars_bonus.c \
@@ -125,7 +126,7 @@ $(LIBFT):
 $(MINILIBX):
 	@printf "📚 ${BLUE}Compiling:${RESET} minilibx\n"
 	@tar -xf ./minilibx-linux.tgz
-	@$(MAKE) -C $(MINILIBX_DIR)
+	@$(MAKE) -C $(MINILIBX_DIR) 
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJ) 
 	@printf "💻 ${GREEN}Building:${RESET} ${NAME}\n"

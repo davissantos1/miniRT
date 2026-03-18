@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 10:45:34 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 17:23:33 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:05:41 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	parse_plane(t_minirt *rt, char **ent)
 	pl->type = PLANE;
 	pl->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
 	pl->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
+	pl->norm = vec4_unit_vector(pl->norm);
 	pl->mat = parse_material(rt, ent + 3);
 	pl->mat.pattern_const = 1;
 	pl->transform = plane_transform(pl, &pl->inverse);
@@ -78,6 +79,7 @@ void	parse_cylinder(t_minirt *rt, char **ent)
 	cy->type = CYLINDER;
 	cy->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
 	cy->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
+	cy->norm = vec4_unit_vector(cy->norm);
 	cy->diam = ft_atod(ent[3]);
 	cy->height = ft_atod(ent[4]);
 	cy->mat = parse_material(rt, ent + 5);
@@ -104,6 +106,7 @@ void	parse_cone(t_minirt *rt, char **ent)
 	co->type = CONE;
 	co->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
 	co->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
+	co->norm = vec4_unit_vector(co->norm);
 	co->diam = ft_atod(ent[3]);
 	co->height = ft_atod(ent[4]);
 	co->mat = parse_material(rt, ent + 5);
@@ -130,6 +133,7 @@ void	parse_disk(t_minirt *rt, char **ent)
 	di->type = DISK;
 	di->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
 	di->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
+	di->norm = vec4_unit_vector(di->norm);
 	di->diam = ft_atod(ent[3]);
 	di->mat = parse_material(rt, ent + 4);
 	di->mat.pattern_const = 2;

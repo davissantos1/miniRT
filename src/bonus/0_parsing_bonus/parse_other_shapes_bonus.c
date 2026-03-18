@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 12:05:35 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/17 12:31:24 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:53:35 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 void	parse_paral(t_minirt *rt, char **ent)
 {
 	t_parallelepiped	*pa;
-	char			**p;
-	char			**n;
+	char				**p;
+	char				**n;
 
 	p = ft_split(ent[1], ',');
 	n = ft_split(ent[2], ',');
@@ -33,6 +33,7 @@ void	parse_paral(t_minirt *rt, char **ent)
 	pa->type = PARALLELEPIPED;
 	pa->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
 	pa->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
+	pa->norm = vec4_unit_vector(pa->norm);
 	pa->height = ft_atod(ent[3]);
 	pa->width = ft_atod(ent[4]);
 	pa->depth = ft_atod(ent[5]);
@@ -61,6 +62,7 @@ void	parse_rect(t_minirt *rt, char **ent)
 	re->type = RECTANGLE;
 	re->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
 	re->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
+	re->norm = vec4_unit_vector(re->norm);
 	re->height = ft_atod(ent[3]);
 	re->width = ft_atod(ent[4]);
 	re->mat = parse_material(rt, ent + 5);

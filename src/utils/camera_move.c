@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 15:04:12 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/14 14:35:48 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/18 18:57:17 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	rotate_y(t_camera *cam, double angle)
 	cam->norm = vec4_plus(vec, vec4_scale(fabs(angle), cam->norm));
 	cam->norm = vec4_unit_vector(cam->norm);
 }
-

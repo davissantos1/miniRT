@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 15:44:14 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/17 21:20:55 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/18 18:08:49 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,16 @@ int	check_norm(char **norm)
 	if (!norm || !*norm || !norm[1] || !norm[2])
 		return (1);
 	test = vec4_init(ft_atod(norm[0]), ft_atod(norm[1]), ft_atod(norm[2]), 0);
-	len = vec4_length(test);
-	if (!check_number_3mtx(norm) || len > 1.0)
+	if (!check_number_3mtx(norm))
 		return (0);
 	if (test.x < -1.0 || test.x > 1.0)
 		return (0);
 	if (test.y < -1.0 || test.y > 1.0)
 		return (0);
 	if (test.z < -1.0 || test.z > 1.0)
+		return (0);
+	len = vec4_length(test);
+	if (len < 1e-6)
 		return (0);
 	return (1);
 }
