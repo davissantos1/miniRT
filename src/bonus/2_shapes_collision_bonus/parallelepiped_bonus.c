@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 10:50:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/17 13:49:21 by davi             ###   ########.fr       */
+/*   Updated: 2026/03/19 19:44:50 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ bool	y_faces(t_parallelepiped *obj, t_rectangle rec, t_hit *hits, t_ray ray)
 	double	distance;
 
 	distance = obj->height * 0.5;
-	rec.pos = ray_pos((t_ray){.origin = obj->pos, obj->norm}, distance);
-	rec.width = obj->width;
 	rec.height = obj->depth;
+	rec.width = obj->width;
 	rec.norm = obj->norm;
+	rec.pos = ray_pos((t_ray){.origin = obj->pos, obj->norm}, distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any = hit_rectangle(&rec, hits, ray);
 	rec.pos = ray_pos((t_ray){.origin = obj->pos, obj->norm}, -distance);
@@ -38,53 +38,53 @@ bool	y_faces(t_parallelepiped *obj, t_rectangle rec, t_hit *hits, t_ray ray)
 static inline
 bool	x_faces(t_parallelepiped *obj, t_rectangle rec, t_hit *hits, t_ray ray)
 {
-	t_vec4	norm;
 	bool	hit_any;
+	t_vec4	normal;
 	double	distance;
 
-	if (fabs(obj->norm.y) > 0.99999)
-		norm = vec4_cross(obj->norm, (t_vec4){1 * obj->norm.y, 0, 0, 0});
-	else
-		norm = vec4_unit_vector(vec4_cross(obj->norm, (t_vec4){0, 1, 0, 0}));
-	distance = obj->depth * 0.5;
-	rec.pos = ray_pos((t_ray){.origin = obj->pos, norm}, distance);
-	rec.width = obj->width;
+	distance = obj->width * 0.5;
 	rec.height = obj->height;
-	rec.norm = vec4_unit_vector(norm);
+	rec.width = obj->depth;
+	if (fabs(obj->norm.y) > 0.9999)
+		normal = vec4_init(1 * obj->norm.y, 0, 0, 0);
+	else
+		normal = vec4_cross(obj->norm, vec4_init(0, 1, 0, 0));
+	normal = vec4_unit_vector(normal);
+	rec.norm = normal;
+	rec.pos = ray_pos((t_ray){obj->pos, normal}, distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any = hit_rectangle(&rec, hits, ray);
-	rec.pos = ray_pos((t_ray){.origin = obj->pos, norm}, -distance);
+	rec.pos = ray_pos((t_ray){.origin = obj->pos, normal}, -distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any |= hit_rectangle(&rec, hits, ray);
 	return (hit_any);
 }
-
 
 static inline
 bool	z_faces(t_parallelepiped *obj, t_rectangle rec, t_hit *hits, t_ray ray)
 {
-	t_vec4	norm;
 	bool	hit_any;
+	t_vec4	normal;
 	double	distance;
-
-	if (fabs(obj->norm.y) > 0.99999)
-		norm = vec4_cross(obj->norm, (t_vec4){1 * obj->norm.y, 0, 0, 0});
-	else
-		norm = vec4_cross(obj->norm, (t_vec4){0, 1, 0, 0});
-	norm = vec4_unit_vector(vec4_cross(norm, obj->norm));
-	distance = obj->width * 0.5;
-	rec.pos = ray_pos((t_ray){.origin = obj->pos, norm}, distance);
-	rec.width = obj->depth;
+	
+	distance = obj->depth * 0.5;
 	rec.height = obj->height;
-	rec.norm = norm;
+	rec.width = obj->width;
+	if (fabs(obj->norm.y) > 0.9999)
+		normal = vec4_init(1 * obj->norm.y, 0, 0, 0);
+	else
+		normal = vec4_cross(obj->norm, vec4_init(0, 1, 0, 0));
+	normal = vec4_cross(normal, obj->norm);
+	normal = vec4_unit_vector(normal);
+	rec.norm = normal;
+	rec.pos = ray_pos((t_ray){.origin = obj->pos, normal}, distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any = hit_rectangle(&rec, hits, ray);
-	rec.pos = ray_pos((t_ray){.origin = obj->pos, norm}, -distance);
+	rec.pos = ray_pos((t_ray){.origin = obj->pos, normal}, -distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any |= hit_rectangle(&rec, hits, ray);
 	return (hit_any);
 }
-
 
 bool	hit_parallelepiped(void *me, t_hit *hits, t_ray ray)
 {

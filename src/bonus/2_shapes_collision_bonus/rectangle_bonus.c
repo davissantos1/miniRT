@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 08:46:33 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/18 20:15:27 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/19 19:42:53 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ bool	fill_hits(t_rectangle *obj, t_hit *hit, t_ray ray, double t)
 
 	wrld_point = ray_pos(ray, t);
 	obj_point = vec4_multi_mtx4(obj->inverse, wrld_point);
-	if (fabs(obj_point.x) > obj->width * 0.5
-		|| fabs(obj_point.z) > obj->height * 0.5)
+	if (fabs(obj_point.x) > 1 || fabs(obj_point.z) > 1)
 		return (false);
 	hit->num_roots = 1;
 	hit->r1 = t;
@@ -36,7 +35,7 @@ bool	fill_hits(t_rectangle *obj, t_hit *hit, t_ray ray, double t)
 	hit->type = obj->type;
 	hit->norm = obj->norm;
 	hit->transform = obj->transform;
-	if (vec4_dot(hit->norm, ray.dir) < 0)
+	if (vec4_dot(hit->norm, ray.dir) > 0)
 		hit->norm = vec4_scale(-1.0, hit->norm);
 	return (true);
 }
