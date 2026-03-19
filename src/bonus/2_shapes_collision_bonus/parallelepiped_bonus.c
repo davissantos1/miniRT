@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 10:50:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/19 19:44:50 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/19 20:17:10 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ bool	y_faces(t_parallelepiped *obj, t_rectangle rec, t_hit *hits, t_ray ray)
 	rec.height = obj->depth;
 	rec.width = obj->width;
 	rec.norm = obj->norm;
-	rec.pos = ray_pos((t_ray){.origin = obj->pos, obj->norm}, distance);
+	rec.pos = ray_pos(ray_init(obj->pos, obj->norm), distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any = hit_rectangle(&rec, hits, ray);
-	rec.pos = ray_pos((t_ray){.origin = obj->pos, obj->norm}, -distance);
+	rec.pos = ray_pos(ray_init(obj->pos, obj->norm), -distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any |= hit_rectangle(&rec, hits, ray);
 	return (hit_any);
@@ -51,10 +51,10 @@ bool	x_faces(t_parallelepiped *obj, t_rectangle rec, t_hit *hits, t_ray ray)
 		normal = vec4_cross(obj->norm, vec4_init(0, 1, 0, 0));
 	normal = vec4_unit_vector(normal);
 	rec.norm = normal;
-	rec.pos = ray_pos((t_ray){obj->pos, normal}, distance);
+	rec.pos = ray_pos(ray_init(obj->pos, normal), distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any = hit_rectangle(&rec, hits, ray);
-	rec.pos = ray_pos((t_ray){.origin = obj->pos, normal}, -distance);
+	rec.pos = ray_pos(ray_init(obj->pos, obj->norm), -distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any |= hit_rectangle(&rec, hits, ray);
 	return (hit_any);
@@ -66,7 +66,7 @@ bool	z_faces(t_parallelepiped *obj, t_rectangle rec, t_hit *hits, t_ray ray)
 	bool	hit_any;
 	t_vec4	normal;
 	double	distance;
-	
+
 	distance = obj->depth * 0.5;
 	rec.height = obj->height;
 	rec.width = obj->width;
@@ -77,10 +77,10 @@ bool	z_faces(t_parallelepiped *obj, t_rectangle rec, t_hit *hits, t_ray ray)
 	normal = vec4_cross(normal, obj->norm);
 	normal = vec4_unit_vector(normal);
 	rec.norm = normal;
-	rec.pos = ray_pos((t_ray){.origin = obj->pos, normal}, distance);
+	rec.pos = ray_pos(ray_init(obj->pos, normal), distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any = hit_rectangle(&rec, hits, ray);
-	rec.pos = ray_pos((t_ray){.origin = obj->pos, normal}, -distance);
+	rec.pos = ray_pos(ray_init(obj->pos, obj->norm), -distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any |= hit_rectangle(&rec, hits, ray);
 	return (hit_any);
