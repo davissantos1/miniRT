@@ -6,15 +6,26 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:49:25 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/08 14:44:09 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/20 10:58:01 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "entities.h"
 #include "shapes_bonus.h"
 #include "settings.h"
-#include <math.h>
 #include "vec4.h"
+#include <math.h>
+
+static inline double	aces_film(const double x)
+{
+	static const double	a = 2.51;
+	static const double	b = 0.03;
+	static const double	c = 2.43;
+	static const double	d = 0.59;
+	static const double	e = 0.14;
+
+	return (fmin(1.0, (x * (a * x + b)) / (x * (c * x + d) + e)));
+}
 
 static inline t_vec4	diffusion(t_hit hits, t_light *light, t_vec4 light_dir)
 {
@@ -84,8 +95,8 @@ t_color	phong(t_hit hits, t_scene *scene, int depth)
 	}
 	if (vec4_squared_len(hits.mat.kr) > EPSILON)
 		color = vec4_plus(color, reflections(scene, hits, depth));
-	color.x = fmin(1.0, color.x);
-	color.y = fmin(1.0, color.y);
-	color.z = fmin(1.0, color.z);
+	color.x = aces_film(color.x);
+	color.y = aces_film(color.y);
+	color.z = aces_film(color.z);
 	return (color);
 }
