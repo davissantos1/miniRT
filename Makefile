@@ -127,7 +127,7 @@ $(LIBFT):
 $(MINILIBX):
 	@printf "📚 ${BLUE}Compiling:${RESET} minilibx\n"
 	@tar -xf ./minilibx-linux.tgz
-	@$(MAKE) -C $(MINILIBX_DIR) "CC=gcc-11"
+	@$(MAKE) -C $(MINILIBX_DIR) 
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJ) 
 	@printf "💻 ${GREEN}Building:${RESET} ${NAME}\n"
