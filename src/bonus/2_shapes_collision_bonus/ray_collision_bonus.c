@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 10:17:33 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/14 11:55:11 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/20 09:03:53 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ t_hit	ray_collision(t_scene *scene, t_ray ray)
 		hit_disk,
 		hit_cone,
 		hit_rectangle,
-		hit_parallelepiped
-	};
+		hit_parallelepiped};
 
 	hits = (t_hit){0};
 	lst = scene->shape;
@@ -40,6 +39,7 @@ t_hit	ray_collision(t_scene *scene, t_ray ray)
 		functions[get_type(lst->content)](lst->content, &hits, ray);
 		lst = lst->next;
 	}
+	hits.ambi_norm = hits.norm;
 	if (hits.num_roots && hits.mat.pattern != NO_PATTERN)
 		get_pattern(&hits, hits.mat.pattern);
 	if (hits.num_roots && hits.mat.map_type != NO_TEXTURE)
