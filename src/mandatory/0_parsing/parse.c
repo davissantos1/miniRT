@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:31:39 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/17 11:39:32 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/20 18:11:22 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	parse_alight(t_minirt *rt, char **ent)
 	if (!check_alight(ent[1], c))
 		desperation(rt, ERR_FILE_INVALID);
 	amb = gc_malloc(sizeof(t_alight), rt->gc, GC_DEFAULT);
-	if (!amb)
+	if (!amb || ft_mtxlen(ent) > 3)
 		desperation(rt, ERR_FILE_INVALID);
 	amb->ratio = ft_atod(ent[1]);
 	amb->color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
@@ -96,7 +96,7 @@ void	parse_camera(t_minirt *rt, char **ent)
 	if (!check_camera(p, n, ent[3]))
 		desperation(rt, ERR_FILE_INVALID);
 	cam = gc_malloc(sizeof(t_camera), rt->gc, GC_DEFAULT);
-	if (!cam)
+	if (!cam || ft_mtxlen(ent) > 4)
 		desperation(rt, ERR_FILE_INVALID);
 	cam->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
 	cam->norm = vec4_init(ft_atod(n[0]), ft_atod(n[1]), ft_atod(n[2]), 0);
@@ -119,7 +119,7 @@ void	parse_light(t_minirt *rt, char **ent)
 	if (!check_light(p, ent[2], c))
 		desperation(rt, ERR_FILE_INVALID);
 	lig = gc_malloc(sizeof(t_light), rt->gc, GC_DEFAULT);
-	if (!lig)
+	if (!lig || ft_mtxlen(ent) > 4)
 		desperation(rt, ERR_FILE_INVALID);
 	lig->pos = vec4_init(ft_atod(p[0]), ft_atod(p[1]), ft_atod(p[2]), 1);
 	lig->color = vec4_init(ft_atod(c[0]), ft_atod(c[1]), ft_atod(c[2]), 0);
