@@ -6,7 +6,7 @@
 /*   By: vitor <vitor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:16:11 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/17 12:32:59 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/20 18:43:56 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ typedef struct s_retangle
 	t_matrix4	inverse;
 }	t_rectangle;
 
-
 typedef struct s_parallelepiped
 {
 	t_shape		type;
@@ -124,7 +123,6 @@ typedef struct s_parallelepiped
 	t_vec4		norm;
 	t_material	mat;
 }	t_parallelepiped;
-
 
 typedef struct s_cylinder
 {

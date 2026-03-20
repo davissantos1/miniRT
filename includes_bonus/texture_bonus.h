@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 08:21:27 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/14 10:24:59 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/20 18:43:23 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		uv_cylinder(t_point p, double *u, double *v);
 void		uv_plane(t_point p, double *u, double *v);
 void		uv_disk(t_point p, double *u, double *v);
 void		uv_cone(t_point p, double *u, double *v);
-void	    uv_rectangle(t_point p, double *u, double *v);
+void		uv_rectangle(t_point p, double *u, double *v);
 
 void		destroy_texture(void *content);
 
