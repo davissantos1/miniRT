@@ -34,9 +34,13 @@ bool	hit_disk(void *me, t_hit *hits, t_ray ray)
 	t = vec4_dot(oc, obj->norm) / cosine;
 	if ((t <= EPSILON) || (hits->num_roots && t > hits->r1))
 		return (false);
-	if (cosine > 0)
-		obj->norm = vec4_scale(-1.0, obj->norm);
-	return (intersection(obj, t, hits, ray));
+	if (intersection(obj, t, hits, ray))
+	{
+		if (cosine > 0)
+			hits->norm = vec4_scale(-1.0, hits->norm);
+		return (true);
+	}
+	return (false);
 }
 
 static inline bool	intersection(t_disk *obj, double t, t_hit *hits, t_ray ray)
