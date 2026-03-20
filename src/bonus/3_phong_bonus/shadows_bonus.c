@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shadows.c                                          :+:      :+:    :+:   */
+/*   shadows_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 09:56:10 by vitosant          #+#    #+#             */
-/*   Updated: 2026/02/15 13:53:21 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/20 12:44:08 by vitosant         ###    ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@
 bool	shadows(t_scene *sc, t_light *lig, t_hit hit, t_vec4 light_dir)
 {
 	t_hit	collision;
-	t_point	after_point;
+	t_point	afpoint;
 	double	light_distance;
 	double	hit_distance;
 
 	collision = (t_hit){0};
-	after_point = vec4_plus(vec4_scale(EPSILON, hit.norm), hit.hit_point);
-	collision = ray_collision(sc, ray_init(after_point, light_dir));
+	afpoint = vec4_plus(vec4_scale(EPSILON, hit.ambi_norm), hit.hit_point);
+	collision = ray_collision(sc, ray_init(afpoint, light_dir));
 	if (!collision.num_roots)
 		return (false);
-	light_distance = vec4_squared_len(vec4_minus(lig->pos, after_point));
-	hit_distance = vec4_squared_len(vec4_minus(collision.hit_point, lig->pos));
+	light_distance = vec4_squared_len(vec4_minus(lig->pos, afpoint));
+	hit_distance = vec4_squared_len(vec4_minus(collision.hit_point, afpoint));
 	return (light_distance > hit_distance);
 }
