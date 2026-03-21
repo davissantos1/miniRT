@@ -6,7 +6,7 @@
 /*   By: dasimoes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 13:11:30 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/08 19:52:48 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/21 10:30:30 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	desperation(t_minirt *rt, t_status status)
 		real_panic(status);
 	else
 	{
+		get_next_line(-1);
 		mlx_destroy_image(rt->mlx->init, rt->mlx->img);
 		mlx_destroy_window(rt->mlx->init, rt->mlx->win);
 		mlx_destroy_display(rt->mlx->init);

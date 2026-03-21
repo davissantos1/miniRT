@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:31:39 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/20 18:13:50 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/21 10:26:42 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	parse_minirt(t_minirt *rt, int fd)
 		split = ft_split(line, ' ');
 		if (!split)
 			desperation(rt, ERR_SYSCALL);
+		if (!gc_addmtx(s, rt->gc, GC_TEMP) || !gc_addptr(l, rt->gc, GC_TEMP))
+			desperation(rt, ERR_SYSCALL);
 		parse_entity(rt, split);
-		ft_mtxfree(split);
-		free(line);
 	}
 	if (!sc->alight || !sc->camera || !sc->light || !sc->shape)
 		desperation(rt, ERR_FILE_INVALID);

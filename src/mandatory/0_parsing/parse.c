@@ -6,7 +6,7 @@
 /*   By: dasimoes <dasimoes@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 20:31:39 by dasimoes          #+#    #+#             */
-/*   Updated: 2026/03/20 18:11:22 by dasimoes         ###   ########.fr       */
+/*   Updated: 2026/03/21 10:24:57 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@
 void	parse_minirt(t_minirt *rt, int fd)
 {
 	t_scene	*sc;
-	char	*line;
-	char	**split;
+	char	*l;
+	char	**s;
 
 	sc = rt->scene;
 	while (1)
 	{
-		line = get_next_line(fd);
-		if (!line)
+		l = get_next_line(fd);
+		if (!l)
 			break ;
-		if (check_empty(line))
+		if (check_empty(l))
 		{
-			free(line);
+			free(l);
 			continue ;
 		}
-		rm_newline(&line);
-		split = ft_split(line, ' ');
-		if (!split)
+		rm_newline(&l);
+		s = ft_split(l, ' ');
+		if (!s)
 			desperation(rt, ERR_SYSCALL);
-		parse_entity(rt, split);
-		ft_mtxfree(split);
-		free(line);
+		if (!gc_addmtx(s, rt->gc, GC_TEMP) || !gc_addptr(l, rt->gc, GC_TEMP))
+			desperation(rt, ERR_SYSCALL);
+		parse_entity(rt, s);
 	}
 	if (!sc->alight || !sc->camera || !sc->light || !sc->shape)
 		desperation(rt, ERR_FILE_INVALID);
