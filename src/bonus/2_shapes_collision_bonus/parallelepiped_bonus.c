@@ -6,7 +6,7 @@
 /*   By: vitosant <vitosant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 10:50:11 by vitosant          #+#    #+#             */
-/*   Updated: 2026/03/19 20:17:10 by vitosant         ###    ########.fr      */
+/*   Updated: 2026/03/21 11:18:28 by dasimoes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	x_faces(t_parallelepiped *obj, t_rectangle rec, t_hit *hits, t_ray ray)
 	rec.pos = ray_pos(ray_init(obj->pos, normal), distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any = hit_rectangle(&rec, hits, ray);
-	rec.pos = ray_pos(ray_init(obj->pos, obj->norm), -distance);
+	rec.pos = ray_pos(ray_init(obj->pos, normal), -distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any |= hit_rectangle(&rec, hits, ray);
 	return (hit_any);
@@ -80,7 +80,7 @@ bool	z_faces(t_parallelepiped *obj, t_rectangle rec, t_hit *hits, t_ray ray)
 	rec.pos = ray_pos(ray_init(obj->pos, normal), distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any = hit_rectangle(&rec, hits, ray);
-	rec.pos = ray_pos(ray_init(obj->pos, obj->norm), -distance);
+	rec.pos = ray_pos(ray_init(obj->pos, normal), -distance);
 	rec.transform = rectangle_transform(&rec, &rec.inverse);
 	hit_any |= hit_rectangle(&rec, hits, ray);
 	return (hit_any);
