@@ -151,7 +151,7 @@ clean:
 
 fclean: clean
 	@printf "💣 ${YELLOW}Cleaning: ${RESET}everything\n"
-	@rm -rf $(NAME) miniRT_bonus
+	@rm -rf $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 delete:
